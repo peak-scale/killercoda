@@ -1,11 +1,11 @@
 This demonstrates one of the key aspects of why state makes sense. It's always known which resources should and how they should exist. The same goes for resources which should no longer exist. In comparison to eg. Ansible, Terraform is able to destroy resources which are no longer part of the configuration.
 
-### Updating Resources
+# Tasks
 
-1. Now we are adding a second file to the configuration:
+* Now we are adding a second file to the configuration:
    
 ```shell
-cat <<EOF > tofu-example/local_file.tf
+cat <<EOF > local_file.tf
 resource "local_file" "goodbye" {
     filename = "\${path.module}/goodbye.txt"
     content  = "Goodbye, Terraform!"
@@ -17,22 +17,22 @@ The name of the resource must be different (`goodbye`) to avoid conflicts.
 
 > We can place any `*.tf` file in the configuration directory. Terraform will automatically detect and apply the configuration. However you can't use subdirectories.
 
-2. Plan and Apply the changes, you may review what's being created:
+* Plan and Apply the changes, you may review what's being created:
 
 ```shell
 tofu plan && tofu apply -auto-approve
 ```{{exec}}
 
-3. Verify the new file was created:
+* Verify the new file was created:
 
 ```shell
 cat ./goodbye.txt
 ```{{exec}}
 
-4. Let's make changes to the content and the name of the file. We'll also change the resource's name to `morning`:
+* Let's make changes to the content and the name of the file. We'll also change the resource's name to `morning`:
 
 ```shell
-cat <<EOF > tofu-example/local_file.tf
+cat <<EOF > local_file.tf
 resource "local_file" "morning" {
     filename = "\${path.module}/morning.txt"
     content  = "Good Morning, Terraform!"
@@ -40,7 +40,7 @@ resource "local_file" "morning" {
 EOF
 ```{{exec}}
 
-5. Plan the changes. You should see that the file `goodbye.txt` will be removed and `morning.txt` will be created:
+* Plan the changes. You should see that the file `goodbye.txt` will be removed and `morning.txt` will be created:
 
 ```shell
 tofu plan

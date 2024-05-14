@@ -1,8 +1,8 @@
 Destroying resources is used when you want to remove all resources that are managed by Opentofu. This is useful when you want to clean up your infrastructure or when you want to start from scratch.
 
-## Destroying Resources
+# Tasks
 
-1. For further steps, we need all the files to be absent. We can remove it by running the `apply -destroy` (or `tofu destroy`) command:
+* For further steps, we need all the files to be absent. We can remove it by running the `apply -destroy` (or `tofu destroy`) command:
    
 ```shell
 tofu apply -destroy
@@ -14,7 +14,7 @@ tofu apply -destroy
 
 Another approach is to destroy a specific resource, however this is only used in exceptional situations (recovery). 
 
-1. For this we need to create a plan file which is limited to the resource we want to destroy. 
+* For this we need to create a plan file which is limited to the resource we want to destroy. 
 
 ```shell
  tofu plan -target="local_file.example" -out /root/destroy-plan
@@ -26,7 +26,7 @@ if you are unsure about the target name, you can look at your current state
 tofu state ls
 ```{{exec}}
 
-3. Now you can destroy the resource by running the `apply` command with the plan file:
+* Now you can destroy the resource by running the `apply` command with the plan file:
 
 ```shell
 tofu apply -destroy "/root/destroy-plan"
