@@ -1,6 +1,7 @@
 #!/bin/bash
 set -x 
 echo starting...
+mkdir ~/solutions
 
 # Install Opentofu
 curl --proto '=https' --tlsv1.2 -fsSL https://get.opentofu.org/install-opentofu.sh -o install-opentofu.sh

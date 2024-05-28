@@ -13,32 +13,8 @@
         {
           "title": "Kubernetes Provider Setup",
           "text": "step2/desc.md",
-          "verify": "step2/verify.sh"
-        },
-        {
-          "title": "Planning your Apply",
-          "text": "step3/desc.md",
-          "verify": "step3/verify.sh"
-        },
-        {
-          "title": "Applying your Plan",
-          "text": "step4/desc.md",
-          "verify": "step4/verify.sh"
-        },
-        {
-          "title": "Updating Resources",
-          "text": "step5/desc.md",
-          "verify": "step5/verify.sh"
-        },
-        {
-          "title": "Destroying Resources",
-          "text": "step6/desc.md",
-          "verify": "step6/verify.sh"
-        },
-        {
-          "title": "Import Resources",
-          "text": "step7/desc.md",
-          "verify": "step7/verify.sh"
+          "verify": "step2/verify.sh",
+          "background": "step2/background.sh"
         }
       ],
       "finish": {
