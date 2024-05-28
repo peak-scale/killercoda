@@ -2,6 +2,8 @@
     "title": "Opentofu Scenarios",
     "description": "Get to know Opentofu for beginner and advanced users",
     "items": [
-      { "path": "getting-started" }
+      { "path": "getting-started" },
+      { "path": "working-with-providers" },
+      { "path": "working-with-state" }
     ]
   }
