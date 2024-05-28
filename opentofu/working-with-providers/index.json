@@ -1,18 +1,17 @@
 {
-    "title": "Opentofu Getting Started",
-    "description": "Getting started with basic Opentofu (Terraform) principles",
+    "title": "Working with Providers",
+    "description": "Gain confidence when working with providers",
     "details": {
       "intro": {
         "text": "intro.md"
       },
       "steps": [
         {
-          "title": "Install Opentofu",
-          "text": "step1/desc.md",
-          "verify": "step1/verify.sh"
+          "title": "Find and understand Providers",
+          "text": "step1/desc.md"
         },
         {
-          "title": "Initialize Project",
+          "title": "Kubernetes Provider Setup",
           "text": "step2/desc.md",
           "verify": "step2/verify.sh"
         },
@@ -47,7 +46,7 @@
       }
     },
     "backend": {
-      "imageid": "ubuntu"
+      "imageid": "kubernetes-kubeadm-1node"
     },
     "interface": {
       "layout": "ide"

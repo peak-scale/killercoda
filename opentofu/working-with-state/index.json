@@ -1,13 +1,13 @@
 {
-    "title": "Getting Started",
-    "description": "Getting started with basic Opentofu interactions",
+    "title": "Working with state",
+    "description": "Gain confidence when working with state",
     "details": {
       "intro": {
         "text": "intro.md"
       },
       "steps": [
         {
-          "title": "Install Opentofu",
+          "title": "Configure Kubernetes as State Backend",
           "text": "step1/desc.md",
           "verify": "step1/verify.sh"
         },
@@ -47,6 +47,9 @@
       }
     },
     "backend": {
-      "imageid": "ubuntu"
+      "imageid": "kubernetes-kubeadm-1node"
+    },
+    "interface": {
+      "layout": "ide"
     }
   }

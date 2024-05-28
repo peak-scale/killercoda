@@ -1,0 +1,7 @@
+{
+    "title": "Opentofu Scenarios",
+    "description": "Get to know Opentofu for beginner and advanced users",
+    "items": [
+      { "path": "getting-started" }
+    ]
+  }

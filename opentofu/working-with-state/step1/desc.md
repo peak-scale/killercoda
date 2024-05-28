@@ -1,10 +1,18 @@
-Before starting this scenario, you need to install Opentofu on the given environment. See for reference the [official website](https://opentofu.org/docs/intro/install/https://opentofu.org/docs/intro/install/). You can use the same process to install opentofu on your local machine.
+In this scenario we want to manage resources on Kubernetes with Opentofu. 
 
-The [OpenTofu CLI](https://opentofu.org/docs/intro/install/https://opentofu.org/docs/intro/install/) is used to interact with the state and will execute everything in our scenarios.
 
-### Install Opentofu
+# Tasks
 
-On this environment we are running [Ubuntu](https://opentofu.org/docs/intro/install/deb/), so we can use the following commands to install Opentofu.
+* Initialize a new project using with the following Opentofu configurations:
+
+```shell
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://get.opentofu.org/opentofu.gpg | sudo tee /etc/apt/keyrings/opentofu.gpg >/dev/null
+curl -fsSL https://packages.opentofu.org/opentofu/tofu/gpgkey | sudo gpg --no-tty --batch --dearmor -o /etc/apt/keyrings/opentofu-repo.gpg >/dev/null
+sudo chmod a+r /etc/apt/keyrings/opentofu.gpg /etc/apt/keyrings/opentofu-repo.gpg
+```{{exec}}
+
+
 
 1. Add Opentofu Keyring:
    
