@@ -1,4 +1,6 @@
 #!/bin/bash
+snap install opentofu --classic
+
 mkdir ~/dry
 cd ~/dry
 
