@@ -1,0 +1,27 @@
+{
+    "title": "Variables",
+    "description": "Don't repeat yourself. Use variables to store values that you use multiple times in your configuration.",
+    "details": {
+      "intro": {
+        "text": "intro.md"
+      },
+      "steps": [
+        {
+          "title": "Resource Attributes", 
+          "text": "step1/desc.md",
+          "verify": "step1/verify.sh",
+          "background": "step1/background.sh",
+          "foreground": "step1/foreground.sh"
+        },
+      ],
+      "finish": {
+        "text": "finish.md"
+      }
+    },
+    "backend": {
+      "imageid": "kubernetes-kubeadm-1node"
+    },
+    "interface": {
+      "layout": "ide"
+    }
+  }

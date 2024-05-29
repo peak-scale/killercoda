@@ -1,17 +1,17 @@
 {
-    "title": "Working with Providers",
-    "description": "Gain confidence when working with providers",
+    "title": "Asymmetric Secrets Management",
+    "description": "Consume and manage asymmetric encrypted secrets in Terraform",
     "details": {
       "intro": {
         "text": "intro.md"
       },
       "steps": [
         {
-          "title": "Lookup Providers",
+          "title": "Asymmetric Encryption (EJSON)", 
           "text": "step1/desc.md"
         },
         {
-          "title": "Provider Setup",
+          "title": "Asymmetric Encryption (SOPS)",
           "text": "step2/desc.md",
           "verify": "step2/verify.sh",
           "background": "step2/background.sh"
@@ -21,7 +21,6 @@
           "text": "step3/desc.md",
           "verify": "step3/verify.sh"
         }
-
       ],
       "finish": {
         "text": "finish.md"

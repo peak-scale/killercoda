@@ -1,6 +1,6 @@
 {
-    "title": "Working with Providers",
-    "description": "Gain confidence when working with providers",
+    "title": "Building Abstractions 01",
+    "description": "Build a YAML abstraction for multiple services",
     "details": {
       "intro": {
         "text": "intro.md"
@@ -21,7 +21,6 @@
           "text": "step3/desc.md",
           "verify": "step3/verify.sh"
         }
-
       ],
       "finish": {
         "text": "finish.md"

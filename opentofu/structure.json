@@ -4,6 +4,9 @@
     "items": [
       { "path": "getting-started" },
       { "path": "working-with-providers" },
-      { "path": "working-with-state" }
+      { "path": "variables" },
+      { "path": "working-with-state" },
+      { "path": "building-abstractions-01" }
+
     ]
   }
