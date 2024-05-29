@@ -11,12 +11,12 @@ Reusing attributes from resource blocks keeps your configuration DRY (Don't Repe
 
 Complete these tasks for this scenario. 
 
-## Task 1: Review `dry.tf`
+## Task 1: Review `kubernetes.tf`
 
-There's a file located in your working directory called `dry.tf`. Review the content of the file. 
+There's a file located in your working directory called `kubernetes.tf`. Review the content of the file. 
 
 ```shell
-cat dry.tf
+cat kubernetes.tf
 ```{{execute}}
 
 You will notice that there are redundant values in the configuration:
@@ -26,7 +26,7 @@ You will notice that there are redundant values in the configuration:
 
 ## Task 2: Implement Resource Attribute References
 
-Rewrite the file `dry.tf` to use the resource attributes instead of hardcoding the values. This is how you can reference the attributes:
+Rewrite the file `kubernetes.tf` to use the resource attributes instead of hardcoding the values. This is how you can reference the attributes:
 
 * `kubernetes_namespace_v1.namespace.metadata.0.name` for the namespace name.
 

@@ -1,8 +1,9 @@
 #!/bin/bash
 mkdir ~/dry
+cd ~/dry
 
-# Create dry.tf file
-cat <<EOF > dry.tf
+# Create kubernetes.tf file
+cat <<EOF > kubernetes.tf
 resource "kubernetes_namespace_v1" "namespace" {
   metadata {
     name = "prod-environment"

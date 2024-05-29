@@ -2,7 +2,7 @@
 
 # Add Solution for review
 mkdir -p ~/.solutions/step1 || true
-cat << 'EOF' > ~/.solutions/step1/dry.tf
+cat << 'EOF' > ~/.solutions/step1/kubernetes.tf
 resource "kubernetes_namespace_v1" "namespace" {
   metadata {
     name = "prod-environment"
@@ -49,7 +49,7 @@ resource "kubernetes_pod_v1" "workload" {
 }
 EOF
 
-diff -w  -sB ~/.solutions/step1/dry.tf ~/dry/dry.tf
+diff -w  -sB ~/.solutions/step1/kubernetes.tf ~/dry/kubernetes.tf
 if [ $? -ne 0 ]; then
   exit 1
 fi

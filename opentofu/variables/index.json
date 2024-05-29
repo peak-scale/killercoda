@@ -3,7 +3,9 @@
     "description": "Don't repeat yourself. Use variables to store values that you use multiple times in your configuration.",
     "details": {
       "intro": {
-        "text": "intro.md"
+        "text": "intro.md",
+        "foreground": "foreground.sh",
+        "background": "background.sh"
       },
       "steps": [
         {
