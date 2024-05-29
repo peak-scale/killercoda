@@ -1,8 +1,22 @@
 #!/bin/bash
-snap install opentofu --classic
+mkdir ~/scenario
+cd ~/scenario
 
-mkdir ~/dry
-cd ~/dry
+# Create provider.tf file
+cat <<EOF > provdier.tf
+terraform {
+  required_providers {
+    kubernetes = {
+      source = "hashicorp/kubernetes"
+      version = "2.30.0"
+    }
+  }
+}
+
+provider "kubernetes" { 
+  config_path = "~/.kube/config"
+}
+EOF
 
 # Create kubernetes.tf file
 cat <<EOF > kubernetes.tf
@@ -53,6 +67,7 @@ resource "kubernetes_pod_v1" "workload" {
 EOF
 
 # Apply configuration
+tofu init
 tofu plan && tofu apply -auto-approve
 
 touch /tmp/setup-step1

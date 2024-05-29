@@ -1,17 +1,17 @@
 #!/bin/bash
 
 # Add Solution for review
-mkdir -p ~/.solutions/step1 || true
-cat << 'EOF' > ~/.solutions/step1/kubernetes.tf
+mkdir -p ~/.solutions/step2 || true
+cat << 'EOF' > ~/.solutions/step2/kubernetes.tf
 resource "kubernetes_namespace_v1" "namespace" {
   metadata {
-    name = "prod-environment"
+    name = "${var.environment}-environment"
   }
 }
 
 resource "kubernetes_service_account_v1" "serviceaccount" {
   metadata {
-    name = "prod-sa"
+    name = "${var.environment}-sa"
     namespace = kubernetes_namespace_v1.namespace.metadata.0.name
   }
 }
@@ -48,6 +48,19 @@ resource "kubernetes_pod_v1" "workload" {
   }
 }
 EOF
+
+cat << 'EOF' > ~/.solutions/step2/variables.tf
+variable "environment" {
+  type = string
+  description = "The environment name"
+  default = "prod"
+}
+EOF
+
+cat << 'EOF' > ~/.solutions/step2/terraform.tfvars
+environment = "test"
+EOF
+
 
 diff -w  -sB ~/.solutions/step1/kubernetes.tf ~/scenario/kubernetes.tf
 if [ $? -ne 0 ]; then
