@@ -18,9 +18,7 @@
         {
           "title": "Input Variables", 
           "text": "step3/desc.md",
-          "verify": "step3/verify.sh",
-          "background": "step3/background.sh",
-          "foreground": "step3/foreground.sh"
+          "verify": "step3/verify.sh"
         }
 
 
