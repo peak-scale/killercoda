@@ -1,6 +1,6 @@
 {
-    "title": "Working with Providers",
-    "description": "Gain confidence when working with providers",
+    "title": "Providers",
+    "description": "Working with Providers",
     "details": {
       "intro": {
         "text": "intro.md"
@@ -21,7 +21,6 @@
           "text": "step3/desc.md",
           "verify": "step3/verify.sh"
         }
-
       ],
       "finish": {
         "text": "finish.md"

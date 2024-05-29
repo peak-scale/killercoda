@@ -3,7 +3,7 @@
     "description": "Get to know Opentofu for beginner and advanced users",
     "items": [
       { "path": "getting-started" },
-      { "path": "working-with-providers" },
+      { "path": "providers" },
       { "path": "variables" },
       { "path": "working-with-state" },
       { "path": "building-abstractions-01" }
