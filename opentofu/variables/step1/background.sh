@@ -3,7 +3,6 @@ mkdir ~/dry
 
 # Create dry.tf file
 cat <<EOF > dry.tf
-
 resource "kubernetes_namespace_v1" "namespace" {
   metadata {
     name = "prod-environment"
@@ -53,4 +52,5 @@ EOF
 # Apply configuration
 tofu plan && tofu apply -auto-approve
 
+touch /tmp/setup-step1
 

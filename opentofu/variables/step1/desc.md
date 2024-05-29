@@ -9,11 +9,7 @@ Reusing attributes from resource blocks keeps your configuration DRY (Don't Repe
 
 # Tasks
 
-Complete these tasks for this scenario. Change into the scenario directory:
-
-```shell
-cd ~/dry
-```{{execute}}
+Complete these tasks for this scenario. 
 
 ## Task 1: Review `dry.tf`
 
