@@ -1,22 +1,4 @@
 #!/bin/bash
-mkdir ~/scenario
-cd ~/scenario
-
-# Create provider.tf file
-cat <<EOF > provider.tf
-terraform {
-  required_providers {
-    kubernetes = {
-      source = "hashicorp/kubernetes"
-      version = "2.30.0"
-    }
-  }
-}
-
-provider "kubernetes" { 
-  config_path = "~/.kube/config"
-}
-EOF
 
 # Create kubernetes.tf file
 cat <<EOF > kubernetes.tf
@@ -51,6 +33,8 @@ resource "kubernetes_pod_v1" "workload" {
   metadata {
     name = "nginx"
     namespace = "prod-environment"
+    labels = local.common_labels
+    annotations = local.deploy_annotations
   }
 
   spec {

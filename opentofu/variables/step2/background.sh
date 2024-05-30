@@ -1,9 +1,8 @@
 #!/bin/bash
-mkdir ~/scenario
-cd ~/scenario
+mkdir -p ~/scenario/stages/
 
-# Create provider.tf file
-cat <<EOF > provider.tf
+# Create Stage Files
+cat <<EOF > ~/scenario/stages/prod.yaml
 terraform {
   required_providers {
     kubernetes = {

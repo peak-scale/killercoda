@@ -1,8 +1,10 @@
 #!/bin/bash
 
 # Add Solution for review
-mkdir -p ~/.solutions/step3 || true
-cat << 'EOF' > ~/.solutions/step3/kubernetes.tf
+mkdir -p ~/.solutions/step4 || true
+cp ~/.solutions/step3/* ~/.solutions/step4/
+
+cat << 'EOF' > ~/.solutions/step4/kubernetes.tf
 resource "kubernetes_namespace_v1" "namespace" {
   metadata {
     name = "${var.environment}-environment"
@@ -34,6 +36,8 @@ resource "kubernetes_pod_v1" "workload" {
   metadata {
     name = "nginx"
     namespace = kubernetes_namespace_v1.namespace.metadata.0.name
+    labels = local.common_labels
+    annotations = local.deploy_annotations
   }
 
   spec {
@@ -49,30 +53,11 @@ resource "kubernetes_pod_v1" "workload" {
 }
 EOF
 
-cat << 'EOF' > ~/.solutions/step3/variables.tf
-variable "environment" {
-  type = string
-  description = "The environment name"
-  default = "prod"
-}
-EOF
-
-cat << 'EOF' > ~/.solutions/step3/terraform.tfvars
-environment = "test"
-EOF
-
-
-diff -w  -sB ~/.solutions/step3/kubernetes.tf ~/scenario/kubernetes.tf
-if [ $? -ne 0 ]; then
-  exit 1
-fi
-
-diff -w  -sB ~/.solutions/step3/variables.tf ~/scenario/variables.tf
-if [ $? -ne 0 ]; then
-  exit 1
-fi
-
-diff -w  -sB ~/.solutions/step3/terraform.tfvars ~/scenario/terraform.tfvars
-if [ $? -ne 0 ]; then
-  exit 1
-fi
+# Diff Files
+for file in ~/.solutions/step4/*; do
+  filename=$(basename "$file")
+  diff -w -sB "$file" "~/scenario/$filename"
+  if [ $? -ne 0 ]; then
+    exit 1
+  fi
+done
