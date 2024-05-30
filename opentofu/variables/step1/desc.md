@@ -7,6 +7,8 @@ To access these attributes you can use the following syntax:
 ```
 Reusing attributes from resource blocks keeps your configuration DRY (Don't Repeat Yourself) and makes it easier to maintain.
 
+<hr>
+
 # Tasks
 
 Complete these tasks for this scenario. 
@@ -43,6 +45,8 @@ If you now run the `plan` command, you should see that the configuration is stil
 ```shell
 tofu plan
 ```{{execute}}
+
+<hr>
 
 # Verify
 

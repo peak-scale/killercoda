@@ -67,6 +67,5 @@ resource "kubernetes_pod_v1" "workload" {
 EOF
 
 # Apply configuration
-tofu init && tofu plan && tofu apply -auto-approve
 touch /tmp/setup-step1
 

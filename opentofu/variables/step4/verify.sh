@@ -2,7 +2,18 @@
 
 # Add Solution for review
 mkdir -p ~/.solutions/step4 || true
-cp ~/.solutions/step3/* ~/.solutions/step4/
+
+cat << 'EOF' > ~/.solutions/step4/locals.tf
+locals {
+  common_labels = {
+    environment = var.environment
+  }
+  deploy_annotations = {
+    created_at = timestamp()
+    terraform_version = terraform.version
+  }
+}
+EOF
 
 cat << 'EOF' > ~/.solutions/step4/kubernetes.tf
 resource "kubernetes_namespace_v1" "namespace" {
@@ -53,11 +64,7 @@ resource "kubernetes_pod_v1" "workload" {
 }
 EOF
 
-# Diff Files
-for file in ~/.solutions/step4/*; do
-  filename=$(basename "$file")
-  diff -w -sB "$file" "~/scenario/$filename"
-  if [ $? -ne 0 ]; then
-    exit 1
-  fi
-done
+# Verify
+diff <(hcl2json ~/scenario/locals.tf) <(hcl2json ~/.solutions/step4/locals.tf)
+diff <(hcl2json ~/scenario/kubernetes.tf | jq '.resource.kubernetes_pod_v1.workload[0].metadata') <(hcl2json ~/.solutions/step4/kubernetes.tf | jq '.resource.kubernetes_pod_v1.workload[0].metadata')
+
