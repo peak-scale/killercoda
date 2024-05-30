@@ -67,8 +67,12 @@ EOF
 
 # Verify the solution
 diff <(hcl2json ~/scenario/variables.tf) <(hcl2json ~/.solutions/step3/variables.tf)
-hcl2json kubernetes.tf | jq '(
+
+result=$(hcl2json kubernetes.tf | jq '(
   .resource.kubernetes_namespace_v1.namespace[0].metadata[0].name == "${var.environment}-environment"
 ) and (
   .resource.kubernetes_service_account_v1.serviceaccount[0].metadata[0].name == "${var.environment}-sa"
-)'
+)')
+if [ "$result" = "false" ]; then
+  exit 1
+fi
