@@ -7,6 +7,8 @@ To access these attributes you can use the following syntax:
 ```
 Reusing attributes from resource blocks keeps your configuration DRY (Don't Repeat Yourself) and makes it easier to maintain.
 
+> When referencing attributes, don't use quotes (`"` or `'`). Otherwise it will be interpreted as a `string`.
+
 <hr>
 
 # Tasks

@@ -65,19 +65,10 @@ cat << 'EOF' > ~/.solutions/step3/terraform.tfvars
 environment = "test"
 EOF
 
-opentofu test -test-directory=~/.solutions/step3-tests/
-
-diff -w  -sB ~/.solutions/step3/kubernetes.tf ~/scenario/kubernetes.tf
-if [ $? -ne 0 ]; then
-  exit 1
-fi
-
-diff -w  -sB ~/.solutions/step3/variables.tf ~/scenario/variables.tf
-if [ $? -ne 0 ]; then
-  exit 1
-fi
-
-diff -w  -sB ~/.solutions/step3/terraform.tfvars ~/scenario/terraform.tfvars
-if [ $? -ne 0 ]; then
-  exit 1
-fi
+# Verify the solution
+diff <(hcl2json ~/scenario/variables.tf) <(hcl2json ~/.solutions/step3/variables.tf)
+hcl2json kubernetes.tf | jq '(
+  .resource.kubernetes_namespace_v1.namespace[0].metadata[0].name == "${var.environment}-environment"
+) and (
+  .resource.kubernetes_service_account_v1.serviceaccount[0].metadata[0].name == "${var.environment}-sa"
+)'

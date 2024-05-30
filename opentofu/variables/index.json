@@ -17,8 +17,8 @@
         },
         {
           "title": "Input Variables", 
-          "text": "step3/desc.md",
-          "verify": "step3/verify.sh"
+          "text": "step2/desc.md",
+          "verify": "step2/verify.sh"
         },
         {
           "title": "Local Variables", 
@@ -27,6 +27,11 @@
         },
         {
           "title": "Outputs", 
+          "text": "step5/desc.md",
+          "verify": "step5/verify.sh"
+        },
+        {
+          "title": "Module Outputs", 
           "text": "step5/desc.md",
           "verify": "step5/verify.sh"
         }
