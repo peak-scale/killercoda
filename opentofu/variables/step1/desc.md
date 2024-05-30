@@ -42,8 +42,6 @@ Rewrite the file `kubernetes.tf` to use the resource attributes instead of hardc
 
 If you now run the `plan` command, you should see that the configuration is still valid and nothing changed, where we replaced the values with the resource attributes.
 
-> You might have updates regarding pod annotations, which are not relevant.
-
 ```shell
 tofu plan
 ```{{execute}}

@@ -73,6 +73,15 @@ resource "kubernetes_pod_v1" "workload" {
       }
     }
   }
+
+  lifecycle {
+    ignore_changes = [
+        "metadata.annotations.\"cni.projectcalico.org/containerID\"",
+        "metadata.annotations.\"cni.projectcalico.org/podIP\"",
+        "metadata.annotations.\"cni.projectcalico.org/podIPs\""
+    ]
+  }
+
 }
 EOF
 

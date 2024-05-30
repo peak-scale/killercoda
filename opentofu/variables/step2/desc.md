@@ -1,6 +1,6 @@
 > [Documentation](https://opentofu.org/docs/language/values/variables/)
 
-Input Variables allow to parameterize the configuration/module and make it reusable. Input Variables define inputs which must be set and can be used in the configuration to adjust the behavior of the configuration.
+Input Variables allow to parameterize the configuration/module and make it reusable. You can think of input variables as parameters to a function. They are defined in the configuration file and can be used to pass values to the resources.
 
 **Note**: Input variables are always declared in a separate file called `variables.tf`. The file is located in the same directory as the configuration file.
 
