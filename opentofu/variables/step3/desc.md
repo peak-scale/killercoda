@@ -1,46 +1,62 @@
-As you have seen in the previous step, resource references are a handy feature to avoid redundancy in your configuration. Implementing resource references makes everyones life easier.
-
-Let's explore this further in the following tasks and where the boundaries are.
+Let's explore an implementation, where the variables are offloaded to a dedicated file.
 
 # Tasks
 
 Complete these tasks for this scenario. 
 
-## Task 1: Review `kubernetes.tf`
+## Task 1: Variable Files
 
-There's a file located in your working directory called `kubernetes.tf`. Review the content of the file. 
+Create a file called `prod.tfvars` in your working directory. Within this file, define the following variables:
+
+```hcl
+environment = "prod"
+labels = {
+  "app" = "production"
+  "required-approval" = "true"
+}
+```
+
+Create a file called `test.tfvars` in your working directory. Within this file, define the following variables:
+
+```hcl
+environment = "test"
+labels = {
+  "app" = "pre-prod"
+  "required-approval" = "false"
+}
+```
+
+## Task 2: Add Variables
+
+To the existing `variables.tf` add a new variable:
+
+  * `labels`:
+    * `description`: Additional labels for the resources 
+    * `type`: `map(string)`
+    * `default`: `environment = var.environment`
+
+## Task 3: Use Variable
+
+These annotations should be used in the `kubernetes_namespace_v1` resources in the `kubernetes.tf`. Assign it to the `metadata` block in the for the `labels` attribute:
 
 ```shell
-cat kubernetes.tf
-```{{execute}}
+resource "kubernetes_namespace_v1" "namespace" {
+  ...
+  metadata {
+    ...
+    labels = HERE
+  }
+}
+```
 
-You will notice that there are redundant values in the configuration:
+## Task 3: Use Variable File
 
-* `prod-environment`: The namespace name is used in multiple resources.
-* `prod-sa`: The service account name is used in multiple resources.
+> `tofu plan -h`{{execute}} might help here.
 
-## Task 2: Implement Resource Attribute References
-
-Rewrite the file `kubernetes.tf` to use the resource attributes instead of hardcoding the values. This is how you can reference the attributes:
-
-* `kubernetes_namespace_v1.namespace.metadata.0.name` for the namespace name.
-
-* `kubernetes_service_account_v1.serviceaccount.metadata.0.name` for the serviceaccount name.
-
-> You can just replace the values with the resource attributes, no further changes to the file are required.
-
-## Task 3: Review
-
-If you now run the `plan` command, you should see that the configuration is still valid and nothing changed, where we replaced the values with the resource attributes.
-
-> You might have updates regarding pod annotations, which are not relevant.
-
-```shell
-tofu plan
-```{{execute}}
+Use the file `test.tfvars` to create a plan and **apply** the changes with these variables. You should see changes, but your plan seems up to date. Probably the `test.tfvars` is not loaded. 
 
 # Verify
 
-> If the verification was not successful and you are unsure what the problem is, review the `~/.solutions/step1/kubernetes.tf` file.
+> If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step3/`.
 
 

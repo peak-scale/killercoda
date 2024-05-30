@@ -119,4 +119,4 @@ In the `variables.tf` file, edit the input variable environment to have a defaul
 
 # Verify
 
-> If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step3/`.
+> If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step2/`.

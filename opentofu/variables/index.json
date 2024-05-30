@@ -19,6 +19,11 @@
           "verify": "step2/verify.sh"
         },
         {
+          "title": "Input Variables", 
+          "text": "step3/desc.md",
+          "verify": "step3/verify.sh"
+        },
+        {
           "title": "Local Variables", 
           "text": "step4/desc.md",
           "verify": "step4/verify.sh"

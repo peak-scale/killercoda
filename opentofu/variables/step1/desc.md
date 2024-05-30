@@ -50,6 +50,6 @@ tofu plan
 
 # Verify
 
-> If the verification was not successful and you are unsure what the problem is, review the `~/.solutions/step1/kubernetes.tf` file.
+> If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step1/`.
 
 

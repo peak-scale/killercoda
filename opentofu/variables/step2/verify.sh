@@ -1,8 +1,9 @@
 #!/bin/bash
+SOLUTION_DIR="${HOME}/.solutions/step2"
+mkdir -p "${SOLUTION_DIR}" || true
 
 # Add Solution for review
-mkdir -p ~/.solutions/step3 || true
-cat << 'EOF' > ~/.solutions/step3/kubernetes.tf
+cat << 'EOF' > "${SOLUTION_DIR}/kubernetes.tf"
 resource "kubernetes_namespace_v1" "namespace" {
   metadata {
     name = "${var.environment}-environment"
@@ -46,10 +47,18 @@ resource "kubernetes_pod_v1" "workload" {
       }
     }
   }
+
+  lifecycle {
+    ignore_changes = [
+        metadata[0].annotations["cni.projectcalico.org/containerID"],
+        metadata[0].annotations["cni.projectcalico.org/podIP"],
+        metadata[0].annotations["cni.projectcalico.org/podIPs"]
+    ]
+  }  
 }
 EOF
 
-cat << 'EOF' > ~/.solutions/step3/variables.tf
+cat << 'EOF' > "${SOLUTION_DIR}/step2/variables.tf"
 variable "environment" {
   type = string
   description = "The environment name"
@@ -61,12 +70,16 @@ variable "environment" {
 }
 EOF
 
-cat << 'EOF' > ~/.solutions/step3/terraform.tfvars
+cat << 'EOF' > "${SOLUTION_DIR}/step2/terraform.tfvars"
 environment = "test"
 EOF
 
 # Verify the solution
-diff <(hcl2json ~/scenario/variables.tf) <(hcl2json ~/.solutions/step3/variables.tf)
+if ! [ -f ~/scenario/terraform.tfvars ]; then
+  exit 1
+fi
+
+diff <(hcl2json ~/scenario/variables.tf) <(hcl2json ${SOLUTION_DIR}/variables.tf)
 if [ $? -ne 0 ]; then
   exit 1
 fi

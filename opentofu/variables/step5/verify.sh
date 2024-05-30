@@ -1,8 +1,9 @@
 #!/bin/bash
+SOLUTION_DIR="${HOME}/.solutions/step5"
+mkdir -p "${SOLUTION_DIR}" || true
 
 # Post Solution
-mkdir -p ~/.solutions/step5 || true
-cat << 'EOF' > ~/.solutions/step5/outputs.tf
+cat << 'EOF' > "${SOLUTION_DIR}/outputs.tf"
 output "pod_name" {
   description = "The name of the Kubernetes pod"
   value       = kubernetes_pod_v1.workload.metadata[0].name

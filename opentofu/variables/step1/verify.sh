@@ -1,8 +1,9 @@
 #!/bin/bash
+SOLUTION_DIR="${HOME}/.solutions/step1"
+mkdir -p "${SOLUTION_DIR}" || true
 
 # Add Solution for review
-mkdir -p ~/.solutions/step1 || true
-cat << 'EOF' > ~/.solutions/step1/kubernetes.tf
+cat << 'EOF' > "${SOLUTION_DIR}/kubernetes.tf"
 resource "kubernetes_namespace_v1" "namespace" {
   metadata {
     name = "prod-environment"
@@ -46,6 +47,14 @@ resource "kubernetes_pod_v1" "workload" {
       }
     }
   }
+
+  lifecycle {
+    ignore_changes = [
+        metadata[0].annotations["cni.projectcalico.org/containerID"],
+        metadata[0].annotations["cni.projectcalico.org/podIP"],
+        metadata[0].annotations["cni.projectcalico.org/podIPs"]
+    ]
+  }  
 }
 EOF
 

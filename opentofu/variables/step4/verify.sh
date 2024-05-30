@@ -1,9 +1,9 @@
 #!/bin/bash
+SOLUTION_DIR="${HOME}/.solutions/step4"
+mkdir -p "${SOLUTION_DIR}" || true
 
 # Add Solution for review
-mkdir -p ~/.solutions/step4 || true
-
-cat << 'EOF' > ~/.solutions/step4/locals.tf
+cat << 'EOF' > "${SOLUTION_DIR}/locals.tf"
 locals {
   common_labels = {
     environment = var.environment
@@ -15,7 +15,7 @@ locals {
 }
 EOF
 
-cat << 'EOF' > ~/.solutions/step4/kubernetes.tf
+cat << 'EOF' > "${SOLUTION_DIR}/kubernetes.tf"
 resource "kubernetes_namespace_v1" "namespace" {
   metadata {
     name = "${var.environment}-environment"
