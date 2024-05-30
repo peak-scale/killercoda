@@ -11,7 +11,7 @@
         {
           "title": "Resource Attributes", 
           "text": "step1/desc.md",
-          "verify": "step1/verify.sh",
+          "verify": "step1/verify.sh"
         },
         {
           "title": "Input Variables", 
