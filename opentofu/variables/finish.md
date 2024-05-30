@@ -1,8 +1,9 @@
 ## Wrapping Up
 
-Great Job! You have worked with Providers and learned how to interact with them.
+Great Job! You now know how to avoid reptition in your code by using variables. Some things to remember:
 
----
+  * Always use Attribute References, when possible.
+  * Declare types for variables to avoid unexpected data structures.
 
 ## Course Creators
 

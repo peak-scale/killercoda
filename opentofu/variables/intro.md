@@ -1,3 +1,5 @@
+![Opentofu Logo](../../../assets/logos/opentofu.png)
+
 ## About this Scenario
 
 You will how you can use variables in Opentofu. Variables are a way to parameterize your configurations and are an important aspect when building generic and reusable configurations.
