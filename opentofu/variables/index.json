@@ -12,8 +12,6 @@
           "title": "Resource Attributes", 
           "text": "step1/desc.md",
           "verify": "step1/verify.sh",
-          "background": "step1/background.sh",
-          "foreground": "step1/foreground.sh"
         },
         {
           "title": "Input Variables", 

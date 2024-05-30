@@ -1,3 +1,4 @@
 echo "Installing scenario..."
 while [ ! -f /tmp/finished ]; do sleep 2; done
-echo DONE
+cd ~/scenario
+tofu init && tofu plan && tofu apply -auto-approve
