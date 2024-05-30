@@ -2,7 +2,7 @@
 
 ## About this Scenario
 
-You will how you can use variables in Opentofu. Variables are a way to parameterize your configurations and are an important aspect when building generic and reusable configurations.
+Testing your configuration helps with the maintainability and reliability of your configurations. The larger your configuration gets, the more important it becomes to write tests and be certain about outcomes and impact. In this scenario, you will learn how to write tests for your configurations.
 
 ## Prerequisites
 

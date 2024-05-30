@@ -54,6 +54,10 @@ variable "environment" {
   type = string
   description = "The environment name"
   default = "prod"
+  validation {
+    condition = var.environment == "prod" || var.environment == "test" || var.environment == "dev"
+    error_message = "The environment must be either prod, test or dev"
+  }
 }
 EOF
 
@@ -61,6 +65,7 @@ cat << 'EOF' > ~/.solutions/step3/terraform.tfvars
 environment = "test"
 EOF
 
+opentofu test -test-directory=~/.solutions/step3-tests/
 
 diff -w  -sB ~/.solutions/step3/kubernetes.tf ~/scenario/kubernetes.tf
 if [ $? -ne 0 ]; then

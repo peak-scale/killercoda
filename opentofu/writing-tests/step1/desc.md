@@ -1,6 +1,11 @@
-As you have seen in the previous step, resource references are a handy feature to avoid redundancy in your configuration. Implementing resource references makes everyones life easier.
+One aspect of variables is the possibility to reference attributes of resource blocks in the same module. Resources provide often read only attributes that can be used in other resources. This is a powerful feature to build generic and reusable configurations.
 
-Let's explore this further in the following tasks and where the boundaries are.
+To access these attributes you can use the following syntax:
+
+```hcl
+<RESOURCE TYPE>.<NAME>.<ATTRIBUTE>
+```
+Reusing attributes from resource blocks keeps your configuration DRY (Don't Repeat Yourself) and makes it easier to maintain.
 
 # Tasks
 
