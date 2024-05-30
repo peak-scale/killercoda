@@ -30,11 +30,6 @@
           "text": "step5/desc.md",
           "verify": "step5/verify.sh"
         }
-        //{
-        //  "title": "Module Outputs", 
-        //  "text": "step6/desc.md",
-        //  "verify": "step6/verify.sh"
-        //}
       ],
       "finish": {
         "text": "finish.md"
