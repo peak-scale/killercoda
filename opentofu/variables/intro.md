@@ -1,3 +1,7 @@
+<div style="text-align: center;">
+  <img src="../../assets/logos/opentofu.png" alt="Opentofu Logo" />
+</div>
+
 ![Opentofu Logo](../../assets/logos/opentofu.png)
 
 ## About this Scenario
