@@ -65,6 +65,6 @@ resource "kubernetes_pod_v1" "workload" {
 EOF
 
 # Verify
-diff <(hcl2json ~/scenario/locals.tf) <(hcl2json ~/.solutions/step4/locals.tf)
-diff <(hcl2json ~/scenario/kubernetes.tf | jq '.resource.kubernetes_pod_v1.workload[0].metadata') <(hcl2json ~/.solutions/step4/kubernetes.tf | jq '.resource.kubernetes_pod_v1.workload[0].metadata')
+diff <(hcl2json ~/scenario/locals.tf) <(hcl2json ${SOLUTION_DIR}/locals.tf)
+diff <(hcl2json ~/scenario/kubernetes.tf | jq '.resource.kubernetes_pod_v1.workload[0].metadata') <(hcl2json ${SOLUTION_DIR}/kubernetes.tf | jq '.resource.kubernetes_pod_v1.workload[0].metadata')
 

@@ -1,0 +1,25 @@
+{
+    "title": "Writing a module (01)",
+    "description": "Create a module in a guided scenario, which simplifies tenants on Kubernetes",
+    "details": {
+      "intro": {
+        "text": "intro.md",
+        "background": "background.sh"
+      },
+      "steps": [
+        {
+          "title": "Planing", 
+          "text": "step1/desc.md"
+        }
+      ],
+      "finish": {
+        "text": "finish.md"
+      }
+    },
+    "backend": {
+      "imageid": "kubernetes-kubeadm-1node"
+    },
+    "interface": {
+      "layout": "ide"
+    }
+  }

@@ -1,20 +1,18 @@
-> [Documentation](https://opentofu.org/docs/language/values/variables/)
+Let's get started with the initial setup. You can follow the guide or implement the solution yourself. The verification will be done via tests in the final steps.
 
-Input Variables allow to parameterize the configuration/module and make it reusable. You can think of input variables as parameters to a function. They are defined in the configuration file and can be used to pass values to the resources.
-
-**Note**: Input variables are always declared in a separate file called `variables.tf`. The file is located in the same directory as the configuration file.
+**Note**: This is the workflow preferred by the author. If you find other methods or sequences you should use them, Y
 
 # Tasks
 
-Complete these tasks for this scenario. 
+Follow/Complete these tasks for this scenario. 
 
-## Task 1: Create input variables
+## Task 1: Create the Input data
 
 > [Documentation](https://opentofu.org/docs/language/values/variables/#declaring-an-input-variable)
 
 Create a new file called `variables.tf` in your working directory. Define the following input variable:
 
-  * `environment`:
+  * name `environment`:
     * `type`: string
     * `description`: The environment name
 

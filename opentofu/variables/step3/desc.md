@@ -53,7 +53,7 @@ resource "kubernetes_namespace_v1" "namespace" {
 
 > `tofu plan -h`{{execute}} might help here.
 
-Use the file `test.tfvars` to create a plan and **apply** the changes with these variables. You should see changes, but your plan seems up to date. Probably the `test.tfvars` is not loaded. 
+Use the file `prod.tfvars` to create a plan and **apply** the changes with these variables. You should see changes, but your plan seems up to date. Probably the `prod.tfvars` is not loaded. 
 
 # Verify
 
