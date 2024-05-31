@@ -13,18 +13,19 @@ resource "kubernetes_namespace_v1" "namespace" {
 resource "kubernetes_service_account_v1" "serviceaccount" {
   metadata {
     name = "prod-sa"
-    namespace = kubernetes_namespace_v1.namespace.metadata.0.name
+    namespace = "prod-environment"
   }
 }
+
 
 resource "kubernetes_pod_v1" "workload" {
   metadata {
     name = "nginx"
-    namespace = kubernetes_namespace_v1.namespace.metadata.0.name
+    namespace = "prod-environment"
   }
-
+  
   spec {
-    service_account_name = kubernetes_service_account_v1.serviceaccount.metadata.0.name
+    service_account_name = "prod-sa"
     container {
       image = "nginx:latest"
       name  = "nginx"
@@ -32,9 +33,12 @@ resource "kubernetes_pod_v1" "workload" {
         container_port = 80
       }
     }
-  } 
+  }
 }
 EOF
 
 # Verify the Solution
 diff <(hcl2json ~/scenario/kubernetes.tf) <(hcl2json ${SOLUTION_DIR}/kubernetes.tf)
+if [ $? -ne 0 ]; then
+  exit 1
+fi

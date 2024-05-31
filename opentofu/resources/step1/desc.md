@@ -4,7 +4,7 @@
 
 Complete these tasks for this scenario. 
 
-## Task 1: Understand the resource syntax
+## Task 1: Resource syntax
 
 
 Resource declarations can include a number of advanced features, but only a small subset are required for initial use. More advanced syntax features, such as single resource declarations that produce multiple similar remote objects, are described later in this page.
@@ -17,7 +17,7 @@ resource "kubernetes_namespace_v1" "namespace" {
 }
 ```
 
-A resource block declares a resource of a given type ("kubernetes_namespace_v1") with a given local name ("namespace"). The name is used to refer to this resource from elsewhere in the same module, but has no significance outside that module's scope.
+A resource block declares a resource of a given type (`"kubernetes_namespace_v1"`) with a given local name (`"namespace"`). The name is used to refer to this resource from elsewhere in the same module (argument references), but has no significance outside that module's scope.
 
 The resource type and name together serve as an identifier for a given resource and so must be unique within a module.
 
@@ -31,38 +31,38 @@ Create a new file called `kubernetes.tf` in the current working directory. Withi
 Create a [`kubernetes_namespace_v1`](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace_v1) with the local name `namespace` and the following argument-block:
 
 ```hcl
-metadata {
-  name = "prod-environment"
-}
+  metadata {
+    name = "prod-environment"
+  }
 ```{{copy}}
 
 Create a [`kubernetes_service_account_v1`](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/service_account_v1) with the local name `serviceaccount` and the following argument-block:
 
 ```hcl
-metadata {
-  name = "prod-sa"
-  namespace = "prod-environment"
-}
+  metadata {
+    name = "prod-sa"
+    namespace = "prod-environment"
+  }
 ```{{copy}}
 
 Create a [`kubernetes_pod_v1`](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_v1) with the local name `workload` and the following argument-block:
 
 ```hcl
-metadata {
-  name = "nginx"
-  namespace = "prod-environment"
-}
-
-spec {
-  service_account_name = "prod-sa"
-  container {
-    image = "nginx:latest"
-    name  = "nginx"
-    port {
-      container_port = 80
+  metadata {
+    name = "nginx"
+    namespace = "prod-environment"
+  }
+  
+  spec {
+    service_account_name = "prod-sa"
+    container {
+      image = "nginx:latest"
+      name  = "nginx"
+      port {
+        container_port = 80
+      }
     }
   }
-}
 ```{{copy}}
 
 # Verify
