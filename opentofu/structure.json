@@ -4,8 +4,13 @@
     "items": [
       { "path": "getting-started" },
       { "path": "providers" },
+      { "path": "resources" },
+      { "path": "data-resources" },
       { "path": "variables" },
-      { "path": "working-with-state" },
+      { "path": "logic" },
+      { "path": "state" },
+      { "path": "writing-tests" },
+
       { "path": "building-abstractions-01" }
 
     ]
