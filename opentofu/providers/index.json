@@ -1,6 +1,6 @@
 {
     "title": "Providers",
-    "description": "Working with Providers",
+    "description": "Working with upstream Providers and gathering information about the resources they offer.",
     "details": {
       "intro": {
         "text": "intro.md"

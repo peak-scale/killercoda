@@ -1,18 +1,17 @@
 {
-    "title": "Working with state",
-    "description": "Gain confidence when working with state",
+    "title": "State Drift",
+    "description": "Understand how to manage state drift with Opentofu managed infrastructure",
     "details": {
       "intro": {
         "text": "intro.md"
       },
       "steps": [
         {
-          "title": "Configure Kubernetes as State Backend",
-          "text": "step1/desc.md",
-          "verify": "step1/verify.sh"
+          "title": "State Drift",
+          "text": "step1/desc.md"
         },
         {
-          "title": "Initialize Project",
+          "title": "Import Existing Resources",
           "text": "step2/desc.md",
           "verify": "step2/verify.sh"
         },

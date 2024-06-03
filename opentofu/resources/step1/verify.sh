@@ -3,7 +3,7 @@ SOLUTION_DIR="${HOME}/.solutions/step1"
 mkdir -p "${SOLUTION_DIR}" || true
 
 # Add Solution for review
-cat << 'EOF' > "${SOLUTION_DIR}/kubernetes.tf"
+cat << EOF > "${SOLUTION_DIR}/kubernetes.tf"
 resource "kubernetes_namespace_v1" "namespace" {
   metadata {
     name = "prod-environment"

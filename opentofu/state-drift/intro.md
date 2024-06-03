@@ -1,3 +1,13 @@
-In this secanario we go over the essential steps when working with [Terraform](https://www.terraform.io/). We are going to use [Opentofu](https://opentofu.org/) for our scenarios. Opentofu is a hard-fork of Terraform that has an open governance model and is community-driven. It is a drop-in replacement for Terraform and is fully compatible with Terraform configurations. However the functionality used in the following scenarios can also be done with Terraform.
+![Opentofu Logo](../../assets/logos/opentofu.png)
 
-You should already understand core concepts. If you are new to Terraform, we recommend you to go through the [official documentation](https://learn.hashicorp.com/tutorials/terraform/install-cli) first. Or our documentation <----->
+## About this Scenario
+
+You will learn how to import with already existing resources on the target infrastructure and how to handle state drifts. State drifts are a common problem when working with infrastructure as code and can lead to unexpected behavior.
+
+## Prerequisites
+
+No prerequisites are required for this scenario. This scenario is using Kubernetes as the target infrastructure. Basic Knowledge of Kubernetes is beneficial but not required.
+
+## Problems
+
+If you encounter any problems, typos or have feedback, please open an issue on this [GitHub Repository](https://github.com/peak-scale/koda-scenarios). All our scenarios are open-source and we are happy to receive your feedback.

@@ -1,47 +1,23 @@
-In this scenario we want to manage resources on Kubernetes with Opentofu. 
+> [Source](https://dev.to/digger/terraform-drift-detection-and-remediation-a-primer-d1)
 
+With the power of managing infrastructure as code, comes the challenge of managing 'drift' - the divergence between the intended state of infrastructure as defined in Opentofu configurations and its actual state in the infrastructure.
 
 # Tasks
 
-* Initialize a new project using with the following Opentofu configurations:
+Complete these tasks for this scenario. 
 
-```shell
-sudo install -m 0755 -d /etc/apt/keyrings
-curl -fsSL https://get.opentofu.org/opentofu.gpg | sudo tee /etc/apt/keyrings/opentofu.gpg >/dev/null
-curl -fsSL https://packages.opentofu.org/opentofu/tofu/gpgkey | sudo gpg --no-tty --batch --dearmor -o /etc/apt/keyrings/opentofu-repo.gpg >/dev/null
-sudo chmod a+r /etc/apt/keyrings/opentofu.gpg /etc/apt/keyrings/opentofu-repo.gpg
-```{{exec}}
+## Task 1: Causes of Drift
 
+The occurrence of drift in Opentofu-managed infrastructure can be attributed to several factors. A primary cause is manual changes made directly in the infrastructure through interfaces like the AWS Console, which are not recorded in the Opentofu state file. This discrepancy leads to a state of drift. Another significant factor contributing to drift is the use of multiple automation tools with overlapping capabilities (eg. Ansible).
 
+Often drift is a result of human error, misconfigurations, or changes made outside of the Opentofu workflow. Eg. in an emergency situation, a quick fix may be applied directly to the infrastructure, bypassing the Opentofu workflow. This can lead to a state of drift.
 
-1. Add Opentofu Keyring:
-   
-```shell
-sudo install -m 0755 -d /etc/apt/keyrings
-curl -fsSL https://get.opentofu.org/opentofu.gpg | sudo tee /etc/apt/keyrings/opentofu.gpg >/dev/null
-curl -fsSL https://packages.opentofu.org/opentofu/tofu/gpgkey | sudo gpg --no-tty --batch --dearmor -o /etc/apt/keyrings/opentofu-repo.gpg >/dev/null
-sudo chmod a+r /etc/apt/keyrings/opentofu.gpg /etc/apt/keyrings/opentofu-repo.gpg
-```{{exec}}
+## Task 3: Implications of Drift
 
-2. Add Opentofu Package Repository:
+Drift in Opentofu can have far-reaching implications. It can expose security vulnerabilities, leading to potential data breaches and system compromises. In terms of compliance, drift can lead to violations, especially when it results in unauthorized access or exposure of sensitive data. Operationally, drift can introduce challenges, increasing system downtime and impacting performance. 
 
-```shell
-echo \
-  "deb [signed-by=/etc/apt/keyrings/opentofu.gpg,/etc/apt/keyrings/opentofu-repo.gpg] https://packages.opentofu.org/opentofu/tofu/any/ any main
-deb-src [signed-by=/etc/apt/keyrings/opentofu.gpg,/etc/apt/keyrings/opentofu-repo.gpg] https://packages.opentofu.org/opentofu/tofu/any/ any main" | \
-  sudo tee /etc/apt/sources.list.d/opentofu.list > /dev/null
-sudo chmod a+r /etc/apt/sources.list.d/opentofu.list
-```{{exec}}
+The most significant implication of drift is the loss of control over the infrastructure. It's going to be difficult to get Opentofu running again in case of duplicated resources or resources that are not managed by Opentofu.
 
-3. Install Opentofu:
+## Task 4: Remediation of State Drift
 
-```shell
-sudo apt-get update
-sudo apt-get install -y tofu
-```{{exec}}
-
-Verify the installation by running:
-
-```shell
-tofu -version
-```{{exec}}
+There's different approaches to remediate state drift in Opentofu. Let's like at scenarios where you might have conflicts between desired and actual state. Throughout this scenario we will look at different remediation strategies to address state drift in Opentofu.
