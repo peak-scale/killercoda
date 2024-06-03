@@ -27,7 +27,7 @@
           "title": "Iteration Arguments", 
           "text": "step4/desc.md",
           "verify": "step4/verify.sh",
-          "background": "step3/background.sh"
+          "background": "step4/background.sh"
         }
       ],
       "finish": {
