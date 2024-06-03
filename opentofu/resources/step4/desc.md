@@ -80,7 +80,7 @@ kubectl get pod -n prod-environment
 
 # Verify
 
-> If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step1/`.
+> If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step4/`. You can always copy the solution files to the current working directory by running `cp ~/.solutions/step4/* ~/scenario/`{{copy}}.
 
 **Note:** A given resource or module block cannot use both `count` and `for_each`.
 

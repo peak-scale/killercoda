@@ -67,6 +67,6 @@ On the `kubernetes_pod_v1` resource, add a `precondition`:
 
 # Verify
 
-> If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step2/`. 
+> If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step3/`. You can always copy the solution files to the current working directory by running `cp ~/.solutions/step3/* ~/scenario/`{{copy}}.
 
 There's other options to control the lifecycle of a resource. You can find more information in the [documentation](https://opentofu.org/docs/language/meta-arguments/lifecycle/)

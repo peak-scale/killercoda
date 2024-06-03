@@ -1,5 +1,5 @@
 #!/bin/bash
-SOLUTION_DIR="${HOME}/.solutions/step1"
+SOLUTION_DIR="${HOME}/.solutions/step3"
 mkdir -p "${SOLUTION_DIR}" || true
 
 # Add Solution for review

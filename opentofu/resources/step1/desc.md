@@ -83,5 +83,5 @@ Create a [`kubernetes_pod_v1`](https://registry.terraform.io/providers/hashicorp
 
 # Verify
 
-> If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step1/`.
+> If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step1/`. You can always copy the solution files to the current working directory by running `cp ~/.solutions/step1/* ~/scenario/`{{copy}}.
 

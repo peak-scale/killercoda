@@ -1,5 +1,5 @@
 #!/bin/bash
-SOLUTION_DIR="${HOME}/.solutions/step1"
+SOLUTION_DIR="${HOME}/.solutions/step4"
 mkdir -p "${SOLUTION_DIR}" || true
 
 # Add Solution for review
@@ -64,7 +64,7 @@ resource "kubernetes_pod_v1" "workload" {
 EOF
 
 # Verify the Solution
-result=$(hcl2json pod-count.tf | jq '
+result=$(hcl2json ~/scenario/pod-count.tf | jq '
   .resource.kubernetes_pod_v1 | 
   to_entries | 
   .[0].value[0] as $pod | 
@@ -78,7 +78,7 @@ if [ "$result" = "false" ]; then
   exit 1
 fi
 
-result=$(hcl2json pod-for.tf | jq '
+result=$(hcl2json ~/scenario/pod-for.tf | jq '
   .resource.kubernetes_pod_v1 | 
   to_entries | 
   .[0].value[0] as $pod | 
