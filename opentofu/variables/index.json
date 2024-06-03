@@ -9,11 +9,6 @@
       },
       "steps": [
         {
-          "title": "Resource Attributes", 
-          "text": "step1/desc.md",
-          "verify": "step1/verify.sh"
-        },
-        {
           "title": "Input Variables", 
           "text": "step2/desc.md",
           "verify": "step2/verify.sh"

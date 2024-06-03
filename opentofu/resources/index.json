@@ -14,10 +14,24 @@
           "verify": "step1/verify.sh"
         },
         {
-          "title": "Meta Arguments", 
+          "title": "Argument References", 
           "text": "step2/desc.md",
-          "verify": "step2/verify.sh"
-        }
+          "verify": "step2/verify.sh",
+        },
+        {
+          "title": "Lifecycle Arguments", 
+          "text": "step2/desc.md",
+          "verify": "step2/verify.sh",
+          "background": "step2/background.sh"
+        },
+        {
+          "title": "Iteration Arguments", 
+          "text": "step3/desc.md",
+          "verify": "step3/verify.sh"
+        },
+
+
+
       ],
       "finish": {
         "text": "finish.md"

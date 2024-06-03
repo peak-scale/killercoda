@@ -17,6 +17,18 @@ resource "kubernetes_service_account_v1" "serviceaccount" {
   }
 }
 
+resource "kubernetes_secret_v1" "serviceaccount_token" {
+  metadata {
+    annotations = {
+      "kubernetes.io/service-account.name" = "prod-sa"
+    }
+    namespace = "prod-environment"
+    generate_name = "terraform-example-"    
+  }
+
+  type                           = "kubernetes.io/service-account-token"
+  wait_for_service_account_token = true
+}
 
 resource "kubernetes_pod_v1" "workload" {
   metadata {
@@ -42,3 +54,6 @@ diff <(hcl2json ~/scenario/kubernetes.tf) <(hcl2json ${SOLUTION_DIR}/kubernetes.
 if [ $? -ne 0 ]; then
   exit 1
 fi
+
+cd ~/scenario
+tofu plan & tofu apply -auto-approve
