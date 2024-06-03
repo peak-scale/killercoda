@@ -9,19 +9,6 @@
       },
       "steps": [
         {
-          "title": "Foreach Argument",
-          "text": "step5/desc.md",
-          "verify": "step5/verify.sh",
-          "background": "step5/background.sh"
-        },
-
-        {
-          "title": "Count Argument",
-          "text": "step4/desc.md",
-          "verify": "step4/verify.sh",
-          "background": "step4/background.sh"
-        },
-        {
           "title": "Creating Resources", 
           "text": "step1/desc.md",
           "verify": "step1/verify.sh"
@@ -32,16 +19,36 @@
           "verify": "step2/verify.sh"
         },
         {
-          "title": "Lifecycle Arguments", 
+          "title": "Lifecycle Argument", 
           "text": "step3/desc.md",
           "verify": "step3/verify.sh"
         },
         {
-          "title": "Count Argument",
+          "title": "Provider Argument",
           "text": "step4/desc.md",
-          "verify": "step4/verify.sh",
-          "background": "step4/background.sh"
+          "verify": "step4/verify.sh"
+        },
+        {
+          "title": "Count Argument",
+          "text": "step5/desc.md",
+          "verify": "step5/verify.sh",
+          "background": "step5/background.sh"
+        },
+        {
+          "title": "Foreach Argument",
+          "text": "step6/desc.md",
+          "verify": "step6/verify.sh",
+          "background": "step6/background.sh"
+        },
+        {
+          "title": "Foreach Argument",
+          "text": "step5/desc.md",
+          "verify": "step5/verify.sh",
+          "background": "step5/background.sh"
         }
+
+
+
       ],
       "finish": {
         "text": "finish.md"

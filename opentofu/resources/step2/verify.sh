@@ -47,6 +47,17 @@ resource "kubernetes_pod_v1" "workload" {
       }
     }
   }
+
+  depends_on = [
+    kubernetes_service_account_v1.serviceaccount
+  ]
+
+  lifecycle {
+    precondition {
+      condition     = kubernetes_namespace_v1.namespace.metadata[0].name == "prod-environment"
+      error_message = "The namespace must be prod-environment"
+    }
+  }
 }
 EOF
 

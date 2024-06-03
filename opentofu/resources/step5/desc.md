@@ -1,85 +1,21 @@
-> [Documentation](https://opentofu.org/docs/language/meta-arguments/for_each/).
+> [Documentation](https://opentofu.org/docs/language/meta-arguments/count/).
 
-As seen with the `count` argument, we can iterate over primitive values. The `for_each` argument is used to iterate over a `map` or a `set` of strings. This allows us to create complexer iterations of resources
+By default, a resource block configures one real infrastructure object (and similarly, a module block includes a child module's contents into the configuration one time). However, sometimes you want to manage several similar objects (like multiple pods) without writing a separate block for each one. 
 
-**Note:** A given resource or module block cannot use both `count` and `for_each`.
+There's a new file called `locals.tf` in the current working directory. The file contains variables used for this scenario. 
 
 # Tasks
 
 Complete these tasks for this scenario. 
 
-## Task 1: Add Variable
+## Task 1: Implement `count`
 
-Create a new file called `pods-foreach.tf`{{copy}} in the current working directory. Add a new local variable called `workloads`. Here's the skeleton for the variable:
+Count is the simple way to make our pods scalable. We can use the `count` meta-argument to create multiple instances of a resource. Based on the value of `local.replicas`, which is currently `3` we want to create that amount of pods. Create new file called `pods-count.tf` in the current working directory. Create a new [kubernetes_pod_v1](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_v1) resource. Use the `count` meta-argument to create multiple instances of a resource based on the value of `local.replicas`{{copy}}. The pods should be named `nginx-count-${count.index}`{{copy}} (use argument `metadata.name`).
 
-```shell
-locals {
-  workloads = []
-}
-```{{copy}}
-
-## Task 2: Populate Data
-
-The `workloads` variable should be a [list](https://opentofu.org/docs/language/expressions/types/#liststuples) of [maps](https://opentofu.org/docs/language/expressions/types/#mapsobjects). The following elements should be added to the `workloads` list:
-
-  - **name**: `busybox`<br>
-    **image**: `busybox:latest`
-
-  - **name**: `alpine`<br>
-    **image**: `alpine:latest`
-
-  - **name**: `bash`<br>
-    **image**: `bash:latest`
-    
-Correctly populate the `workloads` variable with the given data.
-
-## Task 3: Convert Data Structure
-
-  [Documentation](https://opentofu.org/docs/language/meta-arguments/for_each/#chaining-for_each-between-resources). There's no conclusive documentation on this topic.
-
-Our data is now of type `list(map(string))`. We need to convert it to a `map` to use it with the `for_each` meta-argument. While you might say we can just adjust input variable, we want to keep the original data structure (This is to showcase the situation when you have returned data, which's structure you can't control).
-
-In our case we will use the following expression:
+Add the asked attributes in this skeleton:
 
 ```hcl
-{ for idx, workload in local.workloads : idx => workload }
-```
-
-This expression converts the `local.workloads` list into a map:
-
-* `for idx, workload in local.workloads` iterates over each element in the list along with its index (`idx`).
-
-* `idx => workload` creates a key-value pair for each element where `idx` is the key and `workload` is the value. 
-
-So our data looks like this after that remapping:
-
-```shell
-{
-  0 = {
-    name = "busybox"
-    image = "busybox:latest"
-  }
-  1 = {
-    name = "alpine"
-    image = "alpine:latest"
-  }
-  2 = {
-    name = "bash"
-    image = "bash:latest"
-  }
-}
-```
-
-## Task 4: Implement `for_each`
-
-Given the variable `workloads` we want to be able to iterate over the variable and create for each element a dedicated pod.
-
-Create a new [kubernetes_pod_v1](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_v1) resource in the `pods-foreach.tf` file. Use the `for_each` meta-argument to create multiple instances of a resource based on the value of `local.workloads`. Here's the skeleton for the resource:
-
-```hcl
-resource "kubernetes_pod_v1" "for-workload" {
-  for_each = { for idx, workload in local.workloads : idx => workload }
-
+resource "kubernetes_pod_v1" "workload" {
   metadata {
     namespace = kubernetes_namespace_v1.namespace.metadata.0.name
   }
@@ -87,6 +23,7 @@ resource "kubernetes_pod_v1" "for-workload" {
   spec {
     service_account_name = kubernetes_service_account_v1.serviceaccount.metadata.0.name
     container {
+      image = "nginx:latest"
       name  = "nginx"
       port {
         container_port = 80
@@ -96,11 +33,36 @@ resource "kubernetes_pod_v1" "for-workload" {
 }
 ```{{copy}}
 
-The pods should be named `${each.value.name}`{{copy}} (use argument `metadata.name`). And the image should be `${each.value.image}`{{copy}} (use argument `spec.container.image`).
+
+
+## Task 2: Fix Problems
+
+When you run the `tofu plan`{{exec}}, you will see that tofu will create 3 pods. But wait there's a problem 🤔. Can you fix that (You can use any name)?
+
+Once you have fixed the problem, `tofu apply`{{execute}} the changes.
+
+## Task 3: Verify on Kubernetes
+
+Verify the resources on the Kubernetes cluster:
+
+```shell
+kubectl get pod -n prod-environment
+```{{exec}}
+
+We can see our new pods:
+
+```shell
+NAME            READY   STATUS    RESTARTS   AGE
+...
+nginx-count-0   1/1     Running   0          23s
+nginx-count-1   1/1     Running   0          23s
+nginx-count-2   1/1     Running   0          24s
+```
+
+## Task 4: Scale Replicas
+
+The current workload demends more Replicas of our app. Change the amount of replicas to `5` in the `locals.tf` file. once done `tofu apply`{{exec}} the changes.
 
 # Verify
 
-> If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step4/`. You can always copy the solution files to the current working directory by running `cp ~/.solutions/step4/* ~/scenario/`{{copy}}.
-
-**Note:** A given resource or module block cannot use both `count` and `for_each`.
-
+> If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step5/`. You can always copy the solution files to the current working directory by running `cp ~/.solutions/step5/* ~/scenario/`{{copy}}.
