@@ -21,13 +21,13 @@
         {
           "title": "Lifecycle Arguments", 
           "text": "step3/desc.md",
-          "verify": "step3/verify.sh",
-          "background": "step3/background.sh"
+          "verify": "step3/verify.sh"
         },
         {
           "title": "Iteration Arguments", 
           "text": "step4/desc.md",
-          "verify": "step4/verify.sh"
+          "verify": "step4/verify.sh",
+          "background": "step3/background.sh"
         }
       ],
       "finish": {
