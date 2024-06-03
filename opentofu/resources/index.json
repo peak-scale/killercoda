@@ -16,22 +16,19 @@
         {
           "title": "Argument References", 
           "text": "step2/desc.md",
-          "verify": "step2/verify.sh",
+          "verify": "step2/verify.sh"
         },
         {
           "title": "Lifecycle Arguments", 
-          "text": "step2/desc.md",
-          "verify": "step2/verify.sh",
-          "background": "step2/background.sh"
+          "text": "step3/desc.md",
+          "verify": "step3/verify.sh",
+          "background": "step3/background.sh"
         },
         {
           "title": "Iteration Arguments", 
-          "text": "step3/desc.md",
-          "verify": "step3/verify.sh"
-        },
-
-
-
+          "text": "step4/desc.md",
+          "verify": "step4/verify.sh"
+        }
       ],
       "finish": {
         "text": "finish.md"

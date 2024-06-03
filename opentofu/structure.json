@@ -8,7 +8,8 @@
       { "path": "data-resources" },
       { "path": "variables" },
       { "path": "logic" },
-      { "path": "state" },
+      { "path": "state-drift" },
+      { "path": "state-management" },
       { "path": "writing-tests" },
       { "path": "building-abstractions-01" }
 
