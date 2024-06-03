@@ -3,7 +3,25 @@ SOLUTION_DIR="${HOME}/.solutions/step4"
 mkdir -p "${SOLUTION_DIR}" || true
 
 # Add Solution for review
-cat << 'EOF' > "${SOLUTION_DIR}/pods-count.tf"
+cat << 'EOF' > "${SOLUTION_DIR}/pods-foreach.tf"
+locals {
+  workloads = [
+    {
+      name  = "busybox"
+      image = "busybox:latest"
+    },
+    {
+      name  = "alpine"
+      image = "alpine:latest"
+    },
+    {
+      name  = "bash"
+      image = "bash:latest"
+    }
+  ]
+}
+
+
 resource "kubernetes_pod_v1" "workload" {
   count = local.replicas
 

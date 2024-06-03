@@ -9,6 +9,13 @@
       },
       "steps": [
         {
+          "title": "Foreach Argument",
+          "text": "step5/desc.md",
+          "verify": "step5/verify.sh",
+          "background": "step5/background.sh"
+        },
+
+        {
           "title": "Count Argument",
           "text": "step4/desc.md",
           "verify": "step4/verify.sh",
@@ -30,12 +37,11 @@
           "verify": "step3/verify.sh"
         },
         {
-          "title": "Foreach Argument",
-          "text": "step5/desc.md",
-          "verify": "step5/verify.sh",
-          "background": "step5/background.sh"
+          "title": "Count Argument",
+          "text": "step4/desc.md",
+          "verify": "step4/verify.sh",
+          "background": "step4/background.sh"
         }
-
       ],
       "finish": {
         "text": "finish.md"

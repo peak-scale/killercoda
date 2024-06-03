@@ -1,3 +1,5 @@
+> [Documentation](https://opentofu.org/docs/language/meta-arguments/count/).
+
 By default, a resource block configures one real infrastructure object (and similarly, a module block includes a child module's contents into the configuration one time). However, sometimes you want to manage several similar objects (like multiple pods) without writing a separate block for each one. 
 
 There's a new file called `locals.tf` in the current working directory. The file contains variables used for this scenario. 
@@ -6,14 +8,36 @@ There's a new file called `locals.tf` in the current working directory. The file
 
 Complete these tasks for this scenario. 
 
-## Task 1: Add Count Replicas
-> [Documentation](https://opentofu.org/docs/language/meta-arguments/count/).
+## Task 1: Implement `count`
 
-Count is the simple way to make our pods scalable. We can use the `count` meta-argument to create multiple instances of a resource. Based on the value of `local.replicas`, which is currently `3` we want to create that amount of pods. Create new file called `pods-count.tf` in the current working directory. Create a new [kubernetes_pod_v1]() resource. Use the `count` meta-argument to create multiple instances of a resource based on the value of `local.replicas`. The pods should be named `nginx-count-${count.index}` (use argument `metadata.name`).
+Count is the simple way to make our pods scalable. We can use the `count` meta-argument to create multiple instances of a resource. Based on the value of `local.replicas`, which is currently `3` we want to create that amount of pods. Create new file called `pods-count.tf` in the current working directory. Create a new [kubernetes_pod_v1](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_v1) resource. Use the `count` meta-argument to create multiple instances of a resource based on the value of `local.replicas`{{copy}}. The pods should be named `nginx-count-${count.index}`{{copy}} (use argument `metadata.name`).
+
+Add the asked attributes in this skeleton:
+
+```hcl
+resource "kubernetes_pod_v1" "workload" {
+  metadata {
+    namespace = kubernetes_namespace_v1.namespace.metadata.0.name
+  }
+
+  spec {
+    service_account_name = kubernetes_service_account_v1.serviceaccount.metadata.0.name
+    container {
+      image = "nginx:latest"
+      name  = "nginx"
+      port {
+        container_port = 80
+      }
+    }
+  }
+}
+```{{copy}}
+
+
 
 ## Task 2: Fix Problems
 
-When you run the `tofu plan`{{exec}}, you will see that tofu will create 3 pods. But wait there's a problem 🤔. Can you fix that?
+When you run the `tofu plan`{{exec}}, you will see that tofu will create 3 pods. But wait there's a problem 🤔. Can you fix that (You can use any name)?
 
 Once you have fixed the problem, `tofu apply`{{execute}} the changes.
 
@@ -23,6 +47,16 @@ Verify the resources on the Kubernetes cluster:
 
 ```shell
 kubectl get pod -n prod-environment
+```{{exec}}
+
+We can see our new pods:
+
+```shell
+NAME            READY   STATUS    RESTARTS   AGE
+...
+nginx-count-0   1/1     Running   0          23s
+nginx-count-1   1/1     Running   0          23s
+nginx-count-2   1/1     Running   0          24s
 ```
 
 ## Task 4: Scale Replicas

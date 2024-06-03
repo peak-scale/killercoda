@@ -1,96 +1,102 @@
-By default, a resource block configures one real infrastructure object (and similarly, a module block includes a child module's contents into the configuration one time). However, sometimes you want to manage several similar objects (like multiple pods) without writing a separate block for each one. 
+> [Documentation](https://opentofu.org/docs/language/meta-arguments/for_each/).
 
-There's a new file called `locals.tf` in the current working directory. The file contains variables used for this scenario. 
+As seen with the `count` argument, we can iterate over primitive values. The `for_each` argument is used to iterate over a `map` or a `set` of strings. This allows us to create complexer iterations of resources
+
+**Note:** A given resource or module block cannot use both `count` and `for_each`.
 
 # Tasks
 
 Complete these tasks for this scenario. 
 
-## Task 1: Add Foreach Replicas
-> [Documentation](https://opentofu.org/docs/language/meta-arguments/count/).
+## Task 1: Add Variable
 
-Count is the simple way to make our pods scalable. We can use the `count` meta-argument to create multiple instances of a resource. Based on the value of `local.replicas`, which is currently `3` we want to create that amount of pods. Create new file called `pods-count.tf` in the current working directory. Create a new [kubernetes_pod_v1]() resource. Use the `count` meta-argument to create multiple instances of a resource based on the value of `local.replicas`. The pods should be named `nginx-count-${count.index}` (use argument `metadata.name`).
+Create a new file called `pods-foreach.tf`{{copy}} in the current working directory. Add a new local variable called `workloads`. Here's the skeleton for the variable:
 
 ```shell
+locals {
+  workloads = []
+}
+```{{copy}}
 
+## Task 2: Populate Data
+
+The `workloads` variable should be a [list](https://opentofu.org/docs/language/expressions/types/#liststuples) of [maps](https://opentofu.org/docs/language/expressions/types/#mapsobjects). The following elements should be added to the `workloads` list:
+
+  - **name**: `busybox`<br>
+    **image**: `busybox:latest`
+
+  - **name**: `alpine`<br>
+    **image**: `alpine:latest`
+
+  - **name**: `bash`<br>
+    **image**: `bash:latest`
+    
+Correctly populate the `workloads` variable with the given data.
+
+## Task 3: Convert Data Structure
+
+  [Documentation](https://opentofu.org/docs/language/meta-arguments/for_each/#chaining-for_each-between-resources). There's no conclusive documentation on this topic.
+
+Our data is now of type `list(map(string))`. We need to convert it to a `map` to use it with the `for_each` meta-argument. While you might say we can just adjust input variable, we want to keep the original data structure (This is to showcase the situation when you have returned data, which's structure you can't control).
+
+In our case we will use the following expression:
+
+```hcl
+{ for idx, workload in local.workloads : idx => workload }
 ```
-resource "kubernetes_pod_v1" "workload" {
-  count = local.replicas
+
+This expression converts the `local.workloads` list into a map:
+
+* `for idx, workload in local.workloads` iterates over each element in the list along with its index (`idx`).
+
+* `idx => workload` creates a key-value pair for each element where `idx` is the key and `workload` is the value. 
+
+So our data looks like this after that remapping:
+
+```shell
+{
+  0 = {
+    name = "busybox"
+    image = "busybox:latest"
+  }
+  1 = {
+    name = "alpine"
+    image = "alpine:latest"
+  }
+  2 = {
+    name = "bash"
+    image = "bash:latest"
+  }
+}
+```
+
+## Task 4: Implement `for_each`
+
+Given the variable `workloads` we want to be able to iterate over the variable and create for each element a dedicated pod.
+
+Create a new [kubernetes_pod_v1](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_v1) resource in the `pods-foreach.tf` file. Use the `for_each` meta-argument to create multiple instances of a resource based on the value of `local.workloads`. Here's the skeleton for the resource:
+
+```hcl
+resource "kubernetes_pod_v1" "for-workload" {
+  for_each = { for idx, workload in local.workloads : idx => workload }
 
   metadata {
-    name = "nginx-count-${count.index}"
     namespace = kubernetes_namespace_v1.namespace.metadata.0.name
   }
 
   spec {
     service_account_name = kubernetes_service_account_v1.serviceaccount.metadata.0.name
     container {
-      image = "nginx:latest"
       name  = "nginx"
       port {
         container_port = 80
       }
     }
   }
-
-  lifecycle {
-    ignore_changes = [
-        metadata[0].annotations["cni.projectcalico.org/containerID"],
-        metadata[0].annotations["cni.projectcalico.org/podIP"],
-        metadata[0].annotations["cni.projectcalico.org/podIPs"]
-    ]
-  }
 }
 ```{{copy}}
 
-
-## Task 2: Fix Problems
-
-When you run the `tofu plan`{{exec}}, you will see that tofu will create 3 pods. But wait there's a problem 🤔. Can you fix that?
-
-## Task 2: `for_each` loops (Replication)
-
-> [Documentation](https://opentofu.org/docs/language/meta-arguments/for_each/).
-
-* Create a new file called `pod-for.tf` in the current working directory. 
-* Within the file we want to create a [`kubernetes_pod_v1`](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_v1).
-* Use a `for_each` loop based on the value of `local.replicas`.
-* The pods should be named `nginx-${each.key}`.
-
-You will probably encounter an error when running the `tofu plan`{{exec}}. Can you fix it?
-
-```
-│ The given "for_each" argument value is unsuitable: the "for_each" argument must be a map, or set of strings, and you have provided a value of type number.
-```
-
-Create a new local variable called `for_replicas`
-```shell
-
-
-## Task 3: Apply Replicas
-
-
-
-## Task 3: Scale Replicas
-
-Change the amount of replicas to `5` in the `locals.tf` file:
-
-
-
-
-```shell
-locals {
-  replicas = 5
-}
-```{{execute}}
-
-You can verify the existence of the resource on the target infrastructure
-
-```shell 
-kubectl get ns prod-environment
-kubectl get sa -n prod-environment
-kubectl get pod -n prod-environment
-```{{execute}}
+The pods should be named `${each.value.name}`{{copy}} (use argument `metadata.name`). And the image should be `${each.value.image}`{{copy}} (use argument `spec.container.image`).
 
 # Verify
 

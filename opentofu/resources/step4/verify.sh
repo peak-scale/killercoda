@@ -47,3 +47,7 @@ result=$(hcl2json ~/scenario/pod-count.tf | jq '
 if [ "$result" = "false" ]; then
   exit 1
 fi
+
+if ! [ $(kubectl get pod -n prod-environment | grep nginx-count- | wc -l) -ge 5 ]; then
+  exit 1
+fi
