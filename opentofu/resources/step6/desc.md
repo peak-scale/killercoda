@@ -1,6 +1,6 @@
 > [Documentation](https://opentofu.org/docs/language/meta-arguments/for_each/).
 
-As seen with the `count` argument, we can iterate over primitive values. The `for_each` argument is used to iterate over a `map` or a `set` of strings. This allows us to create complexer iterations of resources
+As seen with the `count` argument, we can iterate over primitive values. The `for_each` argument is used to iterate over a `map` or a `set` of strings. This allows us to create complexer iterations of resources. [Read more](https://opentofu.org/docs/language/meta-arguments/count/#when-to-use-for_each-instead-of-count)
 
 **Note:** A given resource or module block cannot use both `count` and `for_each`.
 
@@ -92,6 +92,8 @@ resource "kubernetes_pod_v1" "for-workload" {
   }
 }
 ```{{copy}}
+
+> [Documentation](https://opentofu.org/docs/language/meta-arguments/for_each/#the-each-object)
 
 * The pods should be named `${each.value.name}`{{copy}} (use argument `metadata.name`). 
 * The container should be named `${each.value.name}`{{copy}} (use argument `spec.container.name`).

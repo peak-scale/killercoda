@@ -1,6 +1,6 @@
 ## Wrapping Up
 
-Great Job! You have learned more about Resources in Opentofu. Continue your journey with further scenarios.
+Great Job! You have learned more about Data Sources in Opentofu. Continue your journey with further scenarios.
 
 ## Course Creators
 

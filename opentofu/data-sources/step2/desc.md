@@ -1,46 +1,42 @@
-One aspect of variables is the possibility to reference attributes of resource blocks in the same module. Resources provide often read only attributes that can be used in other resources. This is a powerful feature to build generic and reusable configurations.
-
-To access these attributes you can use the following syntax:
-
-```hcl
-<RESOURCE TYPE>.<NAME>.<ATTRIBUTE>
-```
-Reusing attributes from resource blocks keeps your configuration DRY (Don't Repeat Yourself) and makes it easier to maintain.
-
-> When referencing attributes, don't use quotes (`"` or `'`). Otherwise it will be interpreted as a `string`.
-
-<hr>
+Now we are going to use data retrieved from a data source to establish owner references on the resources we are creating. This is not a real world scenario, but it's a good example to show how you can use data sources to enrich your configuration.
 
 # Tasks
 
 Complete these tasks for this scenario. 
 
-## Task 1: Review `kubernetes.tf`
+## Task 1: Add Namespace UID
 
-There's a file located in your working directory called `kubernetes.tf`. Review the content of the file. You will notice that there are redundant values in the configuration:
+Add the `namespace-uid` annotation to all resources in the `kubernetes.tf` file, except for the `kubernetes_namespace_v1` resource. The `namespace-uid` should be the UID of the namespace created in the `kubernetes_namespace_v1` resource.
 
-* `prod-environment`: The namespace name is used in multiple resources.
-* `prod-sa`: The service account name is used in multiple resources.
+```hcl
+metadata {
+    annotations = {
+        "namespace-uid" = data.kubernetes_namespace_v1.namespace.metadata.0.uid
+    }
+}
+```
 
-## Task 2: Implement Resource Attribute References
+`tofu plan`{{execute}} and `tofu apply`{{execute}} the configuration.
 
-Rewrite the file `kubernetes.tf` to use the resource attributes instead of hardcoding the values. This is how you can reference the attributes (**where possible ;)**:
+## Task 2: Add Pod UID
 
-* `kubernetes_namespace_v1.namespace.metadata.0.name` for the namespace name.
+Add the `pod-uid` annotation to the `kubernetes_namespace_v1` in the `kubernetes.tf` file, except for the `kubernetes_namespace_v1` resource:
 
-* `kubernetes_service_account_v1.serviceaccount.metadata.0.name` for the serviceaccount name.
+```hcl
+metadata {
+    annotations = {
+        "pod-uid" = data.kubernetes_pod_v1.workload.metadata.0.uid
+    }
+}
+```
 
-> You can just replace the values with the resource attributes, no further changes to the file are required.
+`tofu plan`{{execute}} and `tofu apply`{{execute}} the configuration.
 
-## Task 3: Review
+There's a problem with the configuration. The cycle we are trying to implement is not allowed, because we are creating a circular dependency. We need to fix this by removing the `pod-uid` annotation from the `kubernetes_namespace_v1` resource
 
-If you now run the `plan` command, you should see that the configuration is still valid and nothing changed, where we replaced the values with the resource attributes.
+> Another option would be to remove all the references from the `kubernetes_pod_v1` resource to the `kubernetes_namespace_v1` resource. This also resolves the circular dependency.
 
 ```shell
-tofu plan
-```{{execute}}
-
-<hr>
 
 # Verify
 

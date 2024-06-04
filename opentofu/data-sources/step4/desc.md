@@ -1,29 +1,52 @@
-> [Documentation](https://opentofu.org/docs/language/meta-arguments/resource-provider/).
+> [Documentation](https://opentofu.org/docs/language/data-sources/#multiple-resource-instances).
 
-You will often have the scenario with cloud vendors, that you need the same provider multiple times but eg. in a different region. In this case you can use the `provider` meta-argument to specify the provider configuration for a resource.
+Data sources can also work on iterations. We'll implement the example with the `count` meta-argument. But it can also be used with `for_each` meta-argument. You have two new files in your working directory:
+
+* `locals.tf` - Contains the variable `replicas` with the value `3`.
+* `pods-count.tf` - Contains the resource `kubernetes_pod_v1` with the `count` meta-argument.
+
+These files create pods based on the value of `local.replicas`.
 
 # Tasks
 
 Complete these tasks for this scenario. 
 
-## Task 1: Create new Provider
+## Task 1: Implement `count`
 
-> [Documentation](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs).
+> [Documentation](https://opentofu.org/docs/language/meta-arguments/count/)
 
-In our example, we are having a problems with pod annotations which are always added by the infrastructure. In the `provider.tf` file, create a new provider for `kubernetes` which always ignores the following annotations:
+https://opentofu.org/docs/language/meta-arguments/count/
 
-* `cni\\.projectcalico\\.org/*`{{copy}}
+Create a new file called `count-sources.tf`. Create a new data source for `kubernetes_pod_v1` with the `count` meta-argument. The resource must be called `workload_info`. 
 
-The alias for the provider should be `k8s`{{copy}}.
+  * Use the `count` uses the value of `local.replicas`.
+  * To reference the pod `name`, use the local resource reference with a count index (e.g. `kubernetes_pod_v1.count-workload[count.index]...`).
+  * To reference the pod `namespace`, use the local resource reference with a count index (e.g. `kubernetes_pod_v1.count-workload[count.index]...`).
 
+## Task 2: Add Output
 
-## Task 2: Use the provider
+We would like a new output called `pod_uids` in the `outputs.tf` file. The output should list the IP addresses of the pods created. Here's a starting point, however it's not yet complete:
 
-In the `kubernetes.tf` file, use the provider `k8s` for the `kubernetes_pod_v1` resource. All the other configurations should remain the same. 
+```hcl
+[for pod in data.kubernetes_pod.workload_info : ... ]
+```
 
-When a provider has an alias, it's not the default provider and must be specified in the resource block.
+The IP of a pod can be access via the `metadata[0].uid` argument.
+
+## Task 3: Apply
+
+When you run `tofu apply`{{exec}} you should see the uids of the pods:
+
+```shell
+...
+  + pod_uids = [
+      + "a904147f-cad0-4091-b3bc-8be1d9800909",
+      + "51dbd087-9c14-41e7-9709-86733acb570d",
+      + "db9efefc-767c-4189-a928-5ea3f2ca6dce",
+    ]
+...
+```{{exec}}
 
 # Verify
 
 > If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step4/`. You can always copy the solution files to the current working directory by running `cp ~/.solutions/step4/* ~/scenario/`{{copy}}.
-

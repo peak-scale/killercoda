@@ -2,79 +2,50 @@
 SOLUTION_DIR="${HOME}/.solutions/step3"
 mkdir -p "${SOLUTION_DIR}" || true
 
-# Add Solution for review
-cat << 'EOF' > "${SOLUTION_DIR}/kubernetes.tf"
-resource "kubernetes_namespace_v1" "namespace" {
+cat << 'EOF' > "${SOLUTION_DIR}/sources.tf"
+data "kubernetes_namespace_v1" "namespace" {
   metadata {
-    name = "prod-environment"
+    provider = kubernetes.k8s
+    name = kubernetes_namespace_v1.namespace.metadata.0.name
   }
 }
 
-resource "kubernetes_service_account_v1" "serviceaccount" {
+data "kubernetes_service_account_v1" "serviceaccount" {
   metadata {
-    name = "prod-sa"
-    namespace = kubernetes_namespace_v1.namespace.metadata.0.name
+    name = kubernetes_service_account_v1.serviceaccount.metadata.0.name
+    namespace = kubernetes_service_account_v1.serviceaccount.metadata.0.namespace
   }
 }
 
-resource "kubernetes_secret_v1" "serviceaccount_token" {
+data "kubernetes_secret_v1" "serviceaccount_token" {
   metadata {
-    annotations = {
-      "kubernetes.io/service-account.name" = kubernetes_service_account_v1.serviceaccount.metadata.0.name
-    }
-    namespace = kubernetes_namespace_v1.namespace.metadata.0.name
-    generate_name = "terraform-example-"    
+    name = kubernetes_secret_v1.serviceaccount_token.metadata.0.name
+    namespace = kubernetes_secret_v1.serviceaccount_token.metadata.0.namespace
   }
-
-  type                           = "kubernetes.io/service-account-token"
-  wait_for_service_account_token = true
 }
 
-
-resource "kubernetes_pod_v1" "workload" {
+data "kubernetes_pod_v1" "workload" {
   metadata {
-    name = "nginx"
-    namespace = kubernetes_namespace_v1.namespace.metadata.0.name
+    name = kubernetes_pod_v1.workload.metadata.0.name
+    namespace = kubernetes_pod_v1.workload.metadata.0.namespace
   }
-
-  spec {
-    service_account_name = kubernetes_service_account_v1.serviceaccount.metadata.0.name
-    container {
-      image = "nginx:latest"
-      name  = "nginx"
-      port {
-        container_port = 80
-      }
-    }
-  }
-
-  depends_on = [
-    kubernetes_service_account_v1.serviceaccount
-  ]
 
   lifecycle {
-    ignore_changes = [
-        metadata[0].annotations["cni.projectcalico.org/containerID"],
-        metadata[0].annotations["cni.projectcalico.org/podIP"],
-        metadata[0].annotations["cni.projectcalico.org/podIPs"]
-    ]
-    precondition {
-      condition     = kubernetes_namespace_v1.namespace.metadata[0].name == "prod-environment"
-      error_message = "The namespace must be prod-environment"
+    postcondition {
+      condition     = self.status == "Running"
+      error_message = "Pod is not in the Running phase."
     }
   }
 }
 EOF
 
 # Verify the Solution
-result=$(hcl2json ~/scenario/kubernetes.tf | jq '(
-  .resource.kubernetes_pod_v1.workload[0].depends_on == "${kubernetes.k8s}"
-)')
-if [ "$result" = "false" ]; then
+diff <(hcl2json ~/scenario/sources.tf | jq '.data.kubernetes_namespace_v1.namespace[0].provider') <(hcl2json ${SOLUTION_DIR}/sources.tf | jq '.data.kubernetes_namespace_v1.namespace[0].provider')
+if [ $? -ne 0 ]; then
   exit 1
 fi
 
-
-
-# Verify the Solution
-diff <(hcl2json ~/scenario/kubernetes.tf) <(hcl2json ${SOLUTION_DIR}/kubernetes.tf)
+diff <(hcl2json hcl2json ~/scenario/sources.tf | jq '.data.kubernetes_pod_v1.workload[0].lifecycle[0]') <(hcl2json ${SOLUTION_DIR}/sources.tf | jq '.data.kubernetes_pod_v1.workload[0].lifecycle[0]')
+if [ $? -ne 0 ]; then
+  exit 1
+fi

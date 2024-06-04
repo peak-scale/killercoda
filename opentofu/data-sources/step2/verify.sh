@@ -3,7 +3,7 @@ SOLUTION_DIR="${HOME}/.solutions/step2"
 mkdir -p "${SOLUTION_DIR}" || true
 
 # Add Solution for review
-cat << 'EOF' > "${SOLUTION_DIR}/kubernetes.tf"
+cat << EOF > "${SOLUTION_DIR}/kubernetes.tf"
 resource "kubernetes_namespace_v1" "namespace" {
   metadata {
     name = "prod-environment"
@@ -14,13 +14,19 @@ resource "kubernetes_service_account_v1" "serviceaccount" {
   metadata {
     name = "prod-sa"
     namespace = kubernetes_namespace_v1.namespace.metadata.0.name
+    annotations = {
+        "namespace-uid" = data.kubernetes_namespace_v1.namespace.metadata.0.uid
+    }
   }
 }
 
 resource "kubernetes_secret_v1" "serviceaccount_token" {
   metadata {
     annotations = {
-      "kubernetes.io/service-account.name" = kubernetes_service_account_v1.serviceaccount.metadata.0.name
+      "kubernetes.io/service-account.name" = kubernetes_service_account_v1.serviceaccount.metadata.0.name,
+      "namespace-uid" = data.kubernetes_namespace_v1.namespace.metadata.0.uid
+
+
     }
     namespace = kubernetes_namespace_v1.namespace.metadata.0.name
     generate_name = "terraform-example-"    
@@ -35,6 +41,9 @@ resource "kubernetes_pod_v1" "workload" {
   metadata {
     name = "nginx"
     namespace = kubernetes_namespace_v1.namespace.metadata.0.name
+    annotations = {
+        "namespace-uid" = data.kubernetes_namespace_v1.namespace.metadata.0.uid
+    }
   }
 
   spec {
@@ -51,17 +60,7 @@ resource "kubernetes_pod_v1" "workload" {
 EOF
 
 # Verify the solution
-result=$(hcl2json ~/scenario/kubernetes.tf | jq '(
-  .resource.kubernetes_pod_v1.workload[0].metadata[0].namespace == "${kubernetes_namespace_v1.namespace.metadata.0.name}"
-) and (
-  .resource.kubernetes_pod_v1.workload[0].spec[0].service_account_name == "${kubernetes_service_account_v1.serviceaccount.metadata.0.name}"
-) and (
-  .resource.kubernetes_secret_v1.serviceaccount_token[0].metadata[0].annotations."kubernetes.io/service-account.name" == "${kubernetes_service_account_v1.serviceaccount.metadata.0.name}"
-) and (
-  .resource.kubernetes_secret_v1.serviceaccount_token[0].metadata[0].namespace == "${kubernetes_namespace_v1.namespace.metadata.0.name}"
-) and (
-  .resource.kubernetes_service_account_v1.serviceaccount[0].metadata[0].namespace == "${kubernetes_namespace_v1.namespace.metadata.0.name}"
-)')
-if [ "$result" = "false" ]; then
+diff <(hcl2json ~/scenario/kubernetes.tf) <(hcl2json "${SOLUTION_DIR}/kubernetes.tf")
+if [ $? -ne 0 ]; then
   exit 1
 fi

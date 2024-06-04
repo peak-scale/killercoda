@@ -3,7 +3,7 @@ SOLUTION_DIR="${HOME}/.solutions/step1"
 mkdir -p "${SOLUTION_DIR}" || true
 
 # Add Solution for review
-cat << EOF > "sources.tf"
+cat << EOF > "${SOLUTION_DIR}/sources.tf"
 data "kubernetes_namespace_v1" "namespace" {
   metadata {
     name = kubernetes_namespace_v1.namespace.metadata.0.name
@@ -32,7 +32,7 @@ data "kubernetes_pod_v1" "workload" {
 }
 EOF
 
-cat << EOF > "outputs.tf"
+cat << EOF > "${SOLUTION_DIR}/outputs.tf"
 output "namespace" {
   value = data.kubernetes_namespace_v1.namespace
 }
@@ -63,6 +63,6 @@ if [ $? -ne 0 ]; then
 fi
 
 cd ~/scenario
-if ! [ $(tofu state ls | grep "data.kubernetes_" | wc -l) -eq 4 ]; then
+if [ $(tofu state ls | grep "data.kubernetes_" | wc -l) -ne 4 ]; then
   exit 1
 fi

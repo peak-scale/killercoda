@@ -1,6 +1,9 @@
 {
     "title": "Opentofu Scenarios",
     "description": "Get to know Opentofu for beginner and advanced users",
+    "icon":"fa-terraform",
+    "difficulty": "Beginner",
+    "time": "30 minutes",
     "items": [
       { "path": "getting-started" },
       { "path": "providers" },
@@ -12,6 +15,5 @@
       { "path": "state-management" },
       { "path": "writing-tests" },
       { "path": "building-abstractions-01" }
-
     ]
   }

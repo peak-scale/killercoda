@@ -20,6 +20,7 @@ For each daa source you need to supply different arguments, in this case the `me
 
 A data block requests that OpenTofu read from a given data source ([kubernetes_pod_v1](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/data-sources/pod_v1)) and export the result under the given local name (`workload`). The name is used to refer to this resource from elsewhere in the same OpenTofu module, but has no significance outside of the scope of a module.
 
+Usually every resource has a data source equivalent.
 
 ## Task 2: Create Data Sources
 

@@ -10,6 +10,8 @@ Complete these tasks for this scenario.
 
 ## Task 1: Implement `count`
 
+> [Documentation](https://opentofu.org/docs/language/meta-arguments/count/#the-count-object)
+
 Count is the simple way to make our pods scalable. We can use the `count` meta-argument to create multiple instances of a resource. Based on the value of `local.replicas`, which is currently `3` we want to create that amount of pods. Create new file called `pods-count.tf` in the current working directory. Create a new [kubernetes_pod_v1](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_v1) resource. Use the `count` meta-argument to create multiple instances of a resource based on the value of `local.replicas`{{copy}}. The pods should be named `nginx-count-${count.index}`{{copy}} (use argument `metadata.name`).
 
 Add the asked attributes in this skeleton:
