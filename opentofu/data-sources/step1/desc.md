@@ -32,7 +32,7 @@ There's a new file called `kubernetes.tf` in the current working directory. For 
 * [`kubernetes_pod_v1`](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/data-sources/pod_v1): Use local name `workload`
 
 
-For the argument `name` use the argument of the counter-part resource. For example, for the `kubernetes_namespace_v1` use `kubernetes_namespace_v1.namespace.metadata.0.name` as the argument for the `name` parameter. Same for the `namespace` argument.
+For the argument `name` use the argument of the counter-part resource. For example, for the `kubernetes_namespace_v1` use `kubernetes_namespace_v1.namespace.metadata.0.name` as the argument for the `name` parameter. For the `namespace` argument use for each resource `kubernetes_namespace_v1.namespace.metadata.0.name`.
 
 
 ## Task 3: Output Data

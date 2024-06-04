@@ -13,21 +13,21 @@ data "kubernetes_namespace_v1" "namespace" {
 data "kubernetes_service_account_v1" "serviceaccount" {
   metadata {
     name = kubernetes_service_account_v1.serviceaccount.metadata.0.name
-    namespace = kubernetes_service_account_v1.serviceaccount.metadata.0.namespace
+    namespace = kubernetes_namespace_v1.namespace.metadata.0.name
   }
 }
 
 data "kubernetes_secret_v1" "serviceaccount_token" {
   metadata {
     name = kubernetes_secret_v1.serviceaccount_token.metadata.0.name
-    namespace = kubernetes_secret_v1.serviceaccount_token.metadata.0.namespace
+    namespace = kubernetes_namespace_v1.namespace.metadata.0.name
   }
 }
 
 data "kubernetes_pod_v1" "workload" {
   metadata {
     name = kubernetes_pod_v1.workload.metadata.0.name
-    namespace = kubernetes_pod_v1.workload.metadata.0.namespace
+    namespace = kubernetes_namespace_v1.namespace.metadata.0.name
   }
 }
 EOF
