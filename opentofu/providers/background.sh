@@ -1,15 +1,16 @@
 #!/bin/bash
 set -x 
 echo starting...
-mkdir ~/solutions
-
 # Install Opentofu
 snap install opentofu --classic
 
-# Install Helm
-curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-chmod 700 get_helm.sh
-./get_helm.sh
-rm -f get_helm.sh
+# Install HCL2JSON
+HCL2JSON_VERSION="0.6.3"
+wget "https://github.com/tmccombs/hcl2json/releases/download/v${HCL2JSON_VERSION}/hcl2json_linux_amd64" -O /tmp/hcl2json
+mv /tmp/hcl2json /usr/local/bin/hcl2json
+chmod +x /usr/local/bin/hcl2json
+
+mkdir ~/scenario
+cd ~/scenario
 
 touch /tmp/finished

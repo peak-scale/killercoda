@@ -5,7 +5,7 @@
       { "path": "getting-started" },
       { "path": "providers" },
       { "path": "resources" },
-      { "path": "data-resources" },
+      { "path": "data-sources" },
       { "path": "variables" },
       { "path": "logic" },
       { "path": "state-drift" },

@@ -1,8 +1,9 @@
 #!/bin/bash
+SOLUTION_DIR="${HOME}/.solutions/step2"
+mkdir -p "${SOLUTION_DIR}" || true
 
 # Add Solution for review
-mkdir -p ~/.solutions/step2 || true
-cat << 'EOF' > ~/.solutions/step2/provider.tf
+cat << 'EOF' > "${SOLUTION_DIR}/provider.tf"
 #!/bin/bash
 terraform {
   required_providers {
@@ -18,7 +19,8 @@ provider "kubernetes" {
 }
 EOF
 
-diff -w  -sB ~/.solutions/step2/provider.tf /root/infrastructure/provider.tf
+# Verify the Solution
+diff <(hcl2json ~/scenario/provider.tf) <(hcl2json ${SOLUTION_DIR}/provider.tf)
 if [ $? -ne 0 ]; then
   exit 1
 fi

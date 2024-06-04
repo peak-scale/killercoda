@@ -1,6 +1,9 @@
 {
     "title": "Providers",
     "description": "Working with upstream Providers and gathering information about the resources they offer.",
+    "icon":"fa-terraform",
+    "difficulty": "Beginner",
+    "time": "30 minutes",
     "details": {
       "intro": {
         "text": "intro.md"
@@ -20,6 +23,11 @@
           "title": "Provider Resources",
           "text": "step3/desc.md",
           "verify": "step3/verify.sh"
+        },
+        {
+          "title": "Provider Alias",
+          "text": "step4/desc.md",
+          "verify": "step4/verify.sh"
         }
       ],
       "finish": {

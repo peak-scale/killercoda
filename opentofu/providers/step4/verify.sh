@@ -1,17 +1,64 @@
 #!/bin/bash
-cd /root/tofu-example
 
-if [ -f "hello.txt" ]; then
-    echo "hello.txt successfully created."
-else
-    echo "Failed to create hello.txt."
-    exit 1
+# Create provider.tf file
+cat <<EOF > provider.tf
+terraform {
+  required_providers {
+    kubernetes = {
+      source = "hashicorp/kubernetes"
+      version = "2.30.0"
+    }
+  }
+}
+
+provider "kubernetes" { 
+  config_path = "~/.kube/config"
+}
+
+provider "kubernetes" {
+  alias = "k8s"
+  config_path = "~/.kube/config"
+  ignore_annotations = [
+    "cni\.projectcalico\.org\/*"
+  ]
+}
+EOF
+
+
+# Add Solution for review
+cat << 'EOF' > "${SOLUTION_DIR}/pod.tf"
+resource "kubernetes_pod_v1" "workload" {
+provider = kubernetes.k8s
+  metadata {
+    name = "dev-pod"
+    namespace = "dev-environment"
+  }
+  
+  spec {
+    service_account_name = "dev-sa"
+    container {
+      image = "nginx:latest"
+      name  = "nginx"
+      port {
+        container_port = 80
+      }
+    }
+  }
+}
+EOF
+
+# Verify the Solution
+result=$(hcl2json ~/scenario/pod.tf | jq '(
+  .resource.kubernetes_pod_v1.workload[0].provider == "${kubernetes.k8s}"
+)')
+if [ "$result" = "false" ]; then
+  exit 1
 fi
 
-tofu state ls | grep -q "hello.txt"
-if [ $? -eq 0 ]; then
-    echo "hello.txt is part of the state."
-else
-    echo "hello.txt is not part of the state."
-    exit 1
+
+result=$(hcl2json ~/scenario/provider.tf | jq '
+  any(.provider.kubernetes[]; .alias == "${k8s}")
+')
+if [ "$result" = "false" ]; then
+  exit 1
 fi

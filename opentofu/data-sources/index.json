@@ -1,9 +1,9 @@
 {
-    "title": "Resources",
-    "description": "Understand resources and handle their lifecycle",
+    "title": "Data Sources",
+    "description": "Understand Data Sources and handle their lifecycle",
     "icon":"fa-terraform",
     "difficulty": "Beginner",
-    "time": "30 minutes",
+    "time": "15 minutes",
     "details": {
       "intro": {
         "text": "intro.md",
@@ -12,7 +12,7 @@
       },
       "steps": [
         {
-          "title": "Creating Resources", 
+          "title": "Creating Data Sources", 
           "text": "step1/desc.md",
           "verify": "step1/verify.sh"
         },
@@ -50,9 +50,6 @@
           "verify": "step5/verify.sh",
           "background": "step5/background.sh"
         }
-
-
-
       ],
       "finish": {
         "text": "finish.md"

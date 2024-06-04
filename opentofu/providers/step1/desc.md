@@ -12,6 +12,10 @@ Visit the Terraform Registry to browse popular providers:
 
 # Tasks
 
+Complete these tasks for this scenario. 
+
+## Task 1: Review Google Cloud Provider
+
 > Let's look at the provider for [Google Cloud](https://registry.terraform.io/providers/hashicorp/google/latest). To get an understanding of how you can find what you need, let's search for the provider in the Terraform Registry:
 
 ![Browse Terraform Registry for Google](./assets/step1-1.png)

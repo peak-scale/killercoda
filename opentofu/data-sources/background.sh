@@ -1,9 +1,35 @@
 #!/bin/bash
-SOLUTION_DIR="${HOME}/.solutions/step3"
-mkdir -p "${SOLUTION_DIR}" || true
+echo starting...
 
-# Add Solution for review
-cat << 'EOF' > "${SOLUTION_DIR}/kubernetes.tf"
+snap install opentofu --classic
+
+# Install HCL2JSON
+HCL2JSON_VERSION="0.6.3"
+wget "https://github.com/tmccombs/hcl2json/releases/download/v${HCL2JSON_VERSION}/hcl2json_linux_amd64" -O /tmp/hcl2json
+mv /tmp/hcl2json /usr/local/bin/hcl2json
+chmod +x /usr/local/bin/hcl2json
+
+mkdir ~/scenario
+cd ~/scenario
+
+# Create provider.tf file
+cat <<EOF > provider.tf
+terraform {
+  required_providers {
+    kubernetes = {
+      source = "hashicorp/kubernetes"
+      version = "2.30.0"
+    }
+  }
+}
+
+provider "kubernetes" { 
+  config_path = "~/.kube/config"
+}
+EOF
+
+
+cat <<EOF > kubernetes.tf
 resource "kubernetes_namespace_v1" "namespace" {
   metadata {
     name = "prod-environment"
@@ -47,34 +73,8 @@ resource "kubernetes_pod_v1" "workload" {
       }
     }
   }
-
-  depends_on = [
-    kubernetes_service_account_v1.serviceaccount
-  ]
-
-  lifecycle {
-    ignore_changes = [
-        metadata[0].annotations["cni.projectcalico.org/containerID"],
-        metadata[0].annotations["cni.projectcalico.org/podIP"],
-        metadata[0].annotations["cni.projectcalico.org/podIPs"]
-    ]
-    precondition {
-      condition     = kubernetes_namespace_v1.namespace.metadata[0].name == "prod-environment"
-      error_message = "The namespace must be prod-environment"
-    }
-  }
 }
 EOF
 
-# Verify the Solution
-result=$(hcl2json ~/scenario/kubernetes.tf | jq '(
-  .resource.kubernetes_pod_v1.workload[0].depends_on == "${kubernetes.k8s}"
-)')
-if [ "$result" = "false" ]; then
-  exit 1
-fi
-
-
-
-# Verify the Solution
-diff <(hcl2json ~/scenario/kubernetes.tf) <(hcl2json ${SOLUTION_DIR}/kubernetes.tf)
+tofu init
+touch /tmp/finished

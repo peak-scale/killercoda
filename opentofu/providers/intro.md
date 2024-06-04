@@ -1,3 +1,13 @@
-In this secanario we go over the essential steps when working with [Terraform](https://www.terraform.io/). We are going to use [Opentofu](https://opentofu.org/) for our scenarios. Opentofu is a hard-fork of Terraform that has an open governance model and is community-driven. It is a drop-in replacement for Terraform and is fully compatible with Terraform configurations. However the functionality used in the following scenarios can also be done with Terraform.
+![Opentofu Logo](https://raw.githubusercontent.com/opentofu/brand-artifacts/main/full/transparent/SVG/on-light.svg)
 
-You should already understand core concepts. If you are new to Terraform, we recommend you to go through the [official documentation](https://learn.hashicorp.com/tutorials/terraform/install-cli) first. Or our documentation <----->
+## About this Scenario
+
+Learn how to lookup providers and the resources they offer. 
+
+## Prerequisites
+
+No prerequisites are required for this scenario. This scenario is using Kubernetes as the target infrastructure. Basic Knowledge of Kubernetes is beneficial but not required.
+
+## Problems
+
+If you encounter any problems, typos or have feedback, please open an issue on this [GitHub Repository](https://github.com/peak-scale/koda-scenarios). All our scenarios are open-source and we are happy to receive your feedback.

@@ -3,7 +3,7 @@
 
 ## About this Scenario
 
-You will learn how to use resources and control their lifecycle with Opentofu. This scenario will guide you through the process of creating a Kubernetes deployment and service using Opentofu.
+You will learn how to access data resources and use their values for further processing.
 
 ## Prerequisites
 
