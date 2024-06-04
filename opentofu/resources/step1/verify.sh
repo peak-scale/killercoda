@@ -54,6 +54,3 @@ diff <(hcl2json ~/scenario/kubernetes.tf) <(hcl2json ${SOLUTION_DIR}/kubernetes.
 if [ $? -ne 0 ]; then
   exit 1
 fi
-
-cd ~/scenario
-tofu plan & tofu apply -auto-approve
