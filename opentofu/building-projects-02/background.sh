@@ -1,7 +1,8 @@
 #!/bin/bash
 set -x 
 echo starting...
-mkdir ~/solutions
+mkdir ~/scenario
+cd ~/scenario
 
 # Install Opentofu
 snap install opentofu --classic
@@ -12,10 +13,20 @@ chmod 700 get_helm.sh
 ./get_helm.sh
 rm -f get_helm.sh
 
-# -- Install Minio (Test)
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm install minio bitnami/minio --version 14.6.2 -n minio-test --create-namespace
+helm install minio bitnami/minio --version 14.6.2 -n minio-prod --create-namespace
+
+curl https://dl.min.io/client/mc/release/linux-amd64/mc \
+  --create-dirs \
+  -o /usr/local/bin/mc
+chmod +x /usr/local/bin/mc
+
+MINIO_TEST_USER=$(kubectl get secret -n minio-test minio -o jsonpath='{.data.root-user}' | base64 -d)
+MINIO_TEST_PASSWORD=$(kubectl get secret -n minio-test minio -o jsonpath='{.data.root-password}' | base64 -d)
+MINIO_TEST_URL=""
 
 
-# -- Install Minio (Prod)
 
 
 touch /tmp/finished

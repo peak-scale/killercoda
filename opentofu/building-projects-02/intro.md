@@ -2,7 +2,7 @@
 
 ## About this Scenario
 
-In this scenario we will write a module together, which will be used to manage tenants on Kubernetes. A tenant is a construct we will compose of different Kubernetes resources.
+In this scenario we will write a module together, which will be used to provision Buckets on a S3 solution for your consumers. 
 
 ## Prerequisites
 

@@ -1,11 +1,5 @@
 > [Documentation](https://opentofu.org/docs/language/data-sources/#using-data-sources)
 
-# Tasks
-
-Complete these tasks for this scenario. 
-
-## Task 1: Resource syntax
-
 A data source is accessed via a special kind of resource known as a data resource, declared using a `data` block:
 
 ```hcl
@@ -16,13 +10,19 @@ data "kubernetes_pod_v1" "workload" {
 }
 ```
 
-For each daa source you need to supply different arguments, in this case the `metadata` block with the `name` argument. [See the reference](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/data-sources/pod_v1#argument-reference). Always consult the documentation to find the required arguments for the data source you are using.
+For each data source you need to supply different arguments, in this case the `metadata` block with the `name` argument. [See the reference](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/data-sources/pod_v1#argument-reference). Always consult the documentation to find the required arguments for the data source you are using.
 
 A data block requests that OpenTofu read from a given data source ([kubernetes_pod_v1](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/data-sources/pod_v1)) and export the result under the given local name (`workload`). The name is used to refer to this resource from elsewhere in the same OpenTofu module, but has no significance outside of the scope of a module.
 
 Usually every resource has a data source equivalent.
 
-## Task 2: Create Data Sources
+
+
+# Tasks
+
+Complete these tasks for this scenario. 
+
+## Task 1: Create Data Sources
 
 There's a new file called `kubernetes.tf` in the current working directory. For each of the mentioned resources, create a data source in a file called `sources.tf`:
 
@@ -35,7 +35,7 @@ There's a new file called `kubernetes.tf` in the current working directory. For 
 For the argument `name` use the argument of the counter-part resource. For example, for the `kubernetes_namespace_v1` use `kubernetes_namespace_v1.namespace.metadata.0.name` as the argument for the `name` parameter. For the `namespace` argument use for each resource `kubernetes_namespace_v1.namespace.metadata.0.name`.
 
 
-## Task 3: Output Data
+## Task 2: Output Data
 
 To make it clear for us what data is returned by the data sources, we want to output the data to the console. Add an output block to the `outputs.tf` file:
 
@@ -60,7 +60,7 @@ output "pod" {
 
 This instructs OpenTofu to output the data from the data sources to the console. The `sensitive` argument is used to hide the output from the console.
 
-## Task 4: Plan
+## Task 3: Plan
 
 Run `tofu plan`{{exec}} to review the data sources. Focus your attention to the Changes to outputs section:
 
