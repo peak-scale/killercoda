@@ -14,6 +14,7 @@
       { "path": "state-drift" },
       { "path": "state-management" },
       { "path": "writing-tests" },
-      { "path": "building-abstractions-01" }
+      { "path": "building-abstractions-01" },
+      { "path": "building-projects-02" }
     ]
   }

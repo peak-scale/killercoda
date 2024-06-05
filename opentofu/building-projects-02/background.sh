@@ -12,4 +12,10 @@ chmod 700 get_helm.sh
 ./get_helm.sh
 rm -f get_helm.sh
 
+# -- Install Minio (Test)
+
+
+# -- Install Minio (Prod)
+
+
 touch /tmp/finished

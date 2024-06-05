@@ -1,13 +1,13 @@
 {
-    "title": "Building Abstractions 01",
-    "description": "Build a YAML abstraction for multiple services",
+    "title": "Building Solutions 01",
+    "description": "Build a Bucket as a Service Solution",
     "details": {
       "intro": {
         "text": "intro.md"
       },
       "steps": [
         {
-          "title": "Lookup Providers",
+          "title": "Solution",
           "text": "step1/desc.md"
         },
         {
