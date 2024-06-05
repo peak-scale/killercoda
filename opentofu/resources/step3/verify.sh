@@ -59,7 +59,7 @@ resource "kubernetes_pod_v1" "workload" {
         metadata[0].annotations["cni.projectcalico.org/podIPs"]
     ]
     precondition {
-      condition     = kubernetes_namespace_v1.namespace.metadata[0].name == "prod-environment"
+      condition     = kubernetes_namespace_v1.namespace.metadata[0].name != "prod-environment"
       error_message = "The namespace must be prod-environment"
     }
   }
@@ -68,13 +68,20 @@ EOF
 
 # Verify the Solution
 result=$(hcl2json ~/scenario/kubernetes.tf | jq '(
-  .resource.kubernetes_pod_v1.workload[0].depends_on == "${kubernetes.k8s}"
+  .resource.kubernetes_pod_v1.workload[0].depends_on == "${kubernetes_service_account_v1.serviceaccount}"
 )')
 if [ "$result" = "false" ]; then
   exit 1
 fi
 
+diff -w -B <(hcl2json ~/scenario/kubernetes.tf | jq '.resource.kubernetes_pod_v1.workload[0].lifecycle[0].precondition[0]') <(hcl2json "${SOLUTION_DIR}/kubernetes.tf" | jq '.resource.kubernetes_pod_v1.workload[0].lifecycle[0].precondition[0]')
+if [ $? -ne 0 ]; then
+  exit 1
+fi
 
-
-# Verify the Solution
-diff <(hcl2json ~/scenario/kubernetes.tf) <(hcl2json ${SOLUTION_DIR}/kubernetes.tf)
+result=$(hcl2json ~/scenario/kubernetes.tf | jq '(
+  .resource.kubernetes_pod_v1.workload[0].lifecycle[0].ignore_changes | contains("metadata[0].annotations[\"cni.projectcalico.org/containerID\"]")
+)')
+if [ "$result" = "false" ]; then
+  exit 1
+fi

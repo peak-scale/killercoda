@@ -20,7 +20,7 @@ provider "kubernetes" {
 EOF
 
 # Verify the Solution
-diff <(hcl2json ~/scenario/provider.tf) <(hcl2json ${SOLUTION_DIR}/provider.tf)
+diff -w -B <(hcl2json ~/scenario/provider.tf) <(hcl2json ${SOLUTION_DIR}/provider.tf)
 if [ $? -ne 0 ]; then
   exit 1
 fi

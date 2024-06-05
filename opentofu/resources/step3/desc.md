@@ -20,9 +20,9 @@ Complete these tasks for this scenario.
 
 > [Documentation](https://opentofu.org/docs/language/meta-arguments/depends_on/)
 
-The resource `kubernetes_pod_v1` requires the `kubernetes_service_account_v1` to be created first. To ensure that the `kubernetes_pod_v1` resource is created after the `kubernetes_service_account_v1` resource, you can use the `depends_on` meta-argument. Often these dependencies are solved by the provider, but in some cases you need to enforce the dependency or in this case there can be a racing condition.
+The resource `kubernetes_pod_v1` requires the `kubernetes_service_account_v1` to be created first. To ensure that the `kubernetes_pod_v1` resource is created after the `kubernetes_service_account_v1` resource, you can use the `depends_on` meta-argument.
 
-Implement the `depends_on` meta-argument in the `kubernetes_pod_v1` resource, so that it depends on the `kubernetes_service_account_v1.serviceaccount` resource in the file `scenario/kubernetes.tf`.
+Implement the `depends_on` meta-argument in the `kubernetes_pod_v1` resource, so that it depends on the `kubernetes_service_account_v1` resource in the file `scenario/kubernetes.tf`.
 
 Execute the plan and apply the changes:
 
@@ -64,8 +64,8 @@ Run a plan again and you will see that the changes are ignored.
 > [Documentation](https://opentofu.org/docs/language/expressions/custom-conditions/#preconditions-and-postconditions)
 
 On the `kubernetes_pod_v1` resource, add a `precondition`:
-  * `condition`: Value of `kubernetes_namespace_v1.namespace.metadata[0].name` is equal to `prod-environment`
-  * `error_message`: "The namespace must be prod-environment"
+  * `condition`: Value of `kubernetes_namespace_v1.namespace.metadata[0].name` is not equal to `prod-environment`
+  * `error_message`: "The namespace must not be `prod-environment`"
 
 # Verify
 

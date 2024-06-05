@@ -19,8 +19,8 @@ Complete these tasks for this scenario.
 
 There's a file called `scenario/kubernetes.tf`. Review the content of the file. You will notice that there are redundant values in the configuration:
 
-* `prod-environment`: The namespace name is used in multiple resources.
-* `prod-sa`: The service account name is used in multiple resources.
+* `dev-environment`: The namespace name is used in multiple resources.
+* `dev-sa`: The service account name is used in multiple resources.
 
 ## Task 2: Implement Resource Attribute References
 
