@@ -1,51 +1,51 @@
-Working with state is the key aspect when it comes to consistency. It's not ideal to have the state just locally. However in our case we have a file called.
+To demonstrate an import conflict, we extended the resources and working against a Kubernetes cluster.
 
-# Tasks
+## Tasks
 
-Remove the state file (never do this in production):
+Complete these tasks for this scenario.
+
+### Task 1: Review Setup
+
+We have added the [kubernetes](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs) provider to the configuration. You may review the `provider.tf` file:
+
 ```shell
-rm -f terra
+cat ~/scenario/provider.tf
 ```{{exec}}
 
-The file `hello.txt` should now be created in the directory where the configuration is stored. You can check this by running the `ls` command:
+We have added a file `kubernetes.tf` which contains a simple Kubernetes resource:
 
 ```shell
-ls
+cat ~/scenario/kubernetes.tf
 ```{{exec}}
 
-* You can also verify the file is part of the state by running the `state ls` command:
+
+
+> [Documentation](https://opentofu.org/docs/cli/commands/import/)
+
+The capability to import state is crucial when you have an existing infrastructure that you want to manage with OpenTofu. This is a common scenario when you are migrating from another infrastructure as code tool or when you have manually created resources.
+
+We want to simulate a situation, where the file `morning.txt` is already present on a machine but not in our state. Create the file:
+
+```shell
+cat  > morning.txt <<EOF
+Hello, World!
+EOF
+```{{exec}}
+
+Our state currently does not know about the file `morning.txt`. You can verify this by running the `state ls` command:
 
 ```shell
 tofu state ls
 ```{{exec}}
 
-* Let's delete the file on the system manually.
+Now we are expecting to get a conflict when running:
 
 ```shell
-rm hello.txt
-```
-
-* Now, can you just apply the same plan again? What happens?
-
-```shell
-tofu apply "example-plan"
+tofu plan & tofu apply
 ```{{exec}}
 
-The plan is no longer valid, as the state was updated by our previous manual action. In order to apply the plan again, you need to create a new plan. 
 
-* Create a new plan by running the `plan` command:
+> [Documentation](https://opentofu.org/docs/cli/commands/import/)
 
-```shell
-tofu plan
-```{{exec}}
 
-This time we are not storing the plan to a dedicated file, because we can be sure, that no other changes can be made to our terraform configuration.
-
-* Apply the new plan, you must confirm the action by typing `yes`:
-
-```shell
-tofu apply
-```{{exec}}
-
-As you can see, there is an additional step when no plan file is provided. This is to ensure that you are aware of the changes that will be made to your infrastructure, which would have been done with a dedicated plan file (you must encoperate such a workflow yourself).
-
+  

@@ -1,3 +1,1 @@
-#!/bin/bash
-mkdir ~/scenario
-cd ~/scenario
+mkdir ~/scenario && cd ~/scenario

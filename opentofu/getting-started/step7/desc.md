@@ -4,57 +4,41 @@ We have seen in the previous step, that when you delete a file manually, the sta
 
 Complete these tasks for this scenario.
 
-### Task 1: Import State
-
-> [Documentation](https://opentofu.org/docs/cli/commands/import/)
+### Task 1: State Conflict
 
 The capability to import state is crucial when you have an existing infrastructure that you want to manage with OpenTofu. This is a common scenario when you are migrating from another infrastructure as code tool or when you have manually created resources.
 
-We want to simulate a situation, where the file `hello.txt` is already present on a machine but not in our state. For that, we are going to remove the file from the state:
-  
-```shell
-tofu state rm local_file.example
-```{{exec}}
-
-The file `hello.txt` should now be created in the directory where the configuration is stored. You can check this by running the `ls` command:
+We want to simulate a situation, where the file `morning.txt` is already present on a machine but not in our state. Create the file:
 
 ```shell
-ls
+cat  > morning.txt <<EOF
+Hello, World!
+EOF
 ```{{exec}}
 
-* You can also verify the file is part of the state by running the `state ls` command:
+Our state currently does not know about the file `morning.txt`. You can verify this by running the `state ls` command:
 
 ```shell
 tofu state ls
 ```{{exec}}
 
-* Let's delete the file on the system manually.
+Now we are expecting to get a conflict when running:
 
 ```shell
-rm hello.txt
-```
-
-* Now, can you just apply the same plan again? What happens?
-
-```shell
-tofu apply "example-plan"
+tofu plan & tofu apply
 ```{{exec}}
 
-The plan is no longer valid, as the state was updated by our previous manual action. In order to apply the plan again, you need to create a new plan. 
+🤔 ... It just recreated the file?
 
-* Create a new plan by running the `plan` command:
+See that's thing with the [local](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/sensitive_file) provider. It has special behavior because Opentofu is not really intended to manage local files but for Cloud infrastructure. The documentation for file resources states:
 
-```shell
-tofu plan
-```{{exec}}
+> The path to the file that will be created. Missing parent directories will be created. If the file already exists, it will be overridden with the given content.
 
-This time we are not storing the plan to a dedicated file, because we can be sure, that no other changes can be made to our terraform configuration.
+So we can't you show an import example with this provider. However this should teach you, each Provider has different aspects and gotchas. The Provider documentation is your best friend. 
 
-* Apply the new plan, you must confirm the action by typing `yes`:
+We'll be looking into Provider specific behavior in the provider scenario.
 
-```shell
-tofu apply
-```{{exec}}
 
-As you can see, there is an additional step when no plan file is provided. This is to ensure that you are aware of the changes that will be made to your infrastructure, which would have been done with a dedicated plan file (you must encoperate such a workflow yourself).
 
+
+  

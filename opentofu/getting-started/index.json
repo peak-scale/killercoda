@@ -9,6 +9,12 @@
       },
       "steps": [
         {
+          "title": "Import Resources",
+          "text": "step8/desc.md",
+          "background": "step8/background.sh",
+          "verify": "step8/verify.sh"
+        },
+        {
           "title": "Install Opentofu",
           "text": "step1/desc.md",
           "verify": "step1/verify.sh"
@@ -40,15 +46,21 @@
         },
         {
           "title": "Import Resources",
-          "text": "step7/desc.md",
-          "verify": "step7/verify.sh"
+          "text": "step7/desc.md"
+        },
+        {
+          "title": "Import Resources",
+          "text": "step8/desc.md",
+          "background": "step8/background.sh",
+          "verify": "step8/verify.sh"
         }
+
       ],
       "finish": {
         "text": "finish.md"
       }
     },
     "backend": {
-      "imageid": "ubuntu"
+      "imageid": "kubernetes-kubeadm-1node"
     }
   }

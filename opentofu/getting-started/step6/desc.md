@@ -18,6 +18,8 @@ tofu apply -destroy
 
 ## Destroying one Resource
 
+> This is an advanced topic and does not require any further steps from your side. It's good enough if you are aware of the option.
+
 Another approach is to destroy a specific resource, however this is only used in exceptional situations (recovery). 
 
 * For this we need to create a plan file which is limited to the resource we want to destroy. 

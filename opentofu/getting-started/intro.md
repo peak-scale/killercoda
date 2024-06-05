@@ -6,7 +6,7 @@ Learn your first interactions with Opentofu. Great for users with no hands-on ex
 
 ## Prerequisites
 
-No prerequisites are required for this scenario. This scenario is using Kubernetes as the target infrastructure. Basic Knowledge of Kubernetes is beneficial but not required.
+No prerequisites are required for this scenario.
 
 ## Problems
 

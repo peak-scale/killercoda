@@ -1,44 +1,39 @@
-The command `plan` allows you to preview the changes Opentofu will make before you apply them. The command `apply` makes the changes defined by your plan to create, update, or destroy resources.
-## Tasks
+Working with state is the key aspect when it comes to consistency. It's not ideal to have the state just locally. However in our case we have a file called.
 
-Complete these tasks for this scenario.
+# Tasks
 
-### Task 1: Apply the Plan
-
-Now it's time to create the file `hello.txt`. This is done by running the `apply` command:
+Remove the state file (never do this in production):
 ```shell
-tofu apply "/root/hello-example.plan"
+rm -f terra
 ```{{exec}}
 
 The file `hello.txt` should now be created in the directory where the configuration is stored. You can check this by running the `ls` command:
 
 ```shell
-cat hello.txt
+ls
 ```{{exec}}
 
-You can also verify the file is part of the state by running the `state ls` command:
+* You can also verify the file is part of the state by running the `state ls` command:
 
 ```shell
 tofu state ls
 ```{{exec}}
 
-Let's delete the file on the system manually.
+* Let's delete the file on the system manually.
 
 ```shell
 rm hello.txt
-```{{exec}}
+```
 
-Now, can you just apply the same plan again? What happens?
+* Now, can you just apply the same plan again? What happens?
 
 ```shell
-tofu apply "/root/hello-example.plan"
+tofu apply "example-plan"
 ```{{exec}}
 
 The plan is no longer valid, as the state was updated by our previous manual action. In order to apply the plan again, you need to create a new plan. 
 
-### Task 2: Replan
-
-Create a new plan by running the `plan` command:
+* Create a new plan by running the `plan` command:
 
 ```shell
 tofu plan
@@ -46,9 +41,7 @@ tofu plan
 
 This time we are not storing the plan to a dedicated file, because we can be sure, that no other changes can be made to our terraform configuration.
 
-### Task 3: Reapply
-
-Apply the new plan, you must confirm the action by typing `yes`:
+* Apply the new plan, you must confirm the action by typing `yes`:
 
 ```shell
 tofu apply

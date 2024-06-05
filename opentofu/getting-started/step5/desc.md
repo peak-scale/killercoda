@@ -6,6 +6,8 @@ Complete these tasks for this scenario.
 
 ### Task 1: Extend Configuration
 
+> We can place any `*.tf` file in the configuration directory. Terraform will automatically detect and apply the configuration. However you can't use subdirectories.
+
 Now we are adding a second file to the configuration:
    
 ```shell
@@ -18,8 +20,6 @@ EOF
 ```{{exec}}
 
 The **local name** of the resource must be different (`goodbye`) to avoid conflicts.
-
-> We can place any `*.tf` file in the configuration directory. Terraform will automatically detect and apply the configuration. However you can't use subdirectories.
 
 Plan and Apply the changes, you may review what's being created:
 
