@@ -52,9 +52,9 @@ Often when working with Kubernetes resources, there are other systems interactin
 
 The following attributes should be ignored:
 
-* `metadata[0].annotations["cni.projectcalico.org/podIP"]`
-* `metadata[0].annotations["cni.projectcalico.org/containerID"]`
-* `metadata[0].annotations["cni.projectcalico.org/podIPs"]`
+* `metadata[0].annotations["cni.projectcalico.org/podIP"]`{{copy}}
+* `metadata[0].annotations["cni.projectcalico.org/containerID"]`{{copy}}
+* `metadata[0].annotations["cni.projectcalico.org/podIPs"]`{{copy}}
 
 Run a plan again and you will see that the changes are ignored.
 
@@ -64,8 +64,8 @@ Run a plan again and you will see that the changes are ignored.
 > [Documentation](https://opentofu.org/docs/language/expressions/custom-conditions/#preconditions-and-postconditions)
 
 On the `kubernetes_pod_v1` resource, add a `precondition`:
-  * `condition`: Value of `kubernetes_namespace_v1.namespace.metadata[0].name` is not equal to `prod-environment`
-  * `error_message`: "The namespace must not be `prod-environment`"
+  * `condition`: Value of `kubernetes_namespace_v1.namespace.metadata[0].name`{{copy}} is not equal to `prod-environment`{{copy}}
+  * `error_message`: `"The namespace must not be prod-environment"`{{copy}}
 
 # Verify
 

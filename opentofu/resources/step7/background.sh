@@ -1,1 +1,0 @@
-opentofu/resources/background.sh

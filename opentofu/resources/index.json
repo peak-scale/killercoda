@@ -3,7 +3,7 @@
     "description": "Understand resources and handle their lifecycle",
     "icon":"fa-terraform",
     "difficulty": "Beginner",
-    "time": "30 minutes",
+    "time": "15 minutes",
     "details": {
       "intro": {
         "text": "intro.md",
@@ -23,21 +23,10 @@
           "verify": "step3/verify.sh"
         },
         {
-          "title": "Provider Argument",
-          "text": "step4/desc.md",
-          "verify": "step4/verify.sh"
-        },
-        {
           "title": "Count Argument",
-          "text": "step5/desc.md",
-          "verify": "step5/verify.sh",
-          "background": "step5/background.sh"
-        },
-        {
-          "title": "Foreach Argument",
-          "text": "step6/desc.md",
-          "verify": "step6/verify.sh",
-          "background": "step6/background.sh"
+          "text": "step4/desc.md",
+          "verify": "step4/verify.sh",
+          "background": "step4/background.sh"
         },
         {
           "title": "Foreach Argument",
@@ -45,9 +34,6 @@
           "verify": "step5/verify.sh",
           "background": "step5/background.sh"
         }
-
-
-
       ],
       "finish": {
         "text": "finish.md"
