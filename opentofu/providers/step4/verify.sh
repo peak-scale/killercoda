@@ -51,13 +51,17 @@ resource "kubernetes_pod_v1" "workload" {
 EOF
 
 # Verify the Solution
-result=$(hcl2json ~/scenario/pod.tf | jq '(
-  .resource.kubernetes_pod_v1.workload[0].provider == "${kubernetes.k8s}"
-)')
+result=$(hcl2json ~/scenario/pod.tf | jq '
+  .resource.kubernetes_pod_v1 | 
+  to_entries | 
+  .[0].value[0] as $item | 
+  (
+    $item.provider == "${kubernetes.k8s}"
+  )
+')
 if [ "$result" = "false" ]; then
   exit 1
 fi
-
 
 result=$(hcl2json ~/scenario/provider.tf | jq '
   any(.provider.kubernetes[]; .alias == "${k8s}")

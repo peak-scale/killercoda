@@ -69,7 +69,7 @@ if [ "$result" = "false" ]; then
   exit 1
 fi
 
-hcl2json ~/scenario/pod.tf | jq '
+result=$(hcl2json ~/scenario/pod.tf | jq '
   .resource.kubernetes_pod_v1 | 
   to_entries | 
   .[0].value[0] as $item | 
@@ -86,7 +86,7 @@ hcl2json ~/scenario/pod.tf | jq '
   ) and (
     $item.spec[0].container[0].port[0].container_port == 80
   )
-'
+')
 if [ "$result" = "false" ]; then
   exit 1
 fi

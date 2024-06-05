@@ -28,16 +28,15 @@ Create a new file called `serviceaccount.tf`. Within create a [`kubernetes_servi
 
 ## Task 3: Create a Pod
 
-Create a new file called `pod.tf`. Within create a [`kubernetes_pod_v1`](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_v1). The Pod should be called `dev-pod` and should be in the `dev-environment` namespace. 
+Create a new file called `pod.tf`. Within create a [`kubernetes_pod_v1`](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/pod_v1). The Pod should have the `name` `dev-pod` and should be in the `dev-environment` `namespace`. 
 
-* The Pod should have a container called `nginx` (use argument `metadata.name`)
-* The Pod should should be in the `dev-environment` namespace. (use argument `metadata.namespace`)
+* The Pod should have a container called `nginx` (use argument `spec.container.name`)
 * The container should use the `nginx:latest` image (use argument `spec.container.image`)
 * The Pod should use the serviceaccount `dev-sa` (use argument `spec.service_account_name`)
 
 ## Task 4: Apply
 
-We want to apply the given changes to the Kubernetes cluster. To do this, we need to create a plan and apply it.
+Deploy the Kubernetes resources:
 
 ```shell
 tofu apply -auto-approve
