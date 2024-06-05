@@ -1,51 +1,37 @@
 Working with state is the key aspect when it comes to consistency. It's not ideal to have the state just locally. However in our case we have a file called.
 
-# Tasks
+## Tasks
 
-Remove the state file (never do this in production):
+Complete these tasks for this scenario.
+
+### Task 1: View Statefile
+
+Since we are using the default configuration, the state is written into a file called `terraform.tfstate` in the working directory. In a production environment you would have the state somewhere else, like in a remote backend.
+
 ```shell
-rm -f terra
+ls -l ~/scenario/terraform.tfstate
 ```{{exec}}
 
-The file `hello.txt` should now be created in the directory where the configuration is stored. You can check this by running the `ls` command:
+The state contains sensitive information (if your configuration contains secrets) and should not be published or shared.
+
+
+### Task 2: Remove Statefile
+
+Remove the state file (Don't do this elsewhere :D):
 
 ```shell
-ls
+rm -f ~/scenario/terraform.tfstate
 ```{{exec}}
 
-* You can also verify the file is part of the state by running the `state ls` command:
+Now that we have lost the state, it's unclear to Opentofu what's already managed by it and what's not. Essentially you start from scratch and can either import all the resources or recreate them. But that's not gonna be an option for large infrastructures.
+
+
+You can verify everything is gone by running `tofu init && tofu apply -auto-approve`{{exec}}. Notice, we are again at the same state as in the beginning of the previous scenario (Data Loss 🔥).
+
+### Task 3: Backup 🚒
+
+That shows you, always have a backup of your state, no matter where it's stored:
 
 ```shell
-tofu state ls
+cp ~/scenario/terraform.tfstate ~/scenario/terraform.tfstate.backup
 ```{{exec}}
-
-* Let's delete the file on the system manually.
-
-```shell
-rm hello.txt
-```
-
-* Now, can you just apply the same plan again? What happens?
-
-```shell
-tofu apply "example-plan"
-```{{exec}}
-
-The plan is no longer valid, as the state was updated by our previous manual action. In order to apply the plan again, you need to create a new plan. 
-
-* Create a new plan by running the `plan` command:
-
-```shell
-tofu plan
-```{{exec}}
-
-This time we are not storing the plan to a dedicated file, because we can be sure, that no other changes can be made to our terraform configuration.
-
-* Apply the new plan, you must confirm the action by typing `yes`:
-
-```shell
-tofu apply
-```{{exec}}
-
-As you can see, there is an additional step when no plan file is provided. This is to ensure that you are aware of the changes that will be made to your infrastructure, which would have been done with a dedicated plan file (you must encoperate such a workflow yourself).
-

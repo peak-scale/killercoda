@@ -9,11 +9,6 @@
       },
       "steps": [
         {
-          "title": "Import Resources",
-          "text": "step8/desc.md",
-          "background": "step8/background.sh"
-        },
-        {
           "title": "Install Opentofu",
           "text": "step1/desc.md",
           "verify": "step1/verify.sh"
@@ -50,9 +45,15 @@
         {
           "title": "Import Resources",
           "text": "step8/desc.md",
-          "background": "step8/background.sh"
-
+          "background": "step8/background.sh",
+          "verify": "step8/verify.sh"
+        },
+        {
+          "title": "State",
+          "text": "step9/desc.md",
+          "verify": "step9/verify.sh"
         }
+
 
       ],
       "finish": {
