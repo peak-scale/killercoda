@@ -1,6 +1,9 @@
 {
     "title": "Getting Started",
     "description": "Getting started with basic Opentofu interactions",
+    "icon":"fa-terraform",
+    "difficulty": "Beginner",
+    "time": "10 minutes",
     "details": {
       "intro": {
         "text": "intro.md",
@@ -50,11 +53,8 @@
         },
         {
           "title": "State",
-          "text": "step9/desc.md",
-          "verify": "step9/verify.sh"
+          "text": "step9/desc.md"
         }
-
-
       ],
       "finish": {
         "text": "finish.md"
