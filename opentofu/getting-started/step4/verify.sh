@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /root/tofu-example
+cd ~/scenario
 
 if [ ! -f "hello.txt" ]; then
     echo "Failed to create hello.txt."

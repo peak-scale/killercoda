@@ -1,12 +1,12 @@
-![Opentofu Logo](../../assets/logos/opentofu.png)
+![Opentofu Logo](https://raw.githubusercontent.com/opentofu/brand-artifacts/main/full/transparent/SVG/on-light.svg)
 
 ## About this Scenario
 
-You will how you can use variables in Opentofu. Variables are a way to parameterize your configurations and are an important aspect when building generic and reusable configurations.
+Learn your first interactions with Opentofu. Great for users with no hands-on experience with Opentofu.
 
 ## Prerequisites
 
-No prerequisites are required for this scenario.
+No prerequisites are required for this scenario. This scenario is using Kubernetes as the target infrastructure. Basic Knowledge of Kubernetes is beneficial but not required.
 
 ## Problems
 

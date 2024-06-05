@@ -2,13 +2,11 @@ A Project in this scenario is a directory. Essentially with Opentofu you store r
 
 ## Tasks
 
-* Create a new directory for your project:
+Complete these tasks for this scenario.
 
-```shell
-mkdir tofu-example && cd tofu-example
-```{{exec}}
+## Task 1: First `main.tf`
 
-* Now create a new file called `main.tf`:
+Create a new file called `main.tf`. The file name does not matter, but it is a common convention to name the main configuration file `main.tf`. As long as your file has a `.tf` extension in the current directory, Terraform will recognize it as a configuration file. This does not work for subdirectories.
 
 ```shell
 cat <<EOT > main.tf
@@ -21,7 +19,6 @@ terraform {
 }
 
 provider "local" {
-    # Configuration options
 }
 
 resource "local_file" "example" {
@@ -33,11 +30,13 @@ EOT
 
 This configuration does the following:
 
-  - It declares a required provider, local, which is used for managing local resources.
-  - The provider block configures the local provider. No additional configuration is necessary for this example.
+  - It declares a required provider, [local](https://registry.terraform.io/providers/hashicorp/local/latest/docs), which is used for managing local resources.
+  - The provider block configures the [local](https://registry.terraform.io/providers/hashicorp/local/latest/docs) provider. No additional configuration is necessary for this example.
   - The resource block defines a resource of type local_file named example. This resource creates a file named hello.txt in the same directory as your Terraform configuration, containing the text "Hello, Terraform!".
 
-* Initialize the Opentofu Project:
+## Task 2: Initialize
+
+Initialize the configuration:
 
 ```shell
 tofu init

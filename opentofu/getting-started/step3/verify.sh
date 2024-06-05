@@ -1,23 +1,21 @@
 #!/bin/bash
-cd /root/tofu-example
+cd ~/scenario
 
-FILE="/root/hello-example.plan"
+FILE="hello-example.plan"
 if [ ! -f "$FILE" ]; then
   echo "$FILE not does exist." && exit 1
 fi
 
 
-FILE2="/root/hello-example.plan.txt"
+FILE2="hello-example.plan.txt"
 if [ ! -f "$FILE2" ]; then
   echo "$FILE2 not does exist." && exit 1
 fi
 
-actual_output=$(tofu show "/root/hello-example.plan")
-stored_output=$(cat /root/hello-example.plan.txt)
+actual_output=$(tofu show "hello-example.plan")
+stored_output=$(cat/root/hello-example.plan.txt)
 
-if [ "$actual_output" == "$stored_output" ]; then
-    echo "The plan content matches the stored file."
-else
-    echo "The plan content does not match the stored file."
-    exit 1
+diff -w -B <(echo "$actual_output") <(echo "$stored_output")
+if [ $? -ne 0 ]; then
+  exit 1
 fi

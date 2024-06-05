@@ -26,6 +26,20 @@ MINIO_TEST_USER=$(kubectl get secret -n minio-test minio -o jsonpath='{.data.roo
 MINIO_TEST_PASSWORD=$(kubectl get secret -n minio-test minio -o jsonpath='{.data.root-password}' | base64 -d)
 MINIO_TEST_URL=""
 
+cat <<EOF > /etc/systemd/system/minio-test-port-forward.service
+[Unit]
+Description=MinIO Test Port-Forward
+
+[Service]
+ExecStart=/usr/bin/kubectl port-forward -n minio-test svc/minio 9000:9000
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOF
+systemctl enable minio-test-port-forward.service
+systemctl start minio-test-port-forward.service
+
 
 
 

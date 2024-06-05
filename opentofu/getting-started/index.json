@@ -3,7 +3,8 @@
     "description": "Getting started with basic Opentofu interactions",
     "details": {
       "intro": {
-        "text": "intro.md"
+        "text": "intro.md",
+        "background": "background.sh"
       },
       "steps": [
         {

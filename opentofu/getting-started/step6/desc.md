@@ -1,9 +1,15 @@
 Destroying resources is used when you want to remove all resources that are managed by Opentofu. This is useful when you want to clean up your infrastructure or when you want to start from scratch.
 
-# Tasks
+## Tasks
 
-* For further steps, we need all the files to be absent. We can remove it by running the `apply -destroy` (or `tofu destroy`) command:
-   
+Complete these tasks for this scenario.
+
+### Task 1: Destroy all Resources
+
+> [Documentation](https://opentofu.org/docs/cli/commands/destroy/)
+
+For further steps, we need all the files to be absent. We can remove it by running the `apply -destroy` (or `tofu destroy`) command:
+
 ```shell
 tofu apply -destroy
 ```{{exec}}

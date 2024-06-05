@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /root/tofu-example
+cd ~/scenario
 
 tofu state ls | grep -q "local_file.example"
 if [ $? -ne 0 ]; then
