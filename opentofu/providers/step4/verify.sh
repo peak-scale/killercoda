@@ -1,7 +1,10 @@
 #!/bin/bash
+SOLUTION_DIR="${HOME}/.solutions/step4"
+mkdir -p "${SOLUTION_DIR}" || true
+
 
 # Create provider.tf file
-cat <<EOF > provider.tf
+cat <<EOF > "${SOLUTION_DIR}/provider.tf"
 terraform {
   required_providers {
     kubernetes = {
@@ -28,7 +31,7 @@ EOF
 # Add Solution for review
 cat << 'EOF' > "${SOLUTION_DIR}/pod.tf"
 resource "kubernetes_pod_v1" "workload" {
-provider = kubernetes.k8s
+  provider = kubernetes.k8s
   metadata {
     name = "dev-pod"
     namespace = "dev-environment"

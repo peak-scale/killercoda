@@ -6,26 +6,17 @@ Complete these tasks for this scenario.
 
 ## Task 1: Define Provider
 
-Create a new file called `provider.tf` in the current directory which uses the provider [hashicorp/kubernetes](https://registry.terraform.io/providers/hashicorp/kubernetes/latest). The provider should be version `2.30.0`. For the configuration of the provider use:
-
-```shell
-provider "kubernetes" { 
-  config_path = "~/.kube/config"
-}
-```{{copy}}
-
-With this configuration we declare, that we want to use the kubeconfig located at `~/.kube/config` to connect to the Kubernetes cluster. This is the default location where the kubeconfig is stored.
+Create a new file called `provider.tf` in the current directory which uses the provider [hashicorp/kubernetes](https://registry.terraform.io/providers/hashicorp/kubernetes/latest). The provider should be version `2.30.0`. For provider must be configured to use the config located at `~/.kube/config`.
 
 ## Task 2: Initialize Provider
 
 If your provider configuration is correct, you can initialize the project by running:
 
-
 ```shell
 tofu init
 ```{{exec}}
 
-With this interaction, you will initialize the project and download the required providers.
+This downloads the required providers in the given version
 
 ## Task 3: Verify Provider
 

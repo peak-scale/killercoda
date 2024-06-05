@@ -6,7 +6,9 @@
     "time": "30 minutes",
     "details": {
       "intro": {
-        "text": "intro.md"
+        "text": "intro.md",
+        "background": "background.sh",
+        "foreground": "foreground.sh"
       },
       "steps": [
         {
@@ -16,8 +18,7 @@
         {
           "title": "Provider Setup",
           "text": "step2/desc.md",
-          "verify": "step2/verify.sh",
-          "background": "step2/background.sh"
+          "verify": "step2/verify.sh"
         },
         {
           "title": "Provider Resources",

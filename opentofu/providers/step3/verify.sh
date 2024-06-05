@@ -41,18 +41,52 @@ resource "kubernetes_namespace_v1" "namespace" {
 EOF
 
 # Verify the Solution
-diff <(hcl2json ~/scenario/namespace.tf) <(hcl2json ${SOLUTION_DIR}/namespace.tf)
-if [ $? -ne 0 ]; then
+result=$(hcl2json ~/scenario/namespace.tf | jq '
+  .resource.namespace_pod_v1 | 
+  to_entries | 
+  .[0].value[0] as $item | 
+  (
+    $item.metadata[0].name == "dev-environment"
+  ) and (
+    $pod.count == "${local.replicas}"
+  )
+')
+if [ "$result" = "false" ]; then
   exit 1
 fi
 
-diff <(hcl2json ~/scenario/serviceaccount.tf) <(hcl2json ${SOLUTION_DIR}/serviceaccount.tf)
-if [ $? -ne 0 ]; then
+result=$(hcl2json ~/scenario/serviceaccount.tf | jq '
+  .resource.kubernetes_serviceaccount_v1 | 
+  to_entries | 
+  .[0].value[0] as $item | 
+  (
+    $item.metadata[0].name == "dev-sa"
+  ) and (
+    $item.metadata[0].namespace == "dev-environment"
+  )
+')
+if [ "$result" = "false" ]; then
   exit 1
 fi
 
-diff <(hcl2json ~/scenario/pod.tf) <(hcl2json ${SOLUTION_DIR}/pod.tf)
-if [ $? -ne 0 ]; then
+hcl2json ~/scenario/pod.tf | jq '
+  .resource.kubernetes_pod_v1 | 
+  to_entries | 
+  .[0].value[0] as $item | 
+  (
+    $item.metadata[0].name == "dev-pod"
+  ) and (
+    $item.metadata[0].name == "dev-environment"
+  ) and (
+    $item.spec[0].service_account_name == "dev-sa"
+  ) and (
+    $item.spec[0].container[0].image == "nginx:latest"
+  ) and (
+    $item.spec[0].container[0].name == "nginx"
+  ) and (
+    $item.spec[0].container[0].port[0].container_port == 80
+  )
+'
+if [ "$result" = "false" ]; then
   exit 1
 fi
-

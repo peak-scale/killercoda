@@ -35,21 +35,14 @@ Create a new file called `pod.tf`. Within create a [`kubernetes_pod_v1`](https:/
 * The container should use the `nginx:latest` image (use argument `spec.container.image`)
 * The Pod should use the serviceaccount `dev-sa` (use argument `spec.service_account_name`)
 
-## Task 4: Plan and Apply
+## Task 4: Apply
 
 We want to apply the given changes to the Kubernetes cluster. To do this, we need to create a plan and apply it.
 
-1. Create a plan by running:
-
 ```shell
-tofu plan
+tofu apply -auto-approve
 ```{{exec}}
 
-2. Apply the plan by running:
-
-```shell
-tofu apply
-```{{exec}}
 
 Resolve any potential errors.
 

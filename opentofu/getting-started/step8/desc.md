@@ -26,7 +26,7 @@ cat ~/scenario/kubernetes.tf
 Apply the new configuration, also note how all the files are being destroyed:
 
 ```shell
-tofu plan & tofu apply
+tofu apply -auto-approve
 ```{{exec}}
 
 But now there's a conflict when confirming the `apply`:
@@ -77,5 +77,9 @@ tofu state ls
 
 ## Task 4: Eventually Consistent
 
-The resource is now part of our state but the configuration on the infrastructure mismatches our configuration. We can now run the `tofu plan`{{exec}} you can see the differences. Whenever you import resources, run `tofu apply`{{exec}} to make the state consistent with the actual infrastructure.
+The resource is now part of our state but the configuration on the infrastructure mismatches our configuration.Apply the desired configuration to make the state consistent with the actual infrastructure.
+
+```shell
+tofu apply -auto-approve
+```{{exec}}
   

@@ -12,7 +12,7 @@ In our example, we are having a problems with pod annotations which are always a
 
 * `cni\\\\.projectcalico\\\\.org\\\\/*`{{copy}}
 
-The alias for the provider should be `k8s`{{copy}}.
+The [`alias`](https://opentofu.org/docs/language/providers/configuration/#alias-multiple-provider-configurations) for the provider should be `k8s`{{copy}}.
 
 
 ## Task 2: Use the provider
@@ -22,7 +22,7 @@ The alias for the provider should be `k8s`{{copy}}.
 
 In the `pod.tf` file, use the provider `k8s` for the `kubernetes_pod_v1` resource. All the other configurations should remain the same. 
 
-When a provider has an alias, it's not the default provider and must be specified in the resource block.
+When a provider has an `alias`, it's not the default provider and must be specified in the resource/data source block.
 
 # Verify
 

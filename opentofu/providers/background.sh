@@ -11,6 +11,5 @@ mv /tmp/hcl2json /usr/local/bin/hcl2json
 chmod +x /usr/local/bin/hcl2json
 
 mkdir ~/scenario
-cd ~/scenario
 
 touch /tmp/finished

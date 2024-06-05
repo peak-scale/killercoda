@@ -11,4 +11,4 @@ We hope you liked this course and we were able to provide you with valuable info
 
 We also provide bootscamps and workshops for your team, [check out our website for more information](https://peakscale.ch/en/services/).
 
-![Peak Scale Logo](../../../assets/logo-vertical.png)
+![Peak Scale Logo](../../assets/logos/peakscale/logo-vertical.png)
