@@ -10,7 +10,7 @@ Complete these tasks for this scenario:
 
 In our example, we are having a problems with pod annotations which are always added by the infrastructure. In the `provider.tf` file, create a new provider for `kubernetes` which always ignores the following annotations:
 
-* `cni\\\\.projectcalico\\\\.org\\\\/*`{{copy}}
+* `"cni\\\\.projectcalico\\\\.org\\\\/*"`{{copy}}
 
 The [`alias`](https://opentofu.org/docs/language/providers/configuration/#alias-multiple-provider-configurations) for the provider should be `k8s`{{copy}}.
 

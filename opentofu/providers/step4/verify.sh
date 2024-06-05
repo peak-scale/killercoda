@@ -64,7 +64,7 @@ if [ "$result" = "false" ]; then
 fi
 
 result=$(hcl2json ~/scenario/provider.tf | jq '
-  any(.provider.kubernetes[]; .alias == "${k8s}")
+  any(.provider.kubernetes[]; .alias == "k8s")
 ')
 if [ "$result" = "false" ]; then
   exit 1

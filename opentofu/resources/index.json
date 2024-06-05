@@ -12,11 +12,6 @@
       },
       "steps": [
         {
-          "title": "Creating Resources", 
-          "text": "step1/desc.md",
-          "verify": "step1/verify.sh"
-        },
-        {
           "title": "Argument References", 
           "text": "step2/desc.md",
           "verify": "step2/verify.sh",

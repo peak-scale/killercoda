@@ -42,13 +42,11 @@ EOF
 
 # Verify the Solution
 result=$(hcl2json ~/scenario/namespace.tf | jq '
-  .resource.namespace_pod_v1 | 
+  .resource.kubernetes_namespace_v1 | 
   to_entries | 
   .[0].value[0] as $item | 
   (
     $item.metadata[0].name == "dev-environment"
-  ) and (
-    $pod.count == "${local.replicas}"
   )
 ')
 if [ "$result" = "false" ]; then
@@ -76,15 +74,13 @@ result=$(hcl2json ~/scenario/pod.tf | jq '
   (
     $item.metadata[0].name == "dev-pod"
   ) and (
-    $item.metadata[0].name == "dev-environment"
+    $item.metadata[0].namespace == "dev-environment"
   ) and (
     $item.spec[0].service_account_name == "dev-sa"
   ) and (
     $item.spec[0].container[0].image == "nginx:latest"
   ) and (
     $item.spec[0].container[0].name == "nginx"
-  ) and (
-    $item.spec[0].container[0].port[0].container_port == 80
   )
 ')
 if [ "$result" = "false" ]; then

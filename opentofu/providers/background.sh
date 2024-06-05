@@ -1,5 +1,4 @@
 #!/bin/bash
-set -x 
 echo starting...
 # Install Opentofu
 snap install opentofu --classic
