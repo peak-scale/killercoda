@@ -7,19 +7,8 @@
       },
       "steps": [
         {
-          "title": "Solution",
+          "title": "Concept",
           "text": "step1/desc.md"
-        },
-        {
-          "title": "Provider Setup",
-          "text": "step2/desc.md",
-          "verify": "step2/verify.sh",
-          "background": "step2/background.sh"
-        },
-        {
-          "title": "Provider Resources",
-          "text": "step3/desc.md",
-          "verify": "step3/verify.sh"
         }
       ],
       "finish": {
