@@ -47,10 +47,10 @@ resource "kubernetes_service_account_v1" "serviceaccount" {
 resource "kubernetes_secret_v1" "serviceaccount_token" {
   metadata {
     annotations = {
-      "kubernetes.io/service-account.name" = "prod-sa"
+      "kubernetes.io/service-account.name" = "dev-sa"
     }
-    namespace = "prod-environment"
-    generate_name = "terraform-example-"    
+    namespace = "dev-environment"
+    generate_name = "terraform-example-"
   }
 
   type                           = "kubernetes.io/service-account-token"

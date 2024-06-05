@@ -15,16 +15,16 @@ Reusing attributes from resource blocks keeps your configuration DRY (Don't Repe
 
 Complete these tasks for this scenario. 
 
-## Task 1: Review `kubernetes.tf`
+## Task 1: Review `scenario/kubernetes.tf`
 
-There's a file located in your working directory called `kubernetes.tf`. Review the content of the file. You will notice that there are redundant values in the configuration:
+There's a file called `scenario/kubernetes.tf`. Review the content of the file. You will notice that there are redundant values in the configuration:
 
 * `prod-environment`: The namespace name is used in multiple resources.
 * `prod-sa`: The service account name is used in multiple resources.
 
 ## Task 2: Implement Resource Attribute References
 
-Rewrite the file `kubernetes.tf` to use the resource attributes instead of hardcoding the values. This is how you can reference the attributes (**where possible ;)**:
+Rewrite the file `scenario/kubernetes.tf` to use the resource attributes instead of hardcoding the values. This is how you can reference the attributes (**where possible ;)**:
 
 * `kubernetes_namespace_v1.namespace.metadata.0.name` for the namespace name.
 
@@ -39,8 +39,6 @@ If you now run the `plan` command, you should see that the configuration is stil
 ```shell
 tofu plan
 ```{{execute}}
-
-<hr>
 
 # Verify
 

@@ -22,13 +22,13 @@ Complete these tasks for this scenario.
 
 The resource `kubernetes_pod_v1` requires the `kubernetes_service_account_v1` to be created first. To ensure that the `kubernetes_pod_v1` resource is created after the `kubernetes_service_account_v1` resource, you can use the `depends_on` meta-argument. Often these dependencies are solved by the provider, but in some cases you need to enforce the dependency or in this case there can be a racing condition.
 
-Implement the `depends_on` meta-argument in the `kubernetes_pod_v1` resource, so that it depends on the `kubernetes_service_account_v1.serviceaccount` resource.
+Implement the `depends_on` meta-argument in the `kubernetes_pod_v1` resource, so that it depends on the `kubernetes_service_account_v1.serviceaccount` resource in the file `scenario/kubernetes.tf`.
 
 Execute the plan and apply the changes:
 
 ```shell
-tofu plan & tofu apply
-```{{execute}}
+tofu apply -auto-approve
+```{{exec}}
 
 ## Task 2: Ignore Changes
 
