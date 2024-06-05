@@ -11,8 +11,7 @@
         {
           "title": "Import Resources",
           "text": "step8/desc.md",
-          "background": "step8/background.sh",
-          "verify": "step8/verify.sh"
+          "background": "step8/background.sh"
         },
         {
           "title": "Install Opentofu",
@@ -51,8 +50,8 @@
         {
           "title": "Import Resources",
           "text": "step8/desc.md",
-          "background": "step8/background.sh",
-          "verify": "step8/verify.sh"
+          "background": "step8/background.sh"
+
         }
 
       ],
