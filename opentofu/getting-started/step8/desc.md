@@ -1,15 +1,17 @@
 To demonstrate an import conflict, we extended the resources and working against a Kubernetes cluster.
 
+The capability to import state is crucial when you have an existing infrastructure that you want to manage with OpenTofu. This is a common scenario when you are migrating from another infrastructure as code tool or when you have manually created resources.
+
 ## Tasks
 
 Complete these tasks for this scenario.
 
 ### Task 1: Review Setup
 
-We have added the [kubernetes](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs) provider to the configuration. You may review the `provider.tf` file:
+We have added the [kubernetes](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs) provider to the configuration. You may review the `main.tf` file:
 
 ```shell
-cat ~/scenario/provider.tf
+cat ~/scenario/main.tf
 ```{{exec}}
 
 We have added a file `kubernetes.tf` which contains a simple Kubernetes resource:

@@ -6,8 +6,6 @@ Complete these tasks for this scenario.
 
 ### Task 1: State Conflict
 
-The capability to import state is crucial when you have an existing infrastructure that you want to manage with OpenTofu. This is a common scenario when you are migrating from another infrastructure as code tool or when you have manually created resources.
-
 We want to simulate a situation, where the file `morning.txt` is already present on a machine but not in our state. Create the file:
 
 ```shell

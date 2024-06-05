@@ -23,8 +23,11 @@ Remove the state file (Don't do this elsewhere :D):
 rm -f ~/scenario/terraform.tfstate
 ```{{exec}}
 
-Now that we have lost the state, it's unclear to Opentofu what's already managed by it and what's not. Essentially you start from scratch and can either import all the resources or recreate them. But that's not gonna be an option for large infrastructures.
+Now that we have lost the state, it's unclear to Opentofu what's already managed by it and what's not. Essentially you start from scratch and can either import all the resources or recreate them. But that's not gonna be an option for large infrastructures:
 
+```shell
+tofu state ls
+```{{exec}}
 
 You can verify everything is gone by running `tofu init && tofu apply -auto-approve`{{exec}}. Notice, we are again at the same state as in the beginning of the previous scenario (Data Loss 🔥).
 
