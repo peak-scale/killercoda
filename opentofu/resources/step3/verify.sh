@@ -68,7 +68,7 @@ EOF
 
 # Verify the Solution
 result=$(hcl2json ~/scenario/kubernetes.tf | jq '(
-  .resource.kubernetes_pod_v1.workload[0].depends_on == "${kubernetes_service_account_v1.serviceaccount}"
+  any(.resource.kubernetes_pod_v1.workload[0].depends_on[]; . == "${kubernetes_service_account_v1.serviceaccount}")
 )')
 if [ "$result" = "false" ]; then
   exit 1
@@ -80,18 +80,11 @@ if [ $? -ne 0 ]; then
 fi
 
 result=$(hcl2json ~/scenario/kubernetes.tf | jq '(
-  any(.resource.kubernetes_pod_v1.workload[].lifecycle[].ignore_changes[]; . == "${metadata[0].annotations[\"cni.projectcalico.org/podIPs\"]}")
+  any(.resource.kubernetes_pod_v1.workload[0].lifecycle[0].ignore_changes[]; . == "${metadata[0].annotations[\"cni.projectcalico.org/podIPs\"]}")
 ) and (
-  any(.resource.kubernetes_pod_v1.workload[].lifecycle[].ignore_changes[]; . == "${metadata[0].annotations[\"cni.projectcalico.org/containerID\"]}")
+  any(.resource.kubernetes_pod_v1.workload[0].lifecycle[0].ignore_changes[]; . == "${metadata[0].annotations[\"cni.projectcalico.org/containerID\"]}")
 ) and (
-  any(.resource.kubernetes_pod_v1.workload[].lifecycle[].ignore_changes[]; . == "${metadata[0].annotations[\"cni.projectcalico.org/podIP\"]}")
-)')
-if [ "$result" = "false" ]; then
-  exit 1
-fi
-
-result=$(hcl2json ~/scenario/kubernetes.tf | jq '(
-  .resource.kubernetes_pod_v1.workload[0].lifecycle[0].ignore_changes | contains("${metadata[0].annotations[\"cni.projectcalico.org/podIPs\"]}")
+  any(.resource.kubernetes_pod_v1.workload[0].lifecycle[0].ignore_changes[]; . == "${metadata[0].annotations[\"cni.projectcalico.org/podIP\"]}")
 )')
 if [ "$result" = "false" ]; then
   exit 1
