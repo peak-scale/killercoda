@@ -50,7 +50,8 @@ We want to validate the input for our variable `environment`. The environment sh
 validation {
   condition = var.environment == "prod" || var.environment == "test" || var.environment == "dev"
   error_message = "The environment must be either prod, test or dev"
-}```{{copy}}
+}
+```{{copy}}
 
 If you try to run a plan now with a different value than `prod`, `test` or `dev`, the validation should fail.
 

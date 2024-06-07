@@ -45,7 +45,7 @@ tofu output
 However we get the feedback, that no outputs have yet been defined. This is because the resources have not been applied yet. Let's run a plan:
 
 ```shell
-tofu plan
+tofu apply -auto-approve
 ```{{execute}}
 
 If you look closely, you can see new outputs being declared at the bottom of the plan:
@@ -75,4 +75,4 @@ tofu output -json
 
 # Verify
 
-> If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step5/`.
+> If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step5/`. You can always copy the solution files to the current working directory by running `cp ~/.solutions/step5/* ~/scenario/`{{copy}}.
