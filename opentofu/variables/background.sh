@@ -42,7 +42,7 @@ resource "kubernetes_namespace_v1" "namespace" {
 resource "kubernetes_service_account_v1" "serviceaccount" {
   metadata {
     name = "prod-sa"
-    namespace = "prod-environment"
+    namespace = kubernetes_namespace_v1.namespace.metadata.0.name
   }
 
   depends_on = [kubernetes_namespace_v1.namespace]
@@ -51,9 +51,9 @@ resource "kubernetes_service_account_v1" "serviceaccount" {
 resource "kubernetes_secret_v1" "serviceaccount_token" {
   metadata {
     annotations = {
-      "kubernetes.io/service-account.name" = "prod-sa"
+      "kubernetes.io/service-account.name" = kubernetes_service_account_v1.serviceaccount.metadata.0.name
     }
-    namespace = "prod-environment"
+    namespace = kubernetes_namespace_v1.namespace.metadata.0.name
     generate_name = "terraform-example-"
   }
 
@@ -67,11 +67,11 @@ resource "kubernetes_secret_v1" "serviceaccount_token" {
 resource "kubernetes_pod_v1" "workload" {
   metadata {
     name = "nginx"
-    namespace = "prod-environment"
+    namespace = kubernetes_namespace_v1.namespace.metadata.0.name
   }
 
   spec {
-    service_account_name = "prod-sa"
+    service_account_name = kubernetes_service_account_v1.serviceaccount.metadata.0.name
     container {
       image = "nginx:latest"
       name  = "nginx"

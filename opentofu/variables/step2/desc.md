@@ -12,8 +12,8 @@ Follow/Complete these tasks for this scenario.
 Create a new file called `variables.tf` in your working directory. Define the following input variable:
 
   * name `environment`:
-    * `type`: string
-    * `description`: The environment name
+    * `type`: `string`{{copy}}
+    * `description`: `"The environment name"`{{copy}}
 
 Once done, you can verify with running a plan:
 
@@ -38,11 +38,7 @@ Now that you have the input variable defined, you can use it in the configuratio
 
 * `${var.environment}`{{copy}}
 
-If changed, you can verify the plan again:
-
-> You might have updates regarding pod annotations, which are not relevant.
-
-Nothing has changed, meaning the configuration is still valid and we can rollout our resources for different environments.
+If changed, you can verify the plan again.
 
 ## Task 3: Validate Input
 
@@ -54,14 +50,13 @@ We want to validate the input for our variable `environment`. The environment sh
 validation {
   condition = var.environment == "prod" || var.environment == "test" || var.environment == "dev"
   error_message = "The environment must be either prod, test or dev"
-}
-```
+}```{{copy}}
 
 If you try to run a plan now with a different value than `prod`, `test` or `dev`, the validation should fail.
 
 ```shell
 tofu plan
-```{{execute}}
+```{{exec}}
 
 ## Task 4: Declare a default value
 
@@ -77,13 +72,13 @@ Create a file `terraform.tfvars`, the content of the file should be:
 
 ```shell
 environment = "test"
-```
+```{{copy}}
 
 if you run a plan now, you should see that the variable is set to `test` and all the resources are created in the `test` environment and all the prod resources are replaced. What happens if you apply the plan?
 
 ```shell
 tofu apply -auto-approve
-```{{execute}}
+```{{exec}}
 
 ## Task 6: Variable Precedence
 
@@ -93,13 +88,13 @@ We would like to overwrite the defined variable `environment` with an environmen
 
 ```shell
 export TF_VAR_environment=dev
-```{{execute}}
+```{{exec}}
 
 Nothing happens, because the environment variable has the lowest precedence. The value from the `terraform.tfvars` file has a higher precedence. Directly using the `-var` flag is the highest precedence:
 
 ```shell
 tofu plan -var="environment=dev"
-```{{execute}}
+```{{exec}}
 
 # Verify
 
