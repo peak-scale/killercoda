@@ -25,6 +25,9 @@ terraform {
 
 provider "kubernetes" { 
   config_path = "~/.kube/config"
+  ignore_annotations = [
+    "cni\.projectcalico\.org\/*"
+  ]
 }
 EOF
 
@@ -41,6 +44,8 @@ resource "kubernetes_service_account_v1" "serviceaccount" {
     name = "prod-sa"
     namespace = "prod-environment"
   }
+
+  depends_on = [kubernetes_namespace_v1.namespace]
 }
 
 resource "kubernetes_secret_v1" "serviceaccount_token" {
@@ -51,6 +56,8 @@ resource "kubernetes_secret_v1" "serviceaccount_token" {
     namespace = "prod-environment"
     generate_name = "terraform-example-"
   }
+
+  depends_on = [kubernetes_service_account_v1.serviceaccount]
 
   type                           = "kubernetes.io/service-account-token"
   wait_for_service_account_token = true
@@ -74,13 +81,7 @@ resource "kubernetes_pod_v1" "workload" {
     }
   }
 
-  lifecycle {
-    ignore_changes = [
-        metadata[0].annotations["cni.projectcalico.org/containerID"],
-        metadata[0].annotations["cni.projectcalico.org/podIP"],
-        metadata[0].annotations["cni.projectcalico.org/podIPs"]
-    ]
-  }
+  depends_on = [kubernetes_secret_v1.serviceaccount_token]
 }
 EOF
 
