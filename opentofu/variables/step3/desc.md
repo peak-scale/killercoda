@@ -33,6 +33,7 @@ To the existing `variables.tf` add a new variable:
   * `labels`:
     * `description`: `Additional labels for the resources`{{copy}}
     * `type`: `map(string)`{{copy}}
+    * `default`: `{}`{{copy}}
 
 ## Task 3: Use Variable
 

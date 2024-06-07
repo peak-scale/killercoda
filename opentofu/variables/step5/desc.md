@@ -2,8 +2,6 @@
 
 Output variables are used to expose values from a module for use in other modules or as a return value to the user who invoked the module. They are useful for extracting information about the infrastructure provisioned by a module.
 
-**Note**: Output variables can be declared in any `.tf` file in the module directory.
-
 ### Tasks
 
 Complete these tasks for this scenario.

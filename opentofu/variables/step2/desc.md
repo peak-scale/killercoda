@@ -7,17 +7,6 @@ Let's get started with the initial setup. You can follow the guide or implement 
 Follow/Complete these tasks for this scenario. 
 
 ## Task 1: Create the Input data
-
-Let's layout the structure where we are going to store the YAML files which can be edited by the consumers.
-
-```shell
-mkdir tenants/
-```{{exec}}
-
-I will create a first reference file which I will be using 
-
-
-
 > [Documentation](https://opentofu.org/docs/language/values/variables/#declaring-an-input-variable)
 
 Create a new file called `variables.tf` in your working directory. Define the following input variable:
@@ -47,18 +36,13 @@ var.environment
 
 Now that you have the input variable defined, you can use it in the configuration. Replace the hardcoded values with the input variable in the `kubernetes.tf` file. Every occurence of `prod` should be replaced with the input variable. To access the input variable, you can use the following syntax:
 
-* `${var.environment}`
+* `${var.environment}`{{copy}}
 
 If changed, you can verify the plan again:
 
 > You might have updates regarding pod annotations, which are not relevant.
 
 Nothing has changed, meaning the configuration is still valid and we can rollout our resources for different environments.
-
-
-```shell
-tofu plan
-```{{execute}}
 
 ## Task 3: Validate Input
 
@@ -79,7 +63,11 @@ If you try to run a plan now with a different value than `prod`, `test` or `dev`
 tofu plan
 ```{{execute}}
 
-## Task 4: Set Input Variables
+## Task 4: Declare a default value
+
+In the `variables.tf` file, edit the input variable environment to have a default value of `prod`. Add it as last argument for the variable configuration. If you run `tofu plan`{{exec}} you can see `prod` is used and we are not asked to delvier a value.
+
+## Task 5: Set Input Variables
 
 > [Documentation](https://opentofu.org/docs/language/values/variables/#assigning-values-to-root-module-variables)
 
@@ -91,21 +79,13 @@ Create a file `terraform.tfvars`, the content of the file should be:
 environment = "test"
 ```
 
-if you run a plan now, you should see that the variable is set to `test` and all the resources are created in the `test` environment and all the prod resources are replaced.
+if you run a plan now, you should see that the variable is set to `test` and all the resources are created in the `test` environment and all the prod resources are replaced. What happens if you apply the plan?
 
 ```shell
-tofu plan
+tofu apply -auto-approve
 ```{{execute}}
 
-What happens if you apply the plan?
-
-```shell
-tofu apply
-```{{execute}}
-
-All resources for the prod environment are removed and the resources for the test environment are created.
-
-## Task 5: Variable Precedence
+## Task 6: Variable Precedence
 
 > [Documentation](https://opentofu.org/docs/language/values/variables/#variable-definition-precedence)
 
@@ -120,10 +100,6 @@ Nothing happens, because the environment variable has the lowest precedence. The
 ```shell
 tofu plan -var="environment=dev"
 ```{{execute}}
-
-## Task 6: Declare a default value
-
-In the `variables.tf` file, edit the input variable environment to have a default value of `prod`. Add it as last argument for the variable configuration.
 
 # Verify
 

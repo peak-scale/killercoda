@@ -15,6 +15,8 @@ resource "kubernetes_service_account_v1" "serviceaccount" {
     name = "${var.environment}-sa"
     namespace = kubernetes_namespace_v1.namespace.metadata.0.name
   }
+
+  depends_on = [kubernetes_namespace_v1.namespace]  
 }
 
 resource "kubernetes_secret_v1" "serviceaccount_token" {
@@ -25,6 +27,8 @@ resource "kubernetes_secret_v1" "serviceaccount_token" {
     namespace = kubernetes_namespace_v1.namespace.metadata.0.name
     generate_name = "terraform-example-"    
   }
+
+  depends_on = [kubernetes_service_account_v1.serviceaccount]
 
   type                           = "kubernetes.io/service-account-token"
   wait_for_service_account_token = true
@@ -48,13 +52,7 @@ resource "kubernetes_pod_v1" "workload" {
     }
   }
 
-  lifecycle {
-    ignore_changes = [
-        metadata[0].annotations["cni.projectcalico.org/containerID"],
-        metadata[0].annotations["cni.projectcalico.org/podIP"],
-        metadata[0].annotations["cni.projectcalico.org/podIPs"]
-    ]
-  }
+  depends_on = [kubernetes_secret_v1.serviceaccount_token]
 }
 EOF
 

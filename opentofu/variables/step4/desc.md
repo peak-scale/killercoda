@@ -44,7 +44,6 @@ locals {
   ...
   deploy_annotations = {
     created_at = timestamp()
-    terraform_version = terraform.version
   }
 }
 ```{{copy}}
@@ -55,8 +54,8 @@ These annotations should be used in the `kubernetes_pod_v1` resources in the `ku
 
 ```shell
   metadata {
-    labels = local.common_labels
-    annotations = local.deploy_annotations
+    ...
+    annotations = HERE
   }
 ```{{copy}}
 
@@ -65,9 +64,10 @@ These annotations should be used in the `kubernetes_pod_v1` resources in the `ku
 Execute the plan and apply the changes:
 
 ```shell
-tofu plan & tofu apply
+tofu apply -auto-approve
 ```{{execute}}
+
 
 # Verify
 
-> If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step4/`.
+> If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step4/`. You can always copy the solution files to the current working directory by running `cp ~/.solutions/step4/* ~/scenario/`{{copy}}.
