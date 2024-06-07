@@ -8,6 +8,16 @@ Follow/Complete these tasks for this scenario.
 
 ## Task 1: Create the Input data
 
+Let's layout the structure where we are going to store the YAML files which can be edited by the consumers.
+
+```shell
+mkdir tenants/
+```{{exec}}
+
+I will create a first reference file which I will be using 
+
+
+
 > [Documentation](https://opentofu.org/docs/language/values/variables/#declaring-an-input-variable)
 
 Create a new file called `variables.tf` in your working directory. Define the following input variable:
@@ -105,10 +115,10 @@ We would like to overwrite the defined variable `environment` with an environmen
 export TF_VAR_environment=dev
 ```{{execute}}
 
-if you run a plan now, you should see that the variable is set to `dev`:
+Nothing happens, because the environment variable has the lowest precedence. The value from the `terraform.tfvars` file has a higher precedence. Directly using the `-var` flag is the highest precedence:
 
 ```shell
-tofu plan
+tofu plan -var="environment=dev"
 ```{{execute}}
 
 ## Task 6: Declare a default value
@@ -117,4 +127,5 @@ In the `variables.tf` file, edit the input variable environment to have a defaul
 
 # Verify
 
-> If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step2/`.
+> If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step2/`. You can always copy the solution files to the current working directory by running `cp ~/.solutions/step2/* ~/scenario/`{{copy}}.
+

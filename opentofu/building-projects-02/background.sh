@@ -29,10 +29,12 @@ MINIO_TEST_URL=""
 cat <<EOF > /etc/systemd/system/minio-test-port-forward.service
 [Unit]
 Description=MinIO Test Port-Forward
+After=network.target
 
 [Service]
 ExecStart=/usr/bin/kubectl port-forward -n minio-test svc/minio 9000:9000
 Restart=always
+RestartSec=10
 
 [Install]
 WantedBy=multi-user.target

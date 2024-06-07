@@ -73,7 +73,6 @@ variable "environment" {
 variable "labels" {
   type = map(string)
   description = "Additional labels for the resources"
-  default = {}
 }
 EOF
 
@@ -106,6 +105,12 @@ if [ $? -ne 0 ]; then
 fi
 
 diff <(hcl2json ~/scenario/variables.tf) <(hcl2json ${SOLUTION_DIR}/variables.tf)
+if [ $? -ne 0 ]; then
+  exit 1
+fi
+
+# Verify Namespace
+diff <(hcl2json ~/scenario/prod.tfvars | jq '.labels') <(kubectl get ns prod-environment -o jsonpath={.metadata.labels} | jq 'del(.|."kubernetes.io/metadata.name")')
 if [ $? -ne 0 ]; then
   exit 1
 fi

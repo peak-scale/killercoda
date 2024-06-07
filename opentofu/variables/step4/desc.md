@@ -31,7 +31,7 @@ These labels should be used in the `kubernetes_pod_v1` resources in the `kuberne
 ```shell
   metadata {
     ...
-    labels = local.common_labels
+    labels = HERE
   }
 ```{{copy}}
 
