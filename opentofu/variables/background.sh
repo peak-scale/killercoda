@@ -26,7 +26,7 @@ terraform {
 provider "kubernetes" { 
   config_path = "~/.kube/config"
   ignore_annotations = [
-    "cni\.projectcalico\.org\/*"
+    "cni\\\\.projectcalico\\\\.org\\\\/*"
   ]
 }
 EOF
