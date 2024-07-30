@@ -3,12 +3,14 @@
     "description": "Consume and manage encrypted secrets for your tofu configuration",
     "details": {
       "intro": {
-        "text": "intro.md"
+        "text": "intro.md",
+        "foreground": "foreground.sh",
+        "background": "background.sh"
       },
       "steps": [
         {
           "title": "Environment Variables", 
-          "text": "step2/desc.md"
+          "text": "step1/desc.md"
         },
 
         {

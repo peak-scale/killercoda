@@ -1,4 +1,4 @@
-![Opentofu Logo](../../../assets/logos/opentofu.png)
+![Opentofu Logo](../../assets/logos/opentofu.png)
 
 ## About this Scenario
 We are going to take a look at how to work with secrets in Opentofu. We will use different approaches to manage secrets in Opentofu.
