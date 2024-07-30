@@ -24,6 +24,9 @@ curl -LO "https://github.com/getsops/sops/releases/download/${SOPS_VERSION}/sops
 mv "sops-${SOPS_VERSION}.linux.amd64" /usr/local/bin/sops
 chmod +x /usr/local/bin/sops
 
+mkdir ~/scenario
+cd ~/scenario
+
 # Manifests
 cat << 'EOF' > ~/scenario/variables.tf
 variable "postgres_user" {
