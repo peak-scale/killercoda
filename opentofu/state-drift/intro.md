@@ -2,8 +2,7 @@
 
 ## About this Scenario
 
-You will learn how to import with already existing resources on the target infrastructure and how to handle state drifts. State drifts are a common problem when working with infrastructure as code and can lead to unexpected behavior.
-
+You will learn how to 
 ## Prerequisites
 
 No prerequisites are required for this scenario. This scenario is using Kubernetes as the target infrastructure. Basic Knowledge of Kubernetes is beneficial but not required.

@@ -1,25 +1,25 @@
 {
-    "title": "Asymmetric Secrets Management",
-    "description": "Consume and manage asymmetric encrypted secrets in Terraform",
+    "title": "Secrets Management",
+    "description": "Consume and manage encrypted secrets for your tofu configuration",
     "details": {
       "intro": {
         "text": "intro.md"
       },
       "steps": [
         {
+          "title": "Environment Variables", 
+          "text": "step2/desc.md"
+        },
+
+        {
           "title": "Asymmetric Encryption (EJSON)", 
-          "text": "step1/desc.md"
+          "text": "step2/desc.md"
         },
         {
           "title": "Asymmetric Encryption (SOPS)",
           "text": "step2/desc.md",
           "verify": "step2/verify.sh",
           "background": "step2/background.sh"
-        },
-        {
-          "title": "Provider Resources",
-          "text": "step3/desc.md",
-          "verify": "step3/verify.sh"
         }
       ],
       "finish": {

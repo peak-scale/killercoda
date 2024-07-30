@@ -3,14 +3,6 @@ echo starting...
 
 mkdir ~/scenario
 
-
-
-
-
-
-
-
-
 snap install opentofu --classic
 
 # Install HCL2JSON

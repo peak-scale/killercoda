@@ -5,7 +5,7 @@ We are going to take a look at how to work with secrets in Opentofu. We will use
 
 ## Prerequisites
 
-We recommend looking at our [Secrets Management Scenarios]() which will give you a good understanding of different Secret providers and implementations.
+We will look at simple secret solutions you can use to decrypt data you are using for your tofu configuration.
 
 ## Problems
 
