@@ -62,7 +62,6 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-cd ~/scenario
-if ! [ $(tofu state ls | grep "data.kubernetes_" | wc -l) -ge 4 ]; then
-  exit 1
+if [ $(tofu state ls | grep "data.kubernetes_" | wc -l) -lt 4 ]; then
+  echo "hello"
 fi

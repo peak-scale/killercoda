@@ -1,4 +1,4 @@
-Working with state is the key aspect when it comes to consistency. It's not ideal to have the state just locally. However in our case we have a file called.
+Working with state is the key aspect when it comes to consistency. It's not ideal to have the state just locally. However in our case we have a file called `terraform.tfstate`.
 
 ## Tasks
 

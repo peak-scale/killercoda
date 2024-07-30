@@ -18,7 +18,7 @@ provider "kubernetes" {
 }
 EOF
 
-diff -w  -sB ~/.solutions/step2/provider.tf /root/infrastructure/provider.tf
+diff -w  -sB ~/.solutions/step2/provider.tf ~/infrastructure/provider.tf
 if [ $? -ne 0 ]; then
   exit 1
 fi

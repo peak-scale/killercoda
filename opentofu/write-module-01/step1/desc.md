@@ -63,3 +63,5 @@ namespaces:
 
 ## Verify Provider Capabilities
 
+Before getting your hands dirty, let's look if there's providers which can achieve what we need. In our case we mainly need to take a look at the [Kubernetes Provider]
+

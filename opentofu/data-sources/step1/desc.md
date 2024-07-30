@@ -24,7 +24,7 @@ Complete these tasks for this scenario.
 
 ## Task 1: Create Data Sources
 
-There's a new file called `kubernetes.tf` in the current working directory. For each of the mentioned resources, create a data source in a file called `sources.tf`:
+There's a new file called `kubernetes.tf` in `~/scenario` directory. For each of the mentioned resources, create a data source in a file called `sources.tf`:
 
 * [`kubernetes_namespace_v1`](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/data-sources/namespace_v1): Use local name `namespace`
 * [`kubernetes_service_account_v1`](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/data-sources/service_account_v1): Use local name `serviceaccount`
@@ -32,7 +32,7 @@ There's a new file called `kubernetes.tf` in the current working directory. For 
 * [`kubernetes_pod_v1`](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/data-sources/pod_v1): Use local name `workload`
 
 
-For the argument `name` use the argument of the counter-part resource. For example, for the `kubernetes_namespace_v1` use `kubernetes_namespace_v1.namespace.metadata.0.name` as the argument for the `name` parameter. For the `namespace` argument use for each resource `kubernetes_namespace_v1.namespace.metadata.0.name`.
+For the argument `metadata.name` use the argument of the counter-part resource. For example, for the `kubernetes_namespace_v1` use `kubernetes_namespace_v1.namespace.metadata.0.name` as the argument for the `name` parameter. For the `metadata.namespace` argument use for each resource `kubernetes_namespace_v1.namespace.metadata.0.name`.
 
 
 ## Task 2: Output Data

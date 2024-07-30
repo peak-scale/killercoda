@@ -1,5 +1,3 @@
-Now you know how to navigate providers and look up information that is relevant to setting up providers in your configuration.  In the following tasks you will start working with providers.
-
 # Tasks
 
 Change into the existing infrastructure directory:
