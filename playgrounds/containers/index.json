@@ -7,6 +7,12 @@
         "foreground": "foreground.sh",
         "background": "background.sh"
       },
+      "steps": [
+        {
+          "title": "Let's explore!",
+          "text": "main.md"
+        }
+      ],
       "finish": {
         "text": "finish.md"
       }

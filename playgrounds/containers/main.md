@@ -28,3 +28,9 @@ You can use `trivy` to scan your container images for vulnerabilities. Trivy is 
 ```shell
 trivy image nginx:latest
 ```{{exec}}
+
+
+
+# Finishing
+
+When you are done with playing around you can finish the scenario by running clicking `Check`.
