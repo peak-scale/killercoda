@@ -14,7 +14,8 @@
         },
 
         {
-          "title": "Asymmetric Encryption (EJSON)", 
+          "title": "Asymmetric Encryption (EJSON)",
+          "background": "remove-db.sh",
           "text": "step2/desc.md"
         },
         {

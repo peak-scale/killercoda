@@ -12,9 +12,8 @@ mv /tmp/hcl2json /usr/local/bin/hcl2json
 chmod +x /usr/local/bin/hcl2json
 
 # Install EJSON
-EJSON_VERSION="1.5.1"
-wget "https://github.com/Shopify/ejson/releases/download/v${EJSON_VERSION}/ejson_${EJSON_VERSION}_linux_amd64.tar.gz
-" -O /tmp/ejson.deb
+EJSON_VERSION="1.5.2"
+wget "https://github.com/Shopify/ejson/releases/download/v${EJSON_VERSION}/ejson_${EJSON_VERSION}_linux_amd64.deb" -O /tmp/ejson.deb
 sudo dpkg -i /tmp/ejson.deb
 sudo apt-get install -f
 
@@ -53,14 +52,10 @@ resource "helm_release" "postgres" {
   name       = "postgres"
   repository = "https://charts.bitnami.com/bitnami"
   chart      = "postgresql"
+  version    = "15.5.20"
 
-  set {
-    name  = "postgresqlUsername"
-    value = var.postgres_user
-  }
-
-  set {
-    name  = "postgresqlPassword"
+  set_sensitive {
+    name  = "global.postgresql.auth.postgresPassword"
     value = var.postgres_password
   }
 }
