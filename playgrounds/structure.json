@@ -2,6 +2,7 @@
     "title": "Playgrounds",
     "description": "Playgrounds for different technologies",
     "items": [
-      { "path": "containers" }
+      { "path": "containers" },
+      { "path": "kubernetes" }
     ]
   }
