@@ -13,12 +13,17 @@
           "text": "main.md"
         }
       ],
+      "assets": {
+        "host01": [
+          {"file": "assets/**", "target": "/root/examples", "chmod": "+w"}
+        ]
+      },
       "finish": {
         "text": "finish.md"
       }
     },
     "backend": {
-      "imageid": "kubernetes-kubeadm-3nodes"
+      "imageid": "kubernetes-kubeadm-2nodes"
     },
     "interface": {
       "layout": "ide"
