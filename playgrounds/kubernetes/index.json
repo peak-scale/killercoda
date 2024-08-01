@@ -18,7 +18,7 @@
       }
     },
     "backend": {
-      "imageid": "kubernetes-kubeadm-3node"
+      "imageid": "kubernetes-kubeadm-3nodes"
     },
     "interface": {
       "layout": "ide"
