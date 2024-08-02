@@ -3,6 +3,7 @@
     "description": "Playgrounds for different technologies",
     "items": [
       { "path": "containers" },
-      { "path": "kubernetes" }
+      { "path": "kubernetes" },
+      { "path": "opentofu" }
     ]
   }

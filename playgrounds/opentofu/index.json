@@ -1,6 +1,6 @@
 {
-    "title": "Containers",
-    "description": "Work with containers in a playground environment",
+    "title": "Opentofu",
+    "description": "Work with Opentofu in a playground environment",
     "details": {
       "intro": {
         "text": "intro.md",
@@ -13,12 +13,17 @@
           "text": "main.md"
         }
       ],
+      "assets": {
+        "host01": [
+          {"file": "assets/**", "target": "/root/examples", "chmod": "+w"}
+        ]
+      },
       "finish": {
         "text": "finish.md"
       }
     },
     "backend": {
-      "imageid": "ubuntu"
+      "imageid": "kubernetes-kubeadm-2nodes"
     },
     "interface": {
       "layout": "ide"
