@@ -18,9 +18,9 @@ EOF
 # Verify
 cd ~/scenario
 if [[ "$(tofu output -json | jq -r '.|.pod_name.value')" != "nginx" ]]; then
-  echo "meow"
+  exit 1
 fi
 
 if [[ "$(tofu output -json | jq -r '.|.pod_uid.type')" != "string" ]]; then
-  echo "meow"
+  exit 1
 fi

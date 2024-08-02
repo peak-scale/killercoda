@@ -10,12 +10,6 @@
       { "path": "resources" },
       { "path": "data-sources" },
       { "path": "variables" },
-      { "path": "logic" },
-      { "path": "state-drift" },
-      { "path": "state-management" },
-      { "path": "working-with-secrets" },
-      { "path": "writing-tests" },
-      { "path": "building-abstractions-01" },
-      { "path": "building-projects-02" }
+      { "path": "write-a-module-01" }
     ]
   }

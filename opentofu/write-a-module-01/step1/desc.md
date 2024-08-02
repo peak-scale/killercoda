@@ -47,21 +47,24 @@ Based on the above concept we have made above I would envision a following yaml 
 
 **tenant.yaml**
 ```yaml
+tenants:
+
 # For the permissions we need to know Who we are granting access to and what kind of access of property we are using (Username/Groups)
-permissions:
+- name: "<tenantname>"
+  permissions:
   - name: "<groupname/username>"
     kind: "Group/User"
 
-# The Quota is a 1:1 abstraction of the resourceQuota object from Kubernetes
-quota:
+  # The Quota is a 1:1 abstraction of the resourceQuota object from Kubernetes
+  quota:
 
-# Declares the namespaces which are assigned to this tenant
-namespaces:
-  - namespace-1
-  - namespace-2
+  # Declares the namespaces which are assigned to this tenant
+  namespaces:
+    - namespace-1
+    - namespace-2
 ```
 
 ## Verify Provider Capabilities
 
-Before getting your hands dirty, let's look if there's providers which can achieve what we need. In our case we mainly need to take a look at the [Kubernetes Provider]
+Before getting your hands dirty, let's look if there's providers which can achieve what we need. In our case we mainly need to take a look at the [Kubernetes Provider](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs)
 
