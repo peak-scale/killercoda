@@ -2,7 +2,7 @@
 
 ## About this Scenario
 
-In this scenario we will write a module together, which will be used to manage tenants on Kubernetes. A tenant is a construct we will compose of different Kubernetes resources.
+In this scenario you will write a module, which will be used to manage tenants on Kubernetes. A tenant is a construct we will compose of different Kubernetes resources.
 
 ## Prerequisites
 
