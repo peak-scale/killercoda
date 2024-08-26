@@ -7,7 +7,7 @@
       },
       "steps": [
         {
-          "title": "Configure Kubernetes as State Backend",
+          "title": "Migrate to Kubernetes State Backend",
           "text": "step1/desc.md",
           "verify": "step1/verify.sh"
         },

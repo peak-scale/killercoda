@@ -1,8 +1,8 @@
-![Kubernetes Logo](../../assets/logos/kubernetes.png)
+![Gradle Logo](../../assets/logos/docker.png)
 
 ## About this Playground
 
-In this playground, you will learn how to work with Kubernetes.
+In this playground, you will learn how to work with the petclinic application.
 
 # Finishing
 

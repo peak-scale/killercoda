@@ -4,6 +4,7 @@
     "items": [
       { "path": "containers" },
       { "path": "kubernetes" },
-      { "path": "opentofu" }
+      { "path": "opentofu" },
+      { "path": "petclinic" }
     ]
   }

@@ -1,5 +1,4 @@
-In this scenario we want to manage resources on Kubernetes with Opentofu. 
-
+We are going to migrate the state from a local file to a Kubernetes secret.
 
 # Tasks
 

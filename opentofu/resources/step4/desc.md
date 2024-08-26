@@ -48,7 +48,7 @@ Once you have fixed the problem, `tofu apply`{{execute}} the changes.
 Verify the resources on the Kubernetes cluster:
 
 ```shell
-kubectl get pod -n prod-environment
+kubectl get pod -n dev-environment
 ```{{exec}}
 
 We can see our new pods:

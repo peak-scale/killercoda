@@ -112,7 +112,7 @@ While executing the apply command, you will see an error. Can you resolve the co
 Verify the resources on the Kubernetes cluster:
 
 ```shell
-kubectl get pod -n prod-environment
+kubectl get pod -n dev-environment
 ```{{exec}}
 
 We can see our new pods:

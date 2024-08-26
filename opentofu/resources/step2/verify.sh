@@ -6,7 +6,7 @@ mkdir -p "${SOLUTION_DIR}" || true
 cat << 'EOF' > "${SOLUTION_DIR}/kubernetes.tf"
 resource "kubernetes_namespace_v1" "namespace" {
   metadata {
-    name = "prod-environment"
+    name = "dev-environment"
   }
 }
 

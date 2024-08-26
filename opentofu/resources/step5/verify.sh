@@ -55,9 +55,9 @@ result=$(hcl2json ~/scenario/pods-foreach.tf | jq '
   ) and (
     $pod.for_each == "${{ for idx, workload in local.workloads : idx =\u003e workload }}"
   ) and (
-    $pod.spec[0].container[0].name == "${each.value.name}""
+    $pod.spec[0].container[0].name == "${each.value.name}"
   ) and (
-    $pod.spec[0].container[0].image == "${each.value.image}""
+    $pod.spec[0].container[0].image == "${each.value.image}"
   )
 ')
 if [ "$result" = "false" ]; then

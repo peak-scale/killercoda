@@ -4,9 +4,9 @@ mkdir -p "${SOLUTION_DIR}" || true
 
 cat << 'EOF' > "${SOLUTION_DIR}/sources.tf"
 data "kubernetes_namespace_v1" "namespace" {
+  provider = kubernetes.k8s
   metadata {
-    provider = kubernetes.k8s
-    name = kubernetes_namespace_v1.namespace.metadata.0.name
+    name = "prod-environment"
   }
 }
 
