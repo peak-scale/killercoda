@@ -10,4 +10,4 @@ You should already have a solid understanding of OpenTofu and Kubernetes. If you
 
 ## Problems
 
-If you encounter any problems, typos or have feedback, please open an issue on this [GitHub Repository](https://github.com/peak-scale/koda-scenarios). All our scenarios are open-source and we are happy to receive your feedback.
+If you encounter any problems, typos or have feedback, please open an issue on this [GitHub Repository](https://github.com/peak-scale/koda-scenarios). All our scenarios are open source and we are happy to receive your feedback.
