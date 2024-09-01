@@ -36,8 +36,6 @@ There's a problem with the configuration. The cycle we are trying to implement i
 
 > Another option would be to remove all the references from the `kubernetes_pod_v1` resource to the `kubernetes_namespace_v1` resource. This also resolves the circular dependency.
 
-```shell
-
 # Verify
 
 > If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step2/`. You can always copy the solution files to the current working directory by running `cp ~/.solutions/step2/* ~/scenario/`{{copy}}.
