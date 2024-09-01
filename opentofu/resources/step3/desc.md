@@ -22,7 +22,7 @@ Complete these tasks for this scenario.
 
 The resource `kubernetes_pod_v1` requires the `kubernetes_service_account_v1` to be created first. To ensure that the `kubernetes_pod_v1` resource is created after the `kubernetes_service_account_v1` resource, you can use the `depends_on` meta-argument.
 
-Implement the `depends_on` meta-argument in the `kubernetes_pod_v1` resource, so that it depends on the `kubernetes_service_account_v1` resource in the file `scenario/kubernetes.tf`.
+Implement the `depends_on` meta-argument in the `kubernetes_pod_v1` resource so that it depends on the `kubernetes_service_account_v1` resource in the file `scenario/kubernetes.tf`.
 
 Execute the plan and apply the changes:
 
@@ -48,7 +48,7 @@ While doing the above you have noticed annotations which are being replaced, but
         }
 ```
 
-Often when working with Kubernetes resources, there are other systems interacting with these resources on the infrastructure. They might apply and add changes, which are required for the resource to work properly. However this leads to a change drift in the configuration. To prevent these changes from being applied, you can use the `ignore_changes` meta-argument.
+Often, when working with Kubernetes resources, there are other systems interacting with these resources on the infrastructure. They might apply and add changes that are required for the resource to work properly. However this leads to a change drift in the configuration. To prevent these changes from being applied, you can use the `ignore_changes` meta-argument.
 
 The following attributes should be ignored:
 
@@ -57,7 +57,6 @@ The following attributes should be ignored:
 * `metadata[0].annotations["cni.projectcalico.org/podIPs"]`{{copy}}
 
 Run a plan again and you will see that the changes are ignored.
-
 
 ## Task 3: Condition Checks
 

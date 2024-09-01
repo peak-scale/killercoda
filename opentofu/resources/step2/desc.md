@@ -1,6 +1,6 @@
 One aspect of variables is the possibility to reference attributes of resource blocks in the same module. Resources provide often read only attributes that can be used in other resources. This is a powerful feature to build generic and reusable configurations.
 
-To access these attributes you can use the following syntax:
+To access these attributes, you can use the following syntax:
 
 ```hcl
 <RESOURCE TYPE>.<NAME>.<ATTRIBUTE>
@@ -8,13 +8,13 @@ To access these attributes you can use the following syntax:
 
 Reusing attributes from resource blocks keeps your configuration DRY (Don't Repeat Yourself) and makes it easier to maintain.
 
-> When referencing attributes, don't use quotes (`"` or `'`). Otherwise it will be interpreted as a `string`.
+> When referencing attributes, don't use quotes (`"` or `'`). Otherwise, it will be interpreted as a `string`.
 
 ---
 
 # Tasks
 
-Complete these tasks for this scenario.
+Complete these tasks for this scenario:
 
 ## Task 1: Review `scenario/kubernetes.tf`
 
@@ -25,7 +25,7 @@ There's a file called `scenario/kubernetes.tf`. Review the content of the file. 
 
 ## Task 2: Implement Resource Attribute References
 
-Rewrite the file `scenario/kubernetes.tf` to use the resource attributes instead of hardcoding the values. This is how you can reference the attributes (**where possible ;)**:
+Rewrite the file `scenario/kubernetes.tf` to use the resource attributes instead of hardcoding the values. This is how you can reference the attributes (where possible ;):
 
 * `kubernetes_namespace_v1.namespace.metadata.0.name` for the namespace name.
 

@@ -6,7 +6,7 @@ Complete these tasks for this scenario.
 
 ## Task 1: Define Provider
 
-Create a new file called `provider.tf` in the `~/scenario` directory, which uses the provider [hashicorp/kubernetes](https://registry.terraform.io/providers/hashicorp/kubernetes/latest). The provider should be version `2.30.0`. For provider must be configured to use the config located at `"~/.kube/config"`.
+Create a new file called `provider.tf` in the `~/scenario` directory, which uses the provider [hashicorp/kubernetes](https://registry.terraform.io/providers/hashicorp/kubernetes/latest). The provider should be version `2.30.0`. The provider must be configured to use the config located at `"~/.kube/config"`.
 
 ## Task 2: Initialize Provider
 
