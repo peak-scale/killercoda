@@ -5,15 +5,16 @@ To access these attributes you can use the following syntax:
 ```hcl
 <RESOURCE TYPE>.<NAME>.<ATTRIBUTE>
 ```
+
 Reusing attributes from resource blocks keeps your configuration DRY (Don't Repeat Yourself) and makes it easier to maintain.
 
 > When referencing attributes, don't use quotes (`"` or `'`). Otherwise it will be interpreted as a `string`.
 
-<hr>
+---
 
 # Tasks
 
-Complete these tasks for this scenario. 
+Complete these tasks for this scenario.
 
 ## Task 1: Review `scenario/kubernetes.tf`
 
@@ -43,4 +44,3 @@ tofu plan
 # Verify
 
 > If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step2/`. You can always copy the solution files to the current working directory by running `cp ~/.solutions/step2/* ~/scenario/`{{copy}}.
-

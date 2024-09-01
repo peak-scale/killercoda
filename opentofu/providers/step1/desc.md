@@ -1,14 +1,14 @@
 > [Source Documentation]()
 
-Working with [Providers](https://developer.hashicorp.com/terraform/language/providers) is the fundamental skill required when working with Opentofu. Each Provider is a plugin that Opentofu uses to manage a specific infrastructure platform. Providers are responsible for understanding API interactions and exposing resources for managing infrastructure. For most infrastructure platforms, there is a corresponding provider that can be used to manage resources on that platform, which is managed by the vendor or an open source community.
+Working with [Providers](https://developer.hashicorp.com/terraform/language/providers) is the fundamental skill required when working with OpenTofu. Each Provider is a plugin that OpenTofu uses to manage a specific infrastructure platform. Providers are responsible for understanding API interactions and exposing resources for managing infrastructure. For most infrastructure platforms, there is a corresponding provider that can be used to manage resources on that platform, which is managed by the vendor or an open source community.
 
 Visit the Terraform Registry to browse popular providers:
 
   * [https://registry.terraform.io/](https://registry.terraform.io/)
 
-**Note**: Opentofu is forking these modules in their own registry. However they do not have yet a nice UI to browse them. You can find more information abut their registry here:
+**Note**: OpenTofu is forking these modules in their own registry. However they do not have yet a nice UI to browse them. You can find more information abut their registry here:
 
-  * [Opentofu Registry](https://registry.opentofu.org/)
+* [OpenTofu Registry](https://registry.opentofu.org/)
 
 # Tasks
 
@@ -37,24 +37,21 @@ This documentation is always provided for each provider and is a good starting p
 
 ![Resources Terraform Google Provider](./assets/step1-4.png)
 
-
 > If you are looking for something specific, you can search for it in the search bar. This will list all the relevant resource and data sources which might be helpful to find the right resource for your use case:
 
 ![Search Terraform Google Provider](./assets/step1-5.png)
-
 
 > Each resource has it's own arguments which are configured by you. Let's take a look at the resource `google_alloydb_instance`:
 
 ![Review Resource google_alloydb_instance](./assets/step1-6.png)
 
-
 > The [resource documentation provides](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/alloydb_instance) you with all the information you need to configure the resource in your configuration. It provides you with the following information:
 
-  * **Reference/Examples**: Usage examples
-  * **Arguments**: The arguments that are required to configure the resource.
-  * **Attributes**: The attributes that are available after the resource is created.
-  * **Import**: The import information that is required to import an existing resource into your configuration.
-  * **Notes**: Additional notes that are relevant for the resource.
+* **Reference/Examples**: Usage examples
+* **Arguments**: The arguments that are required to configure the resource.
+* **Attributes**: The attributes that are available after the resource is created.
+* **Import**: The import information that is required to import an existing resource into your configuration.
+* **Notes**: Additional notes that are relevant for the resource.
 
 > For comparison let's look at a data source. Data sources are used to fetch information from the infrastructure. Let's take a look at the data source `google_alloydb_locations`:
 

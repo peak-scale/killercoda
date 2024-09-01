@@ -4,7 +4,7 @@ echo starting...
 mkdir ~/scenario
 cd ~/scenario
 
-# Install Opentofu
+# Install OpenTofu
 snap install opentofu --classic
 
 # Install Helm

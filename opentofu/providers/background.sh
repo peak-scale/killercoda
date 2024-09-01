@@ -1,6 +1,6 @@
 #!/bin/bash
 echo starting...
-# Install Opentofu
+# Install OpenTofu
 snap install opentofu --classic
 
 # Install HCL2JSON

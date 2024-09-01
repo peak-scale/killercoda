@@ -1,6 +1,6 @@
 {
     "title": "Getting Started",
-    "description": "Getting started with basic Opentofu interactions",
+    "description": "Getting started with basic OpenTofu interactions",
     "icon":"fa-terraform",
     "difficulty": "Beginner",
     "time": "10 minutes",
@@ -12,7 +12,7 @@
       },
       "steps": [
         {
-          "title": "Install Opentofu",
+          "title": "Install OpenTofu",
           "text": "step1/desc.md",
           "verify": "step1/verify.sh"
         },

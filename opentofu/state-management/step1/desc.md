@@ -2,7 +2,7 @@ We are going to migrate the state from a local file to a Kubernetes secret.
 
 # Tasks
 
-* Initialize a new project using with the following Opentofu configurations:
+* Initialize a new project using with the following OpenTofu configurations:
 
 ```shell
 main.tf
@@ -27,7 +27,7 @@ EOT
 
 
 
-1. Add Opentofu Keyring:
+1. Add OpenTofu Keyring:
    
 ```shell
 sudo install -m 0755 -d /etc/apt/keyrings
@@ -36,7 +36,7 @@ curl -fsSL https://packages.opentofu.org/opentofu/tofu/gpgkey | sudo gpg --no-tt
 sudo chmod a+r /etc/apt/keyrings/opentofu.gpg /etc/apt/keyrings/opentofu-repo.gpg
 ```{{exec}}
 
-2. Add Opentofu Package Repository:
+2. Add OpenTofu Package Repository:
 
 ```shell
 echo \
@@ -46,7 +46,7 @@ deb-src [signed-by=/etc/apt/keyrings/opentofu.gpg,/etc/apt/keyrings/opentofu-rep
 sudo chmod a+r /etc/apt/sources.list.d/opentofu.list
 ```{{exec}}
 
-3. Install Opentofu:
+3. Install OpenTofu:
 
 ```shell
 sudo apt-get update

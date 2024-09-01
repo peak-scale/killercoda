@@ -1,6 +1,6 @@
 {
     "title": "State Drift",
-    "description": "Understand how to manage state drift with Opentofu managed infrastructure",
+    "description": "Understand how to manage state drift with OpenTofu managed infrastructure",
     "details": {
       "intro": {
         "text": "intro.md"

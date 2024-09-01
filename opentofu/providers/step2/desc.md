@@ -2,7 +2,7 @@ Now you know how to navigate providers and look up information that is relevant 
 
 # Tasks
 
-Complete these tasks for this scenario. 
+Complete these tasks for this scenario.
 
 ## Task 1: Define Provider
 
@@ -37,4 +37,3 @@ Providers required by configuration:
 # Verify
 
 > If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step2/`. You can always copy the solution files to the current working directory by running `cp ~/.solutions/step2/* ~/scenario/`{{copy}}.
-

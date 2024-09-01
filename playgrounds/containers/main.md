@@ -1,8 +1,6 @@
 # Runtimes
 
-
-
-## Gvisor 
+## Gvisor
 
 > [Docs](https://gvisor.dev/docs/)
 
@@ -10,12 +8,11 @@
 
 > [Github](https://github.com/containers/crun)
 
-
 # Analysis
 
 Different Tools you can use to analyze your container images.
 
-## Scout 
+## Scout
 
 > [Docs](https://docs.docker.com/scout/explore/analysis/)
 
@@ -26,11 +23,6 @@ docker scout quickview traefik:latest
 
 # Layer Analysis
 
-
-
-
-
-
 # Scanning
 
 > [Github](https://github.com/aquasecurity/trivy)
@@ -40,4 +32,3 @@ You can use `trivy` to scan your container images for vulnerabilities. Trivy is 
 ```shell
 trivy image nginx:latest
 ```{{exec}}
-

@@ -1,4 +1,3 @@
-
 > [Documentation](https://developer.hashicorp.com/terraform/language/tests)
 
 The [`tofu test`](https://opentofu.org/docs/cli/commands/test/) command lets you test your OpenTofu configuration by creating real infrastructure and checking that the required conditions (assertions) are met. Once the test is complete, OpenTofu destroys the resources it created.
@@ -27,5 +26,3 @@ Create a new file called `main.tftest.hcl` in the `~/scenario` directory. The te
 # Verify
 
 > If the verification was not successful and you are unsure what the problem is, review the `~/.solutions/step1/kubernetes.tf` file.
-
-

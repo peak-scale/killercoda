@@ -3,7 +3,7 @@ This demonstrates one of the key aspects of why state makes sense. It's always k
 ### Updating Resources
 
 1. Now we are adding a second file to the configuration:
-   
+
 ```shell
 cat <<EOF > tofu-example/local_file.tf
 resource "local_file" "goodbye" {

@@ -130,4 +130,3 @@ busybox                1/1     Running            0             2s
 > If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step5/`. You can always copy the solution files to the current working directory by running `cp ~/.solutions/step5/* ~/scenario/`{{copy}}.
 
 **Note:** A given resource or module block cannot use both `count` and `for_each`.
-

@@ -1,4 +1,4 @@
-![Opentofu Logo](https://raw.githubusercontent.com/opentofu/brand-artifacts/main/full/transparent/SVG/on-light.svg)
+![OpenTofu Logo](https://raw.githubusercontent.com/opentofu/brand-artifacts/main/full/transparent/SVG/on-light.svg)
 
 
 ## About this Scenario

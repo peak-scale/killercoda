@@ -3,6 +3,7 @@ Since our plan is ready, we can now apply it to create the file `hello.txt`. Let
 ### Applying your Plan
 
 1. Now it's time to create the file `hello.txt`. This is done by running the `apply` command:
+
 ```shell
 tofu apply "/root/hello-example.plan"
 ```{{exec}}
@@ -48,4 +49,3 @@ tofu apply
 ```{{exec}}
 
 As you can see, there is an additional step when no plan file is provided. This is to ensure that you are aware of the changes that will be made to your infrastructure, which would have been done with a dedicated plan file (you must encoperate such a workflow yourself).
-

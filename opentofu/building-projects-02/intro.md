@@ -1,4 +1,4 @@
-![Opentofu Logo](https://raw.githubusercontent.com/opentofu/brand-artifacts/main/full/transparent/SVG/on-light.svg)
+![OpenTofu Logo](https://raw.githubusercontent.com/opentofu/brand-artifacts/main/full/transparent/SVG/on-light.svg)
 
 ## About this Scenario
 
@@ -6,7 +6,7 @@ In this scenario we will write a module together, which will be used to provisio
 
 ## Prerequisites
 
-You should already have a solid understanding of Opentofu and Kubernetes. If you are not familiar with these technologies, we recommend you to look at the previous scenarios.
+You should already have a solid understanding of OpenTofu and Kubernetes. If you are not familiar with these technologies, we recommend you to look at the previous scenarios.
 
 ## Problems
 

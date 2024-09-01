@@ -19,7 +19,6 @@ The [`alias`](https://opentofu.org/docs/language/providers/configuration/#alias-
 
 > [Documentation](https://opentofu.org/docs/language/meta-arguments/resource-provider/).
 
-
 In the `pod.tf` file, use the provider `k8s` for the `kubernetes_pod_v1` resource. All the other configurations should remain the same. 
 
 When a provider has an `alias`, it's not the default provider and must be specified in the resource/data source block.

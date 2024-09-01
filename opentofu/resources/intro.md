@@ -1,9 +1,9 @@
-![Opentofu Logo](https://raw.githubusercontent.com/opentofu/brand-artifacts/main/full/transparent/SVG/on-light.svg)
+![OpenTofu Logo](https://raw.githubusercontent.com/opentofu/brand-artifacts/main/full/transparent/SVG/on-light.svg)
 
 
 ## About this Scenario
 
-You will learn how to use resources and control their lifecycle with Opentofu. This scenario will guide you through the process of creating a Kubernetes resources and managing them with Opentofu.
+You will learn how to use resources and control their lifecycle with OpenTofu. This scenario will guide you through the process of creating a Kubernetes resources and managing them with OpenTofu.
 
 ## Prerequisites
 

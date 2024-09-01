@@ -1,4 +1,4 @@
-![Opentofu Logo](../../assets/logos/opentofu.png)
+![OpenTofu Logo](../../assets/logos/opentofu.png)
 
 ## About this Scenario
 

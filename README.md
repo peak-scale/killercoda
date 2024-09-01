@@ -1,6 +1,5 @@
-# Koda Scenarios
+# Killercoda Scenarios
 
-Holds all the KillerKoda scenarios for Peak Scale. See all the scenarios:
+Holds all the Killercoda scenarios for Peak Scale. See all the scenarios:
 
-  - [https://killercoda.com/peak-scale](https://killercoda.com/peak-scale)
-
+<https://killercoda.com/peakscale>

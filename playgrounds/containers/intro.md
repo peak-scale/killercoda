@@ -1,4 +1,4 @@
-![Opentofu Logo](../../assets/logos/docker.png)
+![OpenTofu Logo](../../assets/logos/docker.png)
 
 ## About this Playground
 

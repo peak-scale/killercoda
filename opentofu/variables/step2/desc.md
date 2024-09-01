@@ -7,13 +7,14 @@ Let's get started with the initial setup. You can follow the guide or implement 
 Follow/Complete these tasks for this scenario. 
 
 ## Task 1: Create the Input data
+
 > [Documentation](https://opentofu.org/docs/language/values/variables/#declaring-an-input-variable)
 
 Create a new file called `variables.tf` in your working directory. Define the following input variable:
 
-  * name `environment`:
-    * `type`: `string`{{copy}}
-    * `description`: `"The environment name"`{{copy}}
+* name `environment`:
+  * `type`: `string`{{copy}}
+  * `description`: `"The environment name"`{{copy}}
 
 Once done, you can verify with running a plan:
 
@@ -100,4 +101,3 @@ tofu plan -var="environment=dev"
 # Verify
 
 > If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step2/`. You can always copy the solution files to the current working directory by running `cp ~/.solutions/step2/* ~/scenario/`{{copy}}.
-

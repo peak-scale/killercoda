@@ -2,7 +2,7 @@ Let's explore an implementation, where the variables are offloaded to a dedicate
 
 # Tasks
 
-Complete these tasks for this scenario. 
+Complete these tasks for this scenario.
 
 ## Task 1: Variable Files
 
@@ -58,4 +58,3 @@ Use the variable file `prod.tfvars` to **apply** the changes.
 # Verify
 
 > If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step3/`. You can always copy the solution files to the current working directory by running `cp ~/.solutions/step3/* ~/scenario/`{{copy}}.
-

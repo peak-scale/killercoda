@@ -1,8 +1,8 @@
-![Opentofu Logo](https://raw.githubusercontent.com/opentofu/brand-artifacts/main/full/transparent/SVG/on-light.svg)
+![OpenTofu Logo](https://raw.githubusercontent.com/opentofu/brand-artifacts/main/full/transparent/SVG/on-light.svg)
 
 ## About this Scenario
 
-Learn your first interactions with Opentofu. Great for users with no hands-on experience with Opentofu.
+Learn your first interactions with OpenTofu. Great for users with no hands-on experience with OpenTofu.
 
 ## Prerequisites
 
