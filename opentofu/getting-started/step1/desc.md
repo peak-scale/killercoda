@@ -1,6 +1,6 @@
 Before starting this scenario, you need to install OpenTofu on the given environment. See for reference the [official website](https://opentofu.org/docs/intro/install/https://opentofu.org/docs/intro/install/). You can use the same process to install opentofu on your local machine.
 
-The [OpenTofu CLI](https://opentofu.org/docs/intro/install/https://opentofu.org/docs/intro/install/) is used to interact with the state and will execute everything in our scenarios.
+The [OpenTofu CLI](https://opentofu.org/docs/intro/install/) interacts with the state and executes everything in our scenarios.
 
 ## Tasks
 
