@@ -16,6 +16,12 @@ data "kubernetes_pod" "workload_info" {
 }
 EOF
 
+cat <<EOF > "${SOLUTION_DIR}/locals.tf"
+locals {
+  replicas = 5
+}
+EOF
+
 
 # Add Solution for review
 cat << 'EOF' >> "${SOLUTION_DIR}/outputs.tf"

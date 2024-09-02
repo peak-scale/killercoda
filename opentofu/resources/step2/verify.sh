@@ -26,6 +26,10 @@ resource "kubernetes_secret_v1" "serviceaccount_token" {
     generate_name = "terraform-example-"    
   }
 
+  depends_on = [
+    kubernetes_namespace_v1.namespace
+  ]
+
   type                           = "kubernetes.io/service-account-token"
   wait_for_service_account_token = true
 }

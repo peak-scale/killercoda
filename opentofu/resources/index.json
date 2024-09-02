@@ -14,8 +14,7 @@
         {
           "title": "Argument References", 
           "text": "step2/desc.md",
-          "verify": "step2/verify.sh",
-          "foreground": "step2/foreground.sh"
+          "verify": "step2/verify.sh"
         },
         {
           "title": "Lifecycle Argument", 
