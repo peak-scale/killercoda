@@ -29,7 +29,7 @@ if [ "$pod_name" != "nginx" ]; then
   exit 1
 fi
 
-pod_uid_sensitive=$(echo "$output" | jq -r '.pod_uid.string')
+pod_uid_sensitive=$(echo "$output" | jq -r '.pod_uid.type')
 if [ "$pod_uid_sensitive" != "string" ]; then
   exit 1
 fi
