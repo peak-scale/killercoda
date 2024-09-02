@@ -33,7 +33,7 @@ data "kubernetes_pod_v1" "workload" {
   lifecycle {
     postcondition {
       condition     = self.status == "Running"
-      error_message = "Pod is not in the Running phase."
+      error_message = "Pod is not in the Running phase"
     }
   }
 }
@@ -45,7 +45,7 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-diff <(hcl2json hcl2json ~/scenario/sources.tf | jq '.data.kubernetes_pod_v1.workload[0].lifecycle[0]') <(hcl2json ${SOLUTION_DIR}/sources.tf | jq '.data.kubernetes_pod_v1.workload[0].lifecycle[0]')
+diff <(hcl2json ~/scenario/sources.tf | jq '.data.kubernetes_pod_v1.workload[0].lifecycle[0]') <(hcl2json ${SOLUTION_DIR}/sources.tf | jq '.data.kubernetes_pod_v1.workload[0].lifecycle[0]')
 if [ $? -ne 0 ]; then
   exit 1
 fi

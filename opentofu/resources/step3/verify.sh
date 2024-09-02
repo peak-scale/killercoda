@@ -33,7 +33,7 @@ resource "kubernetes_secret_v1" "serviceaccount_token" {
 
 resource "kubernetes_pod_v1" "workload" {
   metadata {
-    name = "nginx"
+    name = "dev-pod"
     namespace = kubernetes_namespace_v1.namespace.metadata.0.name
   }
 
@@ -59,8 +59,8 @@ resource "kubernetes_pod_v1" "workload" {
         metadata[0].annotations["cni.projectcalico.org/podIPs"]
     ]
     precondition {
-      condition     = kubernetes_namespace_v1.namespace.metadata[0].name != "dev-environment"
-      error_message = "The namespace must not be dev-environment"
+      condition     = kubernetes_namespace_v1.namespace.metadata[0].name != "prod-environment"
+      error_message = "The namespace must not be prod-environment"
     }
   }
 }

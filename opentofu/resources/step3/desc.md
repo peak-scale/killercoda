@@ -64,8 +64,8 @@ Run a plan again and you will see that the changes are ignored.
 
 On the `kubernetes_pod_v1` resource, add a `precondition`:
 
-* `condition`: Value of `kubernetes_namespace_v1.namespace.metadata[0].name`{{copy}} is not equal to `dev-environment`{{copy}}
-* `error_message`: `"The namespace must not be dev-environment"`{{copy}}
+* `condition`: Value of `kubernetes_namespace_v1.namespace.metadata[0].name`{{copy}} is not equal to `prod-environment`{{copy}}
+* `error_message`: `"The namespace must not be prod-environment"`{{copy}}
 
 # Verify
 

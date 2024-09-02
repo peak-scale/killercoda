@@ -2,7 +2,7 @@
 #!/bin/bash
 # Create provider.tf file
 
-cat <<EOF > provider.tf
+cat <<EOF > ~/scenario/provider.tf
 terraform {
   required_providers {
     kubernetes = {
