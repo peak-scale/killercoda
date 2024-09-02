@@ -1,4 +1,4 @@
-You will often have the scenario with cloud vendors, that you need the same provider multiple times but eg. in a different region. In this case you can use the `provider` meta-argument to specify the provider configuration for a resource.
+You will often have the scenario with cloud vendors: you need the same provider multiple times but e.g. in a different region. In this case you can use the `provider` meta-argument to specify the provider configuration for a resource.
 
 # Tasks
 
@@ -18,7 +18,6 @@ The [`alias`](https://opentofu.org/docs/language/providers/configuration/#alias-
 ## Task 2: Use the provider
 
 > [Documentation](https://opentofu.org/docs/language/meta-arguments/resource-provider/).
-
 
 In the `pod.tf` file, use the provider `k8s` for the `kubernetes_pod_v1` resource. All the other configurations should remain the same. 
 

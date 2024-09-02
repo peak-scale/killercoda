@@ -52,4 +52,3 @@ Resolve any potential errors.
 # Check
 
 > If the verification was not successful and you are unsure what the problem is, review the  `~/.solutions/step2/provider.tf` file.
-

@@ -16,11 +16,9 @@ A data block requests that OpenTofu read from a given data source ([kubernetes_p
 
 Usually every resource has a data source equivalent.
 
-
-
 # Tasks
 
-Complete these tasks for this scenario. 
+Complete these tasks for this scenario.
 
 ## Task 1: Create Data Sources
 
@@ -31,9 +29,7 @@ There's a new file called `kubernetes.tf` in `~/scenario` directory. For each of
 * [`kubernetes_secret_v1`](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/data-sources/secret_v1): Use local name `serviceaccount_token`
 * [`kubernetes_pod_v1`](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/data-sources/pod_v1): Use local name `workload`
 
-
 For the argument `metadata.name` use the argument of the counter-part resource. For example, for the `kubernetes_namespace_v1` use `kubernetes_namespace_v1.namespace.metadata.0.name` as the argument for the `name` parameter. For the `metadata.namespace` argument use for each resource `kubernetes_namespace_v1.namespace.metadata.0.name`.
-
 
 ## Task 2: Output Data
 

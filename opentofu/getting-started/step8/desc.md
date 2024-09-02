@@ -40,7 +40,7 @@ But now there's a conflict when confirming the `apply`:
 ```
 
 We can verify that by looking at the actual infrastructure:
-    
+
 ```shell
 kubectl get pod nginx -n default -o yaml
 ```{{exec}}

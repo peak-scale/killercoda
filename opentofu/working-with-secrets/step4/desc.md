@@ -18,7 +18,7 @@ tofu plan & tofu apply
 
 There's an error, what does it indicate?
 
-```
+```text
 kubernetes_namespace_v1.production: Creating...
 ╷
 │ Error: namespaces "prod-environment" already exists
@@ -88,4 +88,3 @@ tofu apply
 ```{{exec}}
 
 As you can see, there is an additional step when no plan file is provided. This is to ensure that you are aware of the changes that will be made to your infrastructure, which would have been done with a dedicated plan file (you must encoperate such a workflow yourself).
-

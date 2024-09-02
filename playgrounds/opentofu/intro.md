@@ -2,7 +2,7 @@
 
 ## About this Playground
 
-In this playground, you will learn how to work with Opentofu.
+In this playground, you will learn how to work with OpenTofu.
 
 # Finishing
 

@@ -1,6 +1,6 @@
 {
-    "title": "Opentofu",
-    "description": "Work with Opentofu in a playground environment",
+    "title": "OpenTofu",
+    "description": "Work with OpenTofu in a playground environment",
     "details": {
       "intro": {
         "text": "intro.md",

@@ -28,15 +28,10 @@ tofu plan & tofu apply
 
 🤔 ... It just recreated the file?
 
-See that's thing with the [local](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/sensitive_file) provider. It has special behavior because Opentofu is not really intended to manage local files but for Cloud infrastructure. The documentation for file resources states:
+See that's thing with the [local](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/sensitive_file) provider. It has special behavior because OpenTofu is not really intended to manage local files but for Cloud infrastructure. The documentation for file resources states:
 
 > The path to the file that will be created. Missing parent directories will be created. If the file already exists, it will be overridden with the given content.
 
 So we can't you show an import example with this provider. However this should teach you, each Provider has different aspects and gotchas. The Provider documentation is your best friend. 
 
 We'll be looking into Provider specific behavior in the provider scenario.
-
-
-
-
-  

@@ -1,6 +1,6 @@
 For this scenarios we are using EJSON. With EJSON, Secrets are collected in a JSON file, in which all the string values are encrypted. Public keys are embedded in the file, and the decrypter looks up the corresponding private key from its local filesystem.
 
-  * [https://github.com/Shopify/ejson](https://github.com/Shopify/ejson)
+* [https://github.com/Shopify/ejson](https://github.com/Shopify/ejson)
 
 # Tasks
 
@@ -24,8 +24,8 @@ c0c0fe9b0234d9876467660501237cea2ae4d1a152815ef96ab39fbebfe81285
 
 Here's the explanation for the usage of these keys:
 
-  * **Public Key**: This key is used to encrypt the secrets and can be published to a repository or similar.
-  * **Private Key**: This key is used to decrypt the secrets and should be kept secret. Only Systems or people that need to decrypt the secrets should have access to this key.
+* **Public Key**: This key is used to encrypt the secrets and can be published to a repository or similar.
+* **Private Key**: This key is used to decrypt the secrets and should be kept secret. Only Systems or people that need to decrypt the secrets should have access to this key.
 
 Store the private key into a dedicated file called `ejson_privatekey`, based on the example the content of the file should look like this:
 
@@ -47,7 +47,6 @@ Now create a new EJSON file called `secrets.ejson` with the following content:
 
 You must provide your value from the `Public Key` output in the `_public_key` field.
 
-
 ## Task 3: Encrypt the file
 
 Now you can run this command to encrypt the file:
@@ -64,7 +63,6 @@ cat secrets.ejson
 
 As you can see, the content has been encrypted and the values are not readable anymore. This file can now be safely stored in a repository or similar.
 
-
 ## Task 4: Decrypt the file
 
 To decrypt the file, we need to have the private key available. You can decrypt the file by running the following command:
@@ -74,6 +72,3 @@ cat ejson_privatekey| ejson decrypt secrets.ejson --key-from-stdin
 ```{{exec}}
 
 This does not decrypt the file in-place but prints the decrypted content to the console. You can redirect the output to a file if you want to save the decrypted content.
-
-
-

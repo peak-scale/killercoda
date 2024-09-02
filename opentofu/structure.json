@@ -1,6 +1,6 @@
 {
-    "title": "Opentofu Workshop",
-    "description": "Get to know Opentofu for beginner and advanced users",
+    "title": "OpenTofu Course",
+    "description": "Get to know OpenTofu for beginners and advanced users",
     "icon":"fa-terraform",
     "difficulty": "Beginner",
     "time": "5 hours",

@@ -8,7 +8,7 @@ The simplest solution is to pass it as environment variable to the module. This 
 
 Export environment variables which pass the following inputs:
 
-  * `postgres_password`: `mydatabasepassword`
+* `postgres_password`: `mydatabasepassword`
 
 ## Task 2: Apply
 
@@ -29,7 +29,3 @@ kubectl get secret postgres-postgresql -o jsonpath='{.data.postgres-password}'| 
 # Verify
 
 > If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step1/`. You can always copy the solution files to the current working directory by running `cp ~/.solutions/step1/* ~/scenario/`{{copy}}.
-
-
-
-

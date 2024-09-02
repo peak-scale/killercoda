@@ -1,4 +1,4 @@
-A Project in this scenario is a directory. Essentially with Opentofu you store relevant files in a directory. The directory is the basic unit of configuration in Opentofu. The directory contains all the configuration files for your infrastructure and may even include the state.
+A Project in this scenario is a directory. Essentially with OpenTofu you store relevant files in a directory. The directory is the basic unit of configuration in OpenTofu. The directory contains all the configuration files for your infrastructure and may even include the state.
 
 ## Tasks
 
@@ -23,7 +23,7 @@ provider "local" {
 
 resource "local_file" "example" {
     filename = "\${path.module}/hello.txt"
-    content  = "Hello, Opentofu!"
+    content  = "Hello, OpenTofu!"
 }
 EOT
 ```{{exec}}

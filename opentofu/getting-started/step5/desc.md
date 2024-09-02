@@ -9,7 +9,7 @@ Complete these tasks for this scenario.
 > We can place any `*.tf` file in the configuration directory. Terraform will automatically detect and apply the configuration. However you can't use subdirectories.
 
 Now we are adding a second file to the configuration:
-   
+
 ```shell
 cat <<EOF > local_file.tf
 resource "local_file" "goodbye" {

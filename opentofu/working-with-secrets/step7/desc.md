@@ -5,6 +5,7 @@ We have seen in the previous step, that when you delete a file manually, the sta
 The capability to import state is crucial when you have an existing infrastructure that you want to manage with OpenTofu. This is a common scenario when you are migrating from another infrastructure as code tool or when you have manually created resources.
 
 1. We want to simulate a situation, where the file `hello.txt` is already present on a machine but not in our state. For that, we are going to remove the file from the state:
+
 ```shell
 tofu state rm local_file.example
 ```{{exec}}
@@ -50,4 +51,3 @@ tofu apply
 ```{{exec}}
 
 As you can see, there is an additional step when no plan file is provided. This is to ensure that you are aware of the changes that will be made to your infrastructure, which would have been done with a dedicated plan file (you must encoperate such a workflow yourself).
-
