@@ -12,7 +12,7 @@ resource "kubernetes_namespace_v1" "namespace" {
 
 resource "kubernetes_service_account_v1" "serviceaccount" {
   metadata {
-    name = "prod-sa"
+    name = "dev-sa"
     namespace = kubernetes_namespace_v1.namespace.metadata.0.name
   }
 }

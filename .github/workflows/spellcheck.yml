@@ -8,5 +8,8 @@ jobs:
     steps:
     # The checkout step
     - uses: actions/checkout@v3
-    - uses: rojopolis/spellcheck-github-actions@v0
-      name: Spellcheck
+    - uses: articulate/actions-markdownlint@v1
+      with:
+        config: markdownlint-config.json
+        files: '**/*.md'
+        ignore: README.md
