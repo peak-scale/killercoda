@@ -76,5 +76,4 @@ resource "kubernetes_pod_v1" "workload" {
 }
 EOF
 
-tofu init
 touch /tmp/finished
