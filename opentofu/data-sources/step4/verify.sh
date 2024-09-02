@@ -30,20 +30,17 @@ if [ $? -ne 0 ]; then
 fi
 
 # Verify the Solution
-result=$(hcl2json ~/scenario/count-sources.tf | jq '
-  .data.kubernetes_pod | 
-  to_entries | 
-  .[0].value[0] as $pod | 
+result=$(hcl2json ~/scenario/count-sources.tf | jq '.data.kubernetes_pod.workload_info[] | 
   (
-    $pod.metadata[0].name == "${kubernetes_pod_v1.count-workload[count.index].metadata[0].name}"
+    .metadata[0].name == "${kubernetes_pod_v1.count-workload[count.index].metadata[0].name}"
   ) and (
-    $pod.count == "${local.replicas}"
+    .count == "${local.replicas}"
   )
 ')
 if [ "$result" = "false" ]; then
   exit 1
 fi
 
-if ! [ $(kubectl get pod -n prod-environment | grep nginx-count- | wc -l) -ge 3 ]; then
-  echo "hello"
+if ! [ $(kubectl get pod -n prod-environment | grep nginx-count- | wc -l) -ge 5 ]; then
+  exit 1
 fi

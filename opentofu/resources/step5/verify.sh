@@ -1,5 +1,5 @@
 #!/bin/bash
-SOLUTION_DIR="${HOME}/.solutions/step5"
+-
 mkdir -p "${SOLUTION_DIR}" || true
 
 # Add Solution for review
@@ -48,18 +48,16 @@ resource "kubernetes_pod_v1" "for-workload" {
 EOF
 
 # Verify the Solution
-result=$(hcl2json ~/scenario/pods-foreach.tf | jq '
-  .provider.kubernetes[] | 
+result=$(hcl2json ~/scenario/pods-foreach.tf | jq '.resource.kubernetes_pod_v1."for-workload"[] |
   (
-    $pod.metadata[0].name == "${each.value.name}"
+    .metadata[0].name == "${each.value.name}"
   ) and (
-    $pod.for_each == "${{ for idx, workload in local.workloads : idx =\u003e workload }}"
+    .for_each == "${{ for idx, workload in local.workloads : idx =\u003e workload }}"
   ) and (
-    $pod.spec[0].container[0].name == "${each.value.name}"
+    .spec[0].container[0].name == "${each.value.name}"
   ) and (
-    $pod.spec[0].container[0].image == "${each.value.image}"
-  )
-')
+    .spec[0].container[0].image == "${each.value.image}"
+  )')
 if [ "$result" = "false" ]; then
   exit 1
 fi

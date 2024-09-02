@@ -15,7 +15,7 @@ Complete these tasks for this scenario.
 
 > [Documentation](https://opentofu.org/docs/language/meta-arguments/count/)
 
-Create a new file called `count-sources.tf`. Create a new data source for `kubernetes_pod_v1` with the `count` meta-argument. The resource must be called `workload_info`. 
+Create a new file called `count-sources.tf`. Create a new data source for `kubernetes_pod_v1` with the `count` meta-argument. The resource must be called `workload_info`.
 
   * Use the `count` uses the value of `local.replicas`.
   * To reference the pod `name`, use the local resource reference with a count index (e.g. `kubernetes_pod_v1.count-workload[count.index]...`).
