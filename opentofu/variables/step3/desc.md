@@ -37,7 +37,7 @@ To the existing `variables.tf` add a new variable:
 
 ## Task 3: Use Variable
 
-These annotations should be used in the `kubernetes_namespace_v1` resources in the `kubernetes.tf`. Assign it to the `metadata` block in the for the `labels` attribute:
+These labels should be used in the `kubernetes_namespace_v1` resources in the `kubernetes.tf`. Assign it to the `metadata` block in the for the `labels` attribute:
 
 ```shell
 resource "kubernetes_namespace_v1" "namespace" {

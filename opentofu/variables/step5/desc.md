@@ -19,7 +19,7 @@ output "pod_name" {
 }
 ```{{copy}}
 
-Here we use the attribute `metadata[0].name` to extract the name of the pod. This is an attribute we declared and is therefor known before any apply has been made.
+Here we use the attribute `metadata[0].name` to extract the name of the pod. This is an attribute we declared and is therefor known before any apply has been made. 
 
 #### Task 2: Use output variables
 

@@ -24,3 +24,5 @@ fi
 if [[ "$(tofu output -json | jq -r '.|.pod_uid.type')" != "string" ]]; then
   exit 1
 fi
+
+exit 0 

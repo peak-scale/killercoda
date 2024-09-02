@@ -64,9 +64,27 @@ These annotations should be used in the `kubernetes_pod_v1` resources in the `ku
 Execute the plan and apply the changes:
 
 ```shell
-tofu apply -auto-approve
+tofu apply -var-file=prod.tfvars
 ```{{execute}}
 
+If you look at the resulting pod, you should see the labels and annotations:
+
+```shell
+ kubectl get pod -n test-environment nginx -o json | jq '.metadata'
+```{{execute}}
+
+```json
+{
+  "annotations": {
+    ....
+    "created_at": "2024-09-02T16:09:32Z"
+  },
+  "labels": {
+    "environment": "prod"
+    ...
+  },
+}
+```
 
 # Verify
 

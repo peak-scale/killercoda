@@ -1,10 +1,6 @@
-Let's get started with the initial setup. You can follow the guide or implement the solution yourself. The verification will be done via tests in the final steps.
-
-**Note**: This is the workflow preferred by the author. If you find other methods or sequences you should use them, Y
-
 # Tasks
 
-Follow/Complete these tasks for this scenario. 
+Follow/Complete these tasks for this scenario.
 
 ## Task 1: Create the Input data
 
