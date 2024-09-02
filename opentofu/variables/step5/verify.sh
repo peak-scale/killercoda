@@ -16,7 +16,7 @@ output "pod_uid" {
 EOF
 
 # Verify
-cd ~/scenario
+cd "${HOME}/scenario"
 if [ "$(tofu output -json | jq -r '.pod_name.value')" != "nginx" ]; then
   exit 1
 fi
