@@ -10,6 +10,11 @@
         {
           "title": "Introduction", 
           "text": "step1/desc.md"
+        },
+        {
+          "title": "Example Solution", 
+          "text": "step2/desc.md",
+          "background": "step/background.sh"
         }
       ]
     },

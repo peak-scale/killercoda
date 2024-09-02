@@ -70,5 +70,3 @@ Before getting your hands dirty, let's look if there's providers which can achie
 2. Write a module for one tenant which creates the necessary resources for a tenant. The module should be reusable and should be able to be used in different clusters.
 
 3. Rollout the tenants against the existing cluster in your environment
-
-**NOTE: When you hit "check", all progress is lost.**

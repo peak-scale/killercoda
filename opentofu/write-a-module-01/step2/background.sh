@@ -1,4 +1,3 @@
-#!/bin/bash
 mkdir -p "${SOLUTION_DIR}" || true
 
 # Add Solution for review
@@ -45,23 +44,3 @@ resource "kubernetes_pod_v1" "for-workload" {
   }
 }
 EOF
-
-# Verify the Solution
-result=$(hcl2json ~/scenario/pods-foreach.tf | jq '.resource.kubernetes_pod_v1."for-workload"[] |
-  (
-    .metadata[0].name == "${each.value.name}"
-  ) and (
-    .for_each == "${{ for idx, workload in local.workloads : idx =\u003e workload }}"
-  ) and (
-    .spec[0].container[0].name == "${each.value.name}"
-  ) and (
-    .spec[0].container[0].image == "${each.value.image}"
-  )')
-if [ "$result" = "false" ]; then
-  exit 1
-fi
-
-cd ~/scenario
-if ! [ $(tofu state ls | grep "kubernetes_pod_v1.for-workload" | wc -l) -ge 3 ]; then
-  exit 1
-fi
