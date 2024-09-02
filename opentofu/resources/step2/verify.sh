@@ -33,7 +33,7 @@ resource "kubernetes_secret_v1" "serviceaccount_token" {
 
 resource "kubernetes_pod_v1" "workload" {
   metadata {
-    name = "nginx"
+    name = "dev-pod"
     namespace = kubernetes_namespace_v1.namespace.metadata.0.name
   }
 

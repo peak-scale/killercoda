@@ -35,7 +35,7 @@ Rewrite the file `scenario/kubernetes.tf` to use the resource attributes instead
 
 ## Task 3: Review
 
-If you now run the `plan` command, you should see that the configuration is still valid and nothing changed, where we replaced the values with the resource attributes.
+If you now run the `plan` command, you should see that the configuration is still valid and nothing changed for the names (there are `cni.projectcalico.org/*` annotations which are changed, you can ignore these for now), where we replaced the values with the resource attributes.
 
 ```shell
 tofu plan
