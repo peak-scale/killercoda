@@ -80,6 +80,4 @@ resource "kubernetes_pod_v1" "workload" {
 }
 EOF
 
-tofu init && tofu apply -auto-approve
-
 touch /tmp/finished

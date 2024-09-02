@@ -70,7 +70,7 @@ tofu apply -var-file=prod.tfvars
 If you look at the resulting pod, you should see the labels and annotations:
 
 ```shell
- kubectl get pod -n test-environment nginx -o json | jq '.metadata'
+ kubectl get pod -n prod-environment nginx -o json | jq '.metadata'
 ```{{execute}}
 
 ```json

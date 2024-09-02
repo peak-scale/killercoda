@@ -17,11 +17,11 @@ EOF
 
 # Verify
 cd ~/scenario
-if [[ "$(tofu output -json | jq -r '.|.pod_name.value')" != "nginx" ]]; then
+if [ "$(tofu output -json | jq -r '.pod_name.value')" != "nginx" ]; then
   exit 1
 fi
 
-if [[ "$(tofu output -json | jq -r '.|.pod_uid.type')" != "string" ]]; then
+if [ "$(tofu output -json | jq -r '.pod_uid.sensitive')" != "false" ]; then
   exit 1
 fi
 
