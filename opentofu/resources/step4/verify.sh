@@ -4,7 +4,7 @@ mkdir -p "${SOLUTION_DIR}" || true
 
 # Add Solution for review
 cat << 'EOF' > "${SOLUTION_DIR}/pods-count.tf"
-resource "kubernetes_pod_v1" "workload" {
+resource "kubernetes_pod_v1" "deployment" {
   count = local.replicas
 
   metadata {

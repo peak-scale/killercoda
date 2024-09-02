@@ -31,11 +31,11 @@ fi
 
 # Verify the Solution
 result=$(hcl2json ~/scenario/count-sources.tf | jq '
-  .resource.kubernetes_pod_v1 | 
+  .data.kubernetes_pod | 
   to_entries | 
   .[0].value[0] as $pod | 
   (
-    $pod.metadata[0].name == "nginx-count-${count.index}"
+    $pod.metadata[0].name == "${kubernetes_pod_v1.count-workload[count.index].metadata[0].name}"
   ) and (
     $pod.count == "${local.replicas}"
   )

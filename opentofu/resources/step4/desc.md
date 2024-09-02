@@ -1,12 +1,12 @@
 > [Documentation](https://opentofu.org/docs/language/meta-arguments/count/).
 
-By default, a resource block configures one real infrastructure object (and similarly, a module block includes a child module's contents into the configuration one time). However, sometimes you want to manage several similar objects (like multiple pods) without writing a separate block for each one. 
+By default, a resource block configures one real infrastructure object (and similarly, a module block includes a child module's contents into the configuration one time). However, sometimes you want to manage several similar objects (like multiple pods) without writing a separate block for each one.
 
-There's a new file called `locals.tf` in the current working directory. The file contains variables used for this scenario. 
+There's a new file called `locals.tf` in the current working directory. The file contains variables used for this scenario.
 
 # Tasks
 
-Complete these tasks for this scenario. 
+Complete these tasks for this scenario.
 
 ## Task 1: Implement `count`
 

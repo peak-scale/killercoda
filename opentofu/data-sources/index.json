@@ -24,7 +24,8 @@
         {
           "title": "Lifecycle", 
           "text": "step3/desc.md",
-          "verify": "step3/verify.sh"
+          "verify": "step3/verify.sh",
+          "background": "step3/background.sh"
         },
         {
           "title": "Iterations",

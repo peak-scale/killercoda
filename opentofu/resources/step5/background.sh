@@ -1,12 +1,12 @@
 
 #!/bin/bash
-kubectl create namespace prod-environment || true
+kubectl create namespace dev-environment || true
 kubectl apply -f - <<EOF
 apiVersion: v1
 kind: Pod
 metadata:
   name: "busybox"
-  namespace: "prod-environment"
+  namespace: "dev-environment"
 spec:
   containers:
     - name: "busybox"
