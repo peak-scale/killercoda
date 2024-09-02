@@ -25,8 +25,14 @@ resource "kubernetes_pod_v1" "deployment" {
 }
 EOF
 
+cat << 'EOF' > "${SOLUTION_DIR}/locals.tf"
+locals {
+  replicas = 5
+}
+EOF
+
 # Verify the Solution
-result=$(hcl2json ~/scenario/pod-count.tf | jq '
+result=$(hcl2json ~/scenario/pods-count.tf | jq '
   .resource.kubernetes_pod_v1 | 
   to_entries | 
   .[0].value[0] as $pod | 
