@@ -45,6 +45,18 @@ When you run `tofu apply`{{exec}} you should see the uids of the pods:
 ...
 ```{{exec}}
 
+## Task 4: Verify on Kubernetes
+
+Verify the resources on the Kubernetes cluster:
+
+```shell
+kubectl get pod -n prod-environment
+```{{exec}}
+
+## Task 5: Scale Replicas
+
+The current workload demends more Replicas of our app. Change the amount of replicas to `5` in the `locals.tf` file. once done `tofu apply`{{exec}} the changes. You should now see 5 pod-uids in the output.
+
 # Verify
 
 > If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step4/`. You can always copy the solution files to the current working directory by running `cp ~/.solutions/step4/* ~/scenario/`{{copy}}.
