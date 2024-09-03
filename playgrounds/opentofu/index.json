@@ -13,6 +13,11 @@
           "text": "main.md"
         }
       ],
+      "assets": {
+        "host01": [
+          {"file": "**", "target": "/root/assets/"}
+        ]
+      },
       "finish": {
         "text": "finish.md"
       }

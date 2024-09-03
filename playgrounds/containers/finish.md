@@ -1,4 +1,4 @@
-## Wrapping Up
+# Wrapping Up
 
 Thanks for using this playground!
 

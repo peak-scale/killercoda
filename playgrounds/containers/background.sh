@@ -22,7 +22,7 @@ sudo apt-get install wget apt-transport-https gnupg
 wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
 echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
 sudo apt-get update
-sudo apt-get install trivy
+sudo apt-get install trivy skopeo
 
 # Install Gvisor
 sudo apt-get install -y \
@@ -34,5 +34,11 @@ sudo apt-get install -y \
 curl -fsSL https://gvisor.dev/archive.key | sudo gpg --dearmor -o /usr/share/keyrings/gvisor-archive-keyring.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/gvisor-archive-keyring.gpg] https://storage.googleapis.com/gvisor/releases release main" | sudo tee /etc/apt/sources.list.d/gvisor.list > /dev/null
 sudo apt-get update && sudo apt-get install -y runsc
+
+# Install Dive
+DIVE_VERSION="0.12.0"
+curl -LO "https://github.com/wagoodman/dive/releases/download/v${DIVE_VERSION}/dive_${DIVE_VERSION}_linux_amd64.tar.gz"
+tar xzvf "dive_${DIVE_VERSION}_linux_amd64.tar.gz"
+sudo mv dive /usr/local/bin/dive && rm "dive_${DIVE_VERSION}_linux_amd64.tar.gz"
 
 touch /tmp/finished
