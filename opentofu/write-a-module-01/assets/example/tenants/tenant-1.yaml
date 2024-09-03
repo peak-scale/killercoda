@@ -1,0 +1,16 @@
+name: "tenant1"
+permissions:
+  - name: "group1"
+    kind: "Group"
+    role: "owner"
+  - name: "user1"
+    kind: "User"
+    role: "read-only"
+quota:
+  requests.cpu: "4"
+  requests.memory: "16Gi"
+  limits.cpu: "8"
+  limits.memory: "32Gi"
+namespaces:
+  - "namespace-1"
+  - "namespace-2"

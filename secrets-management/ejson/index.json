@@ -1,0 +1,36 @@
+{
+    "title": "Asymmetric Secrets Management",
+    "description": "Consume and manage asymmetric encrypted secrets in Terraform",
+    "details": {
+      "intro": {
+        "text": "intro.md"
+      },
+      "steps": [
+        {
+          "title": "Introduction", 
+          "text": "step1/desc.md",
+          "verify": "step2/verify.sh",
+        },
+        {
+          "title": "Work with Data",
+          "text": "step2/desc.md",
+          "verify": "step2/verify.sh",
+          "background": "step2/background.sh"
+        },
+        {
+          "title": "Provider Resources",
+          "text": "step3/desc.md",
+          "verify": "step3/verify.sh"
+        }
+      ],
+      "finish": {
+        "text": "finish.md"
+      }
+    },
+    "backend": {
+      "imageid": "kubernetes-kubeadm-1node"
+    },
+    "interface": {
+      "layout": "ide"
+    }
+  }

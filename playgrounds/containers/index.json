@@ -1,0 +1,26 @@
+{
+    "title": "Containers",
+    "description": "Work with containers in a playground environment",
+    "details": {
+      "intro": {
+        "text": "intro.md",
+        "foreground": "foreground.sh",
+        "background": "background.sh"
+      },
+      "steps": [
+        {
+          "title": "Let's explore!",
+          "text": "main.md"
+        }
+      ],
+      "finish": {
+        "text": "finish.md"
+      }
+    },
+    "backend": {
+      "imageid": "ubuntu"
+    },
+    "interface": {
+      "layout": "ide"
+    }
+  }

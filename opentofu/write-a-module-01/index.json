@@ -1,0 +1,34 @@
+{
+    "title": "Writing a module (Beginner)",
+    "description": "Create a module in a guided scenario, which simplifies tenants on Kubernetes",
+    "details": {
+      "intro": {
+        "text": "intro.md",
+        "background": "background.sh"
+      },
+      "finish": {
+        "text": "finish.md"
+      },
+      "steps": [
+        {
+          "title": "Introduction", 
+          "text": "step1/desc.md"
+        },
+        {
+          "title": "Example Solution", 
+          "text": "step2/desc.md"
+        }
+      ],
+      "assets": {
+        "host01": [
+          {"file": "example/**", "target": "/root/"}
+        ]
+      }
+    },
+    "backend": {
+      "imageid": "kubernetes-kubeadm-1node"
+    },
+    "interface": {
+      "layout": "ide"
+    }
+  }

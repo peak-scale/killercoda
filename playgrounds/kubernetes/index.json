@@ -1,0 +1,31 @@
+{
+    "title": "Kubernetes",
+    "description": "Work with Kubernetes in a playground environment",
+    "details": {
+      "intro": {
+        "text": "intro.md",
+        "foreground": "foreground.sh",
+        "background": "background.sh"
+      },
+      "steps": [
+        {
+          "title": "Let's explore!",
+          "text": "main.md"
+        }
+      ],
+      "assets": {
+        "host01": [
+          {"file": "assets/**", "target": "/root/examples", "chmod": "+w"}
+        ]
+      },
+      "finish": {
+        "text": "finish.md"
+      }
+    },
+    "backend": {
+      "imageid": "kubernetes-kubeadm-2nodes"
+    },
+    "interface": {
+      "layout": "ide"
+    }
+  }

@@ -1,0 +1,38 @@
+{
+    "title": "Secrets Management",
+    "description": "Consume and manage encrypted secrets for your tofu configuration",
+    "details": {
+      "intro": {
+        "text": "intro.md",
+        "foreground": "foreground.sh",
+        "background": "background.sh"
+      },
+      "steps": [
+        {
+          "title": "Environment Variables", 
+          "text": "step1/desc.md"
+        },
+
+        {
+          "title": "Asymmetric Encryption (EJSON)",
+          "background": "remove-db.sh",
+          "text": "step2/desc.md"
+        },
+        {
+          "title": "Asymmetric Encryption (SOPS)",
+          "text": "step2/desc.md",
+          "verify": "step2/verify.sh",
+          "background": "step2/background.sh"
+        }
+      ],
+      "finish": {
+        "text": "finish.md"
+      }
+    },
+    "backend": {
+      "imageid": "kubernetes-kubeadm-1node"
+    },
+    "interface": {
+      "layout": "ide"
+    }
+  }

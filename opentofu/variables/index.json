@@ -1,0 +1,42 @@
+{
+    "title": "Variables",
+    "description": "Don't repeat yourself. Use variables to store values that you use multiple times in your configuration.",
+    "details": {
+      "intro": {
+        "text": "intro.md",
+        "foreground": "foreground.sh",
+        "background": "background.sh"
+      },
+      "steps": [
+        {
+          "title": "Input Variables", 
+          "text": "step2/desc.md",
+          "verify": "step2/verify.sh"
+        },
+        {
+          "title": "Input Variables", 
+          "text": "step3/desc.md",
+          "verify": "step3/verify.sh"
+        },
+        {
+          "title": "Local Variables", 
+          "text": "step4/desc.md",
+          "verify": "step4/verify.sh"
+        },
+        {
+          "title": "Outputs", 
+          "text": "step5/desc.md",
+          "verify": "step5/verify.sh"
+        }
+      ],
+      "finish": {
+        "text": "finish.md"
+      }
+    },
+    "backend": {
+      "imageid": "kubernetes-kubeadm-1node"
+    },
+    "interface": {
+      "layout": "ide"
+    }
+  }

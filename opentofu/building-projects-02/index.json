@@ -1,0 +1,26 @@
+{
+    "title": "Building Solutions 01",
+    "description": "Build a Bucket as a Service Solution",
+    "details": {
+      "intro": {
+        "text": "intro.md",
+        "background": "background.sh",
+        "foreground": "foreground.sh"
+      },
+      "steps": [
+        {
+          "title": "Concept",
+          "text": "step1/desc.md"
+        }
+      ],
+      "finish": {
+        "text": "finish.md"
+      }
+    },
+    "backend": {
+      "imageid": "kubernetes-kubeadm-1node"
+    },
+    "interface": {
+      "layout": "ide"
+    }
+  }

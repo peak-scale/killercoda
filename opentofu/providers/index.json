@@ -1,0 +1,44 @@
+{
+    "title": "Providers",
+    "description": "Working with upstream Providers and gathering information about the resources they offer.",
+    "icon":"fa-terraform",
+    "difficulty": "Beginner",
+    "time": "30 minutes",
+    "details": {
+      "intro": {
+        "text": "intro.md",
+        "background": "background.sh",
+        "foreground": "foreground.sh"
+      },
+      "steps": [
+        {
+          "title": "Lookup Providers",
+          "text": "step1/desc.md"
+        },
+        {
+          "title": "Provider Setup",
+          "text": "step2/desc.md",
+          "verify": "step2/verify.sh"
+        },
+        {
+          "title": "Provider Resources",
+          "text": "step3/desc.md",
+          "verify": "step3/verify.sh"
+        },
+        {
+          "title": "Provider Alias",
+          "text": "step4/desc.md",
+          "verify": "step4/verify.sh"
+        }
+      ],
+      "finish": {
+        "text": "finish.md"
+      }
+    },
+    "backend": {
+      "imageid": "kubernetes-kubeadm-1node"
+    },
+    "interface": {
+      "layout": "ide"
+    }
+  }

@@ -1,0 +1,54 @@
+{
+    "title": "State Drift",
+    "description": "Understand how to manage state drift with OpenTofu managed infrastructure",
+    "details": {
+      "intro": {
+        "text": "intro.md"
+      },
+      "steps": [
+        {
+          "title": "State Drift",
+          "text": "step1/desc.md"
+        },
+        {
+          "title": "Import Existing Resources",
+          "text": "step2/desc.md",
+          "verify": "step2/verify.sh"
+        },
+        {
+          "title": "Planning your Apply",
+          "text": "step3/desc.md",
+          "verify": "step3/verify.sh"
+        },
+        {
+          "title": "Applying your Plan",
+          "text": "step4/desc.md",
+          "verify": "step4/verify.sh"
+        },
+        {
+          "title": "Updating Resources",
+          "text": "step5/desc.md",
+          "verify": "step5/verify.sh"
+        },
+        {
+          "title": "Destroying Resources",
+          "text": "step6/desc.md",
+          "verify": "step6/verify.sh"
+        },
+        {
+          "title": "Import Resources",
+          "text": "step7/desc.md",
+          "verify": "step7/verify.sh"
+        }
+      ],
+      "finish": {
+        "text": "finish.md"
+      }
+    },
+    "backend": {
+      "imageid": "kubernetes-kubeadm-1node"
+    },
+    "interface": {
+      "layout": "ide"
+    }
+  }

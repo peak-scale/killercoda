@@ -1,0 +1,15 @@
+{
+    "title": "OpenTofu Course",
+    "description": "Get to know OpenTofu for beginners and advanced users",
+    "icon":"fa-terraform",
+    "difficulty": "Beginner",
+    "time": "5 hours",
+    "items": [
+      { "path": "getting-started" },
+      { "path": "providers" },
+      { "path": "resources" },
+      { "path": "data-sources" },
+      { "path": "variables" },
+      { "path": "write-a-module-01" }
+    ]
+  }

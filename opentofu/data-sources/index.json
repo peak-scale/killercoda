@@ -1,0 +1,47 @@
+{
+    "title": "Data Sources",
+    "description": "Understand Data Sources and handle their lifecycle",
+    "icon":"fa-terraform",
+    "difficulty": "Beginner",
+    "time": "15 minutes",
+    "details": {
+      "intro": {
+        "text": "intro.md",
+        "foreground": "foreground.sh",
+        "background": "background.sh"
+      },
+      "steps": [
+        {
+          "title": "Creating Data Sources", 
+          "text": "step1/desc.md",
+          "verify": "step1/verify.sh"
+        },
+        {
+          "title": "Data References", 
+          "text": "step2/desc.md",
+          "verify": "step2/verify.sh"
+        },
+        {
+          "title": "Lifecycle", 
+          "text": "step3/desc.md",
+          "verify": "step3/verify.sh",
+          "background": "step3/background.sh"
+        },
+        {
+          "title": "Iterations",
+          "text": "step4/desc.md",
+          "verify": "step4/verify.sh",
+          "background": "step4/background.sh"
+        }
+      ],
+      "finish": {
+        "text": "finish.md"
+      }
+    },
+    "backend": {
+      "imageid": "kubernetes-kubeadm-1node"
+    },
+    "interface": {
+      "layout": "ide"
+    }
+  }

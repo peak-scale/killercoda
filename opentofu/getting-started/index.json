@@ -1,0 +1,66 @@
+{
+    "title": "Getting Started",
+    "description": "Getting started with basic OpenTofu interactions",
+    "icon":"fa-terraform",
+    "difficulty": "Beginner",
+    "time": "10 minutes",
+    "details": {
+      "intro": {
+        "text": "intro.md",
+        "background": "background.sh",
+        "foreground": "foreground.sh"
+      },
+      "steps": [
+        {
+          "title": "Install OpenTofu",
+          "text": "step1/desc.md",
+          "verify": "step1/verify.sh"
+        },
+        {
+          "title": "Initialize Project",
+          "text": "step2/desc.md",
+          "verify": "step2/verify.sh"
+        },
+        {
+          "title": "Planning your Apply",
+          "text": "step3/desc.md",
+          "verify": "step3/verify.sh"
+        },
+        {
+          "title": "Applying your Plan",
+          "text": "step4/desc.md",
+          "verify": "step4/verify.sh"
+        },
+        {
+          "title": "Updating Resources",
+          "text": "step5/desc.md",
+          "verify": "step5/verify.sh"
+        },
+        {
+          "title": "Destroying Resources",
+          "text": "step6/desc.md",
+          "verify": "step6/verify.sh"
+        },
+        {
+          "title": "Import Resources",
+          "text": "step7/desc.md"
+        },
+        {
+          "title": "Import Resources",
+          "text": "step8/desc.md",
+          "background": "step8/background.sh",
+          "verify": "step8/verify.sh"
+        },
+        {
+          "title": "State",
+          "text": "step9/desc.md"
+        }
+      ],
+      "finish": {
+        "text": "finish.md"
+      }
+    },
+    "backend": {
+      "imageid": "kubernetes-kubeadm-1node"
+    }
+  }
