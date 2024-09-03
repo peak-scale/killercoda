@@ -42,21 +42,20 @@ Based on the above concept we have made above I would envision a following yaml 
 
 **tenant.yaml**
 ```yaml
-tenants:
-
 # For the permissions we need to know Who we are granting access to and what kind of access of property we are using (Username/Groups)
-- name: "<tenantname>"
-  permissions:
-  - name: "<groupname/username>"
-    kind: "Group/User"
+name: "<tenantname>"
 
-  # The Quota is a 1:1 abstraction of the resourceQuota object from Kubernetes
-  quota:
+permissions:
+- name: "<groupname/username>"
+  kind: "Group/User"
 
-  # Declares the namespaces which are assigned to this tenant
-  namespaces:
-    - namespace-1
-    - namespace-2
+# The Quota is a 1:1 abstraction of the resourceQuota object from Kubernetes
+quota:
+
+# Declares the namespaces which are assigned to this tenant
+namespaces:
+  - namespace-1
+  - namespace-2
 ```
 
 ## Verify Provider Capabilities
@@ -65,8 +64,50 @@ Before getting your hands dirty, let's look if there's providers which can achie
 
 # Your Task
 
-1. Create a YAML file `tenant.yaml` which holds a structure, where easily one or more tenants can be added or removed.
+1. Create a YAML file `tenant.yaml` which holds a structure, where easily one or more tenants can be added or removed. You can also create multiple files if you prefer.
 
 2. Write a module for one tenant which creates the necessary resources for a tenant. The module should be reusable and should be able to be used in different clusters.
 
 3. Rollout the tenants against the existing cluster in your environment
+
+Go to the next step when you are satisfied with your solution (you may also copy your progress to your client for further use)
+
+Here are tenant specifications you can use:
+
+```yaml
+# Tenant 1
+name: "tenant1"
+permissions:
+  - name: "group1"
+    kind: "Group"
+    role: "owner"
+  - name: "user1"
+    kind: "User"
+    role: "read-only"
+quota:
+  requests.cpu: "4"
+  requests.memory: "16Gi"
+  limits.cpu: "8"
+  limits.memory: "32Gi"
+namespaces:
+  - "namespace-1"
+  - "namespace-2"
+
+# Tenant 2
+name: "tenant2"
+permissions:
+  - name: "group2"
+    kind: "Group"
+    role: "administrator"
+  - name: "user2"
+    kind: "User"
+    role: "read-only"
+quota:
+  requests.cpu: "2"
+  requests.memory: "8Gi"
+  limits.cpu: "4"
+  limits.memory: "16Gi"
+namespaces:
+  - "namespace-3"
+  - "namespace-4"
+```
