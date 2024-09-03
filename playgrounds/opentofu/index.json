@@ -13,11 +13,6 @@
           "text": "main.md"
         }
       ],
-      "assets": {
-        "host01": [
-          {"file": "../../assets/work/tofu/**", "target": "/root/examples", "chmod": "+w"}
-        ]
-      },
       "finish": {
         "text": "finish.md"
       }

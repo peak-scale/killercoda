@@ -14,7 +14,7 @@
         {
           "title": "Example Solution", 
           "text": "step2/desc.md",
-          "background": "step/background.sh"
+          "background": "step2/background.sh"
         }
       ]
     },
