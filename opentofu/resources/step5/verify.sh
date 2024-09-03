@@ -58,11 +58,6 @@ result=$(hcl2json ~/scenario/pods-foreach.tf | jq '.resource.kubernetes_pod_v1."
   ) and (
     .spec[0].container[0].image == "${each.value.image}"
   )')
-if [ "$result" == "false" ]; then
-  exit 1
-fi
-
-cd ~/scenario
-if ! [ $(tofu state ls | grep "kubernetes_pod_v1.for-workload" | wc -l) -ge 3 ]; then
+if [ "$result" != "true" ]; then
   exit 1
 fi

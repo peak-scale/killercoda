@@ -27,11 +27,6 @@
           "title": "Outputs", 
           "text": "step5/desc.md",
           "verify": "step5/verify.sh"
-        },
-        {
-          "title": "Local Variables", 
-          "text": "step4/desc.md",
-          "verify": "step4/verify.sh"
         }
       ],
       "finish": {
