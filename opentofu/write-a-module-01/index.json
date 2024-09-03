@@ -13,10 +13,16 @@
         },
         {
           "title": "Example Solution", 
-          "text": "step2/desc.md",
-          "background": "step2/background.sh"
+          "text": "step2/desc.md"
         }
-      ]
+      ],
+      "assets": {
+        "host01": [
+          {"file": "example/**", "target": "/root/example"}
+        ]
+      }
+
+
     },
     "backend": {
       "imageid": "kubernetes-kubeadm-1node"
