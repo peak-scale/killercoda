@@ -22,7 +22,10 @@ sudo apt-get install wget apt-transport-https gnupg
 wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
 echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
 sudo apt-get update
-sudo apt-get install trivy skopeo
+
+# Trivy
+snap install trivy
+snap install --edge skopeo --devmode;
 
 # Install Gvisor
 sudo apt-get install -y \
@@ -40,5 +43,21 @@ DIVE_VERSION="0.12.0"
 curl -LO "https://github.com/wagoodman/dive/releases/download/v${DIVE_VERSION}/dive_${DIVE_VERSION}_linux_amd64.tar.gz"
 tar xzvf "dive_${DIVE_VERSION}_linux_amd64.tar.gz"
 sudo mv dive /usr/local/bin/dive && rm "dive_${DIVE_VERSION}_linux_amd64.tar.gz"
+
+# Skopeo
+docker pull quay.io/skopeo/stable
+
+# Step 2: Run the container and get its ID
+container_id=$(docker run -d --entrypoint /bin/sh quay.io/skopeo/stable -c "sleep 300")
+
+# Step 3: Copy the skopeo binary from the container to the host
+docker cp "$container_id":/usr/bin/skopeo /usr/local/bin/skopeo
+
+# Step 4: Make the binary executable
+chmod +x /usr/local/bin/skopeo
+
+# Step 5: Stop and remove the container
+docker stop "$container_id"
+docker rm "$container_id"
 
 touch /tmp/finished
