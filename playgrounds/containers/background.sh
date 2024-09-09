@@ -25,7 +25,6 @@ sudo apt-get update
 
 # Trivy
 snap install trivy
-snap install --edge skopeo --devmode;
 
 # Install Gvisor
 sudo apt-get install -y \
