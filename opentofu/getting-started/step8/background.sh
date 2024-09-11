@@ -1,5 +1,5 @@
 #!/bin/bash
-rm -f ~/scenario/local_file.tf
+rm -f ~/scenario/local_file.tf || true
 
 cat <<EOF > ~/scenario/main.tf
 terraform {

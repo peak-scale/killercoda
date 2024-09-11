@@ -4,7 +4,6 @@ mkdir -p "${SOLUTION_DIR}" || true
 
 # Add Solution for review
 cat << 'EOF' > "${SOLUTION_DIR}/provider.tf"
-#!/bin/bash
 terraform {
   required_providers {
     kubernetes = {

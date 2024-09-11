@@ -1,0 +1,9 @@
+configs:
+  secret:
+    argocdServerAdminPassword: "$2a$10$XH5VlHA3nZ5jOLbyuSCbNeSjRttV7ZkcmhBeLoutD/efbSMB9Dd3i"
+server:
+  extraArgs:
+    - --insecure
+  service:
+    nodePortHttp: 30080
+    type: "NodePort"
