@@ -16,8 +16,10 @@ rm argocd-linux-amd64
 
 ## Server
 helm repo add argo https://argoproj.github.io/argo-helm
-helm install my-argo-cd argo/argo-cd --version 7.5.2 --set server.extraArgs={--insecure} --set=configs.secret.argocdServerAdminPassword="$2a$12$wtoTp15Kdrq1K8UKwhjITuuDMyQJoaPnT6edBlxjxWaVw6S9Ydq9G"
+helm install argocd argo/argo-cd -n argocd --version 7.5.2 --set server.service.type="NodePort" --set server.service.nodePortHttp=30080 --set server.extraArgs={--insecure} --set=configs.secret.argocdServerAdminPassword='$2a$10$XH5VlHA3nZ5jOLbyuSCbNeSjRttV7ZkcmhBeLoutD/efbSMB9Dd3i'
 
 # Install Fluxcd
+curl -s https://fluxcd.io/install.sh | sudo bash
+flux install
 
 touch /tmp/finished
