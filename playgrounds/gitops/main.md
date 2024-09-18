@@ -12,21 +12,22 @@ You will be instructed with specific ports for the following technologies.
 
 # ArgoCD
 
-To Access ArgoCD you must use the [Traffic Port](#traffic-ports) `30080` on **Host 2**:
+You can access [ArgoCD Dashboard]({{TRAFFIC_HOST1_30080}}) to start playing around with argocd.
 
 ![ArgoCD](./media/argocd-port.png)
 
-Once you have the port, you can access the ArgoCD Dashboard. The credentials are
+Once you have the port, you can access the ArgoCD Dashboard. The credentials for the login are:
 
 - Username: `admin`
 - Password: `admin`
+
+![ArgoCD Login](./media/argocd-landing.png)
 
 The [argocd cli](https://argo-cd.readthedocs.io/en/stable/getting_started/) is available:
 
 ```shell
 argocd -h
 ```{{exec}}
-
 
 # FluxCD
 
@@ -35,7 +36,3 @@ The [flux cli](https://fluxcd.io/flux/cmd/) is available:
 ```shell
 flux -h
 ```{{exec}}
-
-
-# Cluster Access (Kubeconfig)
-
