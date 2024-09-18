@@ -14,7 +14,7 @@
         }
       ],
       "assets": {
-        "host01": [
+        "controlplane": [
           {"file": "assets/**", "target": "/root/assets", "chmod": "+w"}
         ]
       },
