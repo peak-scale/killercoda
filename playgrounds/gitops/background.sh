@@ -17,7 +17,7 @@ rm argocd-linux-amd64
 
 ## Server
 helm repo add argo https://argoproj.github.io/argo-helm
-helm install argocd argo/argo-cd -n argocd --version 7.5.2 --create-namespace -f ~/assets/argo.values.yaml
+helm install argocd argo/argo-cd -n argocd --version 7.5.2 --create-namespace -f /root/.assets/argo.values.yaml
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj-labs/argocd-image-updater/stable/manifests/install.yaml
 
 # Install Fluxcd
@@ -25,7 +25,7 @@ curl -s https://fluxcd.io/install.sh | sudo bash
 flux install
 
 # Create ServiceAccount Kubeconfig
-kubectl apply -f ~/assets/serviceaccount.yaml
-bash ~/assets/create_kubeconfig.sh admin-sa kube-system /etc/peak-scale/kubeconfig
+kubectl apply -f /root/.assets/serviceaccount.yaml
+bash /root/.assets/create_kubeconfig.sh admin-sa kube-system /etc/peak-scale/kubeconfig
 
 touch /tmp/finished
