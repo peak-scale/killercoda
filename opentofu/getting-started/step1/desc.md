@@ -1,12 +1,12 @@
-Before starting this scenario, you need to install OpenTofu on the given environment. See for reference the [official website](https://opentofu.org/docs/intro/install/https://opentofu.org/docs/intro/install/). You can use the same process to install opentofu on your local machine.
+Before starting this scenario, you must install OpenTofu on the given environment. See for reference the [official website](https://opentofu.org/docs/intro/install/). You can use the same process to install OpenTofu on your local machine.
 
 The [OpenTofu CLI](https://opentofu.org/docs/intro/install/) interacts with the state and executes everything in our scenarios.
 
 ## Tasks
 
-On this environment we are running [Ubuntu](https://opentofu.org/docs/intro/install/deb/), so we can use the following commands to install OpenTofu.
+In this environment, we are running [Ubuntu](https://opentofu.org/docs/intro/install/deb/), so we can use the following commands to install OpenTofu.
 
-- Add OpenTofu Keyring:
+### Add OpenTofu keyring
 
 ```shell
 sudo install -m 0755 -d /etc/apt/keyrings
@@ -15,7 +15,7 @@ curl -fsSL https://packages.opentofu.org/opentofu/tofu/gpgkey | sudo gpg --no-tt
 sudo chmod a+r /etc/apt/keyrings/opentofu.gpg /etc/apt/keyrings/opentofu-repo.gpg
 ```{{exec}}
 
- - Add OpenTofu Package Repository:
+### Add package repository
 
 ```shell
 echo \
@@ -25,14 +25,14 @@ deb-src [signed-by=/etc/apt/keyrings/opentofu.gpg,/etc/apt/keyrings/opentofu-rep
 sudo chmod a+r /etc/apt/sources.list.d/opentofu.list
 ```{{exec}}
 
- - Install OpenTofu:
+### Install OpenTofu
 
 ```shell
 sudo apt-get update
 sudo apt-get install -y tofu
 ```{{exec}}
 
- - Verify the installation by running:
+### Verify the installation
 
 ```shell
 tofu -version
