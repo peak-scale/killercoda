@@ -1,9 +1,10 @@
-The command `plan` allows you to preview the changes OpenTofu will make before you apply them. The command `apply` makes the changes defined by your plan to create, update, or destroy resources.
+The command `plan` lets you preview the changes OpenTofu will make before applying them. The command `apply` makes the changes defined by your plan to create, update, or destroy resources.
+
 ## Tasks
 
-Complete these tasks for this scenario.
+Complete these tasks for this step:
 
-### Task 1: Apply the Plan
+### Task 1: Apply the plan
 
 Now it's time to create the file `hello.txt`. This is done by running the `apply` command:
 
@@ -55,4 +56,4 @@ Apply the new plan, you must confirm the action by typing `yes`:
 tofu apply
 ```{{exec}}
 
-As you can see, there is an additional step when no plan file is provided. This is to ensure that you are aware of the changes that will be made to your infrastructure, which would have been done with a dedicated plan file (you must encoperate such a workflow yourself).
+As you can see, there is an additional step when no plan file is provided. This is to ensure that you are aware of the changes that will be made to your infrastructure, which would have been done with a dedicated plan file (you must incorporate such a workflow yourself).

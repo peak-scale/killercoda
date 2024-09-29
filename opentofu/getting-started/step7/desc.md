@@ -1,12 +1,12 @@
-We have seen in the previous step, that when you delete a file manually, the state notices it's absence on a refresh (plan) operation and on the next apply it is recreated. Let's look at other scenarios where you might have conflicts between desired and actual state. 
+In the previous step, we saw that when you delete a file manually, the state notices its absence on a refresh (plan) operation, and it is recreated on the next application. Let's look at other scenarios where you might have conflicts between the desired and actual states. 
 
 ## Tasks
 
-Complete these tasks for this scenario.
+Complete these tasks for this step:
 
-### Task 1: State Conflict
+### Task 1: State conflict
 
-We want to simulate a situation, where the file `morning.txt` is already present on a machine but not in our state. Create the file:
+We want to simulate a situation where the file `morning.txt` is already present on a machine but not in our state. Create the file:
 
 ```shell
 cat  > morning.txt <<EOF
@@ -20,7 +20,7 @@ Our state currently does not know about the file `morning.txt`. You can verify t
 tofu state ls
 ```{{exec}}
 
-Now we are expecting to get a conflict when running:
+Now, we are expecting to get a conflict when running:
 
 ```shell
 tofu plan & tofu apply
@@ -28,10 +28,10 @@ tofu plan & tofu apply
 
 🤔 ... It just recreated the file?
 
-See that's thing with the [local](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/sensitive_file) provider. It has special behavior because OpenTofu is not really intended to manage local files but for Cloud infrastructure. The documentation for file resources states:
+See, that's the thing with the [local](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/sensitive_file) provider. It has special behavior because OpenTofu is not really intended to manage local files but for Cloud infrastructure. The documentation for file resources states:
 
 > The path to the file that will be created. Missing parent directories will be created. If the file already exists, it will be overridden with the given content.
 
-So we can't you show an import example with this provider. However this should teach you, each Provider has different aspects and gotchas. The Provider documentation is your best friend. 
+We can't show an imported example with this provider. However, this should teach you that each provider has different aspects and gotchas. The provider documentation is your best friend. 
 
-We'll be looking into Provider specific behavior in the provider scenario.
+We'll be looking into provider specific behavior in the provider step.

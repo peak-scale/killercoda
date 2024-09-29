@@ -1,8 +1,8 @@
-At the current stage nothing has happened yet. We have just created a new project and initialized it. Let's now apply the configuration to create the file `hello.txt`.
+At the current stage, nothing has happened. We have just created a new project and initialized it. Let's apply the configuration to create the file `hello.txt`.
 
 ## Tasks
 
-Complete these tasks for this scenario.
+Complete these tasks for this step:
 
 ### Task 1: Plan the changes
 
@@ -20,18 +20,17 @@ As you can see, the plan indicates that a new file `hello.txt` should be created
 tofu plan -h
 ```{{exec}}
 
-Saving a plan to a file is the recommended way to ensure that the plan is reviewed and approved before applying it. Otherwise there might be changes applied that were not intended. If the plan is in a file which is no longer changes, no more changes from the project can influence the plan.
+Saving a plan to a file is recommended to ensure that the plan is reviewed and approved before applying it. Otherwise, changes might be applied that were not intended. If the plan is in a file that no longer changes, no more changes from the project can influence the plan.
 
+### Task 2: Convert the plan
 
-### Task 2: Convert Plan
-
-You may want to check the content of the plan file, however it's in binary format and really not human readable. You can use the `show` command to see the content of the plan file.
+You may want to check the content of the plan file. However, it's in binary format and not human-readable. You can use the `show` command to see its content.
 
 ```shell
 tofu show /root/hello-example.plan
 ```{{exec}}
 
-Store the output of the `show` command in a file called `/root/hello-example.plan.txt`. This can be done by using the `>` operator in the shell.
+Store the output of the `show` command in a file called `/root/hello-example.plan.txt`. The shell allows you to do this using the `>` operator.
 
 ```shell
 tofu show /root/hello-example.plan > /root/hello-example.plan.txt
