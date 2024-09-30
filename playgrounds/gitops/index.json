@@ -15,10 +15,10 @@
       ],
       "assets": {
         "controlplane": [
-          {"file": "**", "target": "/root/.assets/", "chmod": "+w"}
+          {"file": "**", "target": "/root/.assets/", "chmod": "+x"}
         ],
         "host01": [
-          {"file": "**", "target": "/root/.assets/"}
+          {"file": "**", "target": "/root/.assets/", "chmod": "+x"}
         ]
       },
       "finish": {
