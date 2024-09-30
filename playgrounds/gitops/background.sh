@@ -1,6 +1,7 @@
 #!/bin/bash
 set -x 
 echo starting...
+mkdir -p /etc/peak-scale/
 
 # Install Helm
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
@@ -16,10 +17,14 @@ rm argocd-linux-amd64
 
 ## Server
 helm repo add argo https://argoproj.github.io/argo-helm
-helm install argocd argo/argo-cd -n argocd --version 7.5.2 --set server.service.type="NodePort" --set server.service.nodePortHttp=30080 --set server.extraArgs={--insecure} --set=configs.secret.argocdServerAdminPassword='$2a$10$XH5VlHA3nZ5jOLbyuSCbNeSjRttV7ZkcmhBeLoutD/efbSMB9Dd3i'
+helm install argocd argo/argo-cd -n argocd --version 7.5.2 --create-namespace -f /root/.assets/argo.values.yaml
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj-labs/argocd-image-updater/stable/manifests/install.yaml
 
 # Install Fluxcd
 curl -s https://fluxcd.io/install.sh | sudo bash
 flux install
 
+# Create ServiceAccount Kubeconfig
+kubectl apply -f /root/.assets/serviceaccount.yaml
+bash /root/.assets/create_kubeconfig.sh admin-sa kube-system /etc/peak-scale/kubeconfig
 touch /tmp/finished

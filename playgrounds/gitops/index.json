@@ -14,8 +14,11 @@
         }
       ],
       "assets": {
+        "controlplane": [
+          {"file": "**", "target": "/root/.assets/", "chmod": "+x"}
+        ],
         "host01": [
-          {"file": "assets/**", "target": "/root/assets", "chmod": "+w"}
+          {"file": "**", "target": "/root/.assets/", "chmod": "+x"}
         ]
       },
       "finish": {
@@ -23,7 +26,7 @@
       }
     },
     "backend": {
-      "imageid": "kubernetes-kubeadm-2nodes"
+      "imageid": "kubernetes-kubeadm-1node-4GB"
     },
     "interface": {
       "layout": "ide"
