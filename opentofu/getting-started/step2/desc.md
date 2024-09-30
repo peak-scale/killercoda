@@ -1,10 +1,10 @@
-A Project in this scenario is a directory. Essentially with OpenTofu you store relevant files in a directory. The directory is the basic unit of configuration in OpenTofu. The directory contains all the configuration files for your infrastructure and may even include the state.
+A *project* in this step is a directory. Essentially, with OpenTofu, you store relevant files in a directory. The directory is the basic unit of configuration in OpenTofu. It contains all the configuration files for your infrastructure and may even include the state.
 
 ## Tasks
 
-Complete these tasks for this scenario.
+Complete these tasks for this step:
 
-## Task 1: First `main.tf`
+### Task 1: First main.tf
 
 Create a new file called `main.tf`. The file name does not matter, but it is a common convention to name the main configuration file `main.tf`. As long as your file has a `.tf` extension in the current directory, Terraform will recognize it as a configuration file. This does not work for subdirectories.
 
@@ -34,7 +34,7 @@ This configuration does the following:
   - The provider block configures the [local](https://registry.terraform.io/providers/hashicorp/local/latest/docs) provider. No additional configuration is necessary for this example.
   - The resource block defines a resource of type local_file named example. This resource creates a file named hello.txt in the same directory as your Terraform configuration, containing the text "Hello, Terraform!".
 
-## Task 2: Initialize
+### Task 2: Initialize
 
 Initialize the configuration:
 

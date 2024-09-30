@@ -27,5 +27,4 @@ flux install
 # Create ServiceAccount Kubeconfig
 kubectl apply -f /root/.assets/serviceaccount.yaml
 bash /root/.assets/create_kubeconfig.sh admin-sa kube-system /etc/peak-scale/kubeconfig
-
 touch /tmp/finished
