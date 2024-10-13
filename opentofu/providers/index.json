@@ -1,6 +1,6 @@
 {
-    "title": "Providers",
-    "description": "Working with upstream Providers and gathering information about the resources they offer.",
+    "title": "2. Providers",
+    "description": "Work with upstream providers and gather information about the resources they offer.",
     "icon":"fa-terraform",
     "difficulty": "Beginner",
     "time": "30 minutes",

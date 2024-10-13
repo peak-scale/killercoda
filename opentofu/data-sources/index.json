@@ -1,6 +1,6 @@
 {
-    "title": "Data Sources",
-    "description": "Understand Data Sources and handle their lifecycle",
+    "title": "4. Data Sources",
+    "description": "Understand data sources and handle their lifecycle.",
     "icon":"fa-terraform",
     "difficulty": "Beginner",
     "time": "15 minutes",

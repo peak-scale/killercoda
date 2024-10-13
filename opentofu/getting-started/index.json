@@ -1,6 +1,6 @@
 {
-    "title": "Getting Started",
-    "description": "Getting started with basic OpenTofu interactions",
+    "title": "1. Get Started",
+    "description": "Start with your first OpenTofu interactions.",
     "icon":"fa-terraform",
     "difficulty": "Beginner",
     "time": "10 minutes",

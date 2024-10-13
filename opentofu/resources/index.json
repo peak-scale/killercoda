@@ -1,6 +1,6 @@
 {
-    "title": "Resources",
-    "description": "Understand resources and handle their lifecycle",
+    "title": "3. Resources",
+    "description": "Understand resources and handle their lifecycle.",
     "icon":"fa-terraform",
     "difficulty": "Beginner",
     "time": "15 minutes",
