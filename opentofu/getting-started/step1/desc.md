@@ -6,7 +6,7 @@ The [OpenTofu CLI](https://opentofu.org/docs/intro/install/) interacts with the 
 
 In this environment, we are running [Ubuntu](https://opentofu.org/docs/intro/install/deb/), so we can use the following commands to install OpenTofu:
 
-### Task 1: Add OpenTofu keyring
+### Task 1: Add OpenTofu keyring
 
 ```shell
 sudo install -m 0755 -d /etc/apt/keyrings
