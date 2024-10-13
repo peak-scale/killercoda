@@ -1,6 +1,6 @@
 {
-    "title": "Writing a module (Beginner)",
-    "description": "Create a module in a guided scenario, which simplifies tenants on Kubernetes",
+    "title": "6. Write a Module",
+    "description": "Create your first module: simplify tenant management on Kubernetes",
     "details": {
       "intro": {
         "text": "intro.md",
