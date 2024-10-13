@@ -1,6 +1,6 @@
 {
     "title": "6. Write a Module",
-    "description": "Create your first module: simplify tenant management on Kubernetes",
+    "description": "Create your first module: simplify tenant management on Kubernetes.",
     "details": {
       "intro": {
         "text": "intro.md",
