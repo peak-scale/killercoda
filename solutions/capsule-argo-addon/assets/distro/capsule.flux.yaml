@@ -28,8 +28,6 @@ spec:
   upgrade:
     remediation:
       remediateLastFailure: true
-  dependsOn:
-    - name: cert-manager
   driftDetection:
     mode: enabled
     ignore:
@@ -41,13 +39,11 @@ spec:
   values:
     crds:
       install: true
-    certManager:
-      generateCertificates: true
     tls:
-      # -- Start the Capsule controller that injects the CA into mutating and validating webhooks, and CRD as well.
+      # -- Start the true controller that injects the CA into mutating and validating webhooks, and CRD as well.
       enableController: false
       # -- When cert-manager is disabled, Capsule will generate the TLS certificate for webhook and CRDs conversion.
-      create: false
+      create: true
     manager:
       options:
         # -- Boolean, enforces the Tenant owner, during Namespace creation, to name it using the selected Tenant name as prefix, separated by a dash
