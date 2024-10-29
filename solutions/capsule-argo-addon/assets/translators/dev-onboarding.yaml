@@ -1,0 +1,23 @@
+---
+apiVersion: addons.projectcapsule.dev/v1alpha1
+kind: ArgoTranslator
+metadata:
+    name: dev-onboarding
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/type: dev
+  roles:
+  # This creates the baseline role. All users with the cluster-role "admin" will be able to access all repositories
+  - name: "developers"
+    clusterRoles:
+      - "company-developers"
+    policies:
+    - resource: "*"
+      action: ["get"]
+  - name: "ops"
+    clusterRoles:
+      - "operators"
+    policies:
+    - resource: "*"
+      action: ["sync"]

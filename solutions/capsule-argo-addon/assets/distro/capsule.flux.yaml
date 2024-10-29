@@ -28,6 +28,8 @@ spec:
   upgrade:
     remediation:
       remediateLastFailure: true
+  dependsOn:
+    - name: cert-manager
   driftDetection:
     mode: enabled
     ignore:

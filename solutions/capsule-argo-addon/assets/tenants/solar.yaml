@@ -1,0 +1,19 @@
+---
+apiVersion: capsule.clastix.io/v1beta2
+kind: Tenant
+metadata:
+  name: solar
+  labels:
+    app.kubernetes.io/type: prod
+  annotations:
+    argo.addons.projectcapsule.dev/read-only: "true"
+    argo.addons.projectcapsule.dev/decouple: "true"
+spec:
+  owners:
+  - name: alice
+    kind: User
+  additionalRoleBindings:
+  - clusterRoleName: tenant-viewer
+    subjects:
+    - kind: User
+      name: bob

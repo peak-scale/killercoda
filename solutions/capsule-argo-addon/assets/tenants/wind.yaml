@@ -1,0 +1,13 @@
+---
+apiVersion: capsule.clastix.io/v1beta2
+kind: Tenant
+metadata:
+  name: wind
+  labels:
+    app.kubernetes.io/type: prod
+spec:
+  owners:
+  - name: wind-users
+    kind: Group
+  - name: bob
+    kind: User

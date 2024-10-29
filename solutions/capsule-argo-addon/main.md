@@ -1,10 +1,10 @@
-![Addon Icon](https://github.com/peak-scale/capsule-argo-addon/raw/main/docs/images/capsule-argo.png)
+# Tenants
 
-# The Addon
+To see all the tenants you can execute the following command:
 
-This addon is designed for kubernetes administrators, to automatically translate their existing Capsule Tenants into Argo Appprojects. This addon adds new capabilities to the Capsule project, by allowing the administrator to create a new tenant in Capsule, and automatically create a new Argo Appproject for that tenant. This addon is designed to be used in conjunction with the Capsule project, and is not intended to be used as a standalone project.
-
-[See the Source]()
+```shell
+kubectl get tnt -o yaml
+```{{exec}}
 
 # Argo
 

@@ -5,3 +5,4 @@ resources:
   - addon.flux.yaml
   - argo.flux.yaml
   - capsule.flux.yaml
+  - cert-manager.flux.yaml

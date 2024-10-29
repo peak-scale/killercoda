@@ -1,0 +1,20 @@
+---
+apiVersion: capsule.clastix.io/v1beta2
+kind: Tenant
+metadata:
+  name: oil
+  labels:
+    app.kubernetes.io/type: dev
+  annotations:
+    argo.addons.projectcapsule.dev/decouple: "true"
+spec:
+  owners:
+  - name: solar-users
+    kind: Group
+  - name: alice
+    kind: User
+  additionalRoleBindings:
+  - clusterRoleName: tenant-viewer
+    subjects:
+    - name: bob
+      kind: User
