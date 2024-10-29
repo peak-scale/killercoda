@@ -25,6 +25,8 @@ spec:
       interval: 24h
   install:
     createNamespace: true
+    remediation:
+      retries: -1
   upgrade:
     remediation:
       remediateLastFailure: true

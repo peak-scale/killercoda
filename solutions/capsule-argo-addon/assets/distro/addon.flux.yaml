@@ -30,6 +30,7 @@ spec:
   upgrade:
     remediation:
       remediateLastFailure: true
+      retries: -1      
   dependsOn:
     - name: capsule
     - name: argocd
