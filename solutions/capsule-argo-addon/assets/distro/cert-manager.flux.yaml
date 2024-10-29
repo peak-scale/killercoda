@@ -27,7 +27,7 @@ spec:
         name: jetstack
       interval: 24h
   install:
-    createNamespace: false
+    createNamespace: true
   upgrade:
     remediation:
       remediateLastFailure: true
