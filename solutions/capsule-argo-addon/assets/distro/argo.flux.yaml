@@ -12,7 +12,7 @@ kind: HelmRelease
 metadata:
   name: argocd
 spec:
-  interval: 10m
+  interval: 30s
   targetNamespace: argocd
   releaseName: "argocd"
   chart:

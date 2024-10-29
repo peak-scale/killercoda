@@ -14,7 +14,7 @@ kind: HelmRelease
 metadata:
   name: capsule-argo-addon
 spec:
-  interval: 5m
+  interval: 30s
   releaseName: "capsule-argo-addon"
   targetNamespace: "capsule-argo-addon"
   chart:

@@ -12,7 +12,7 @@ kind: HelmRelease
 metadata:
   name: capsule
 spec:
-  interval: 10m
+  interval: 30s
   targetNamespace: capsule-system
   releaseName: "capsule"
   chart:
@@ -41,12 +41,9 @@ spec:
       install: true
     tls:
       # -- Start the true controller that injects the CA into mutating and validating webhooks, and CRD as well.
-      enableController: false
+      enableController: true
       # -- When cert-manager is disabled, Capsule will generate the TLS certificate for webhook and CRDs conversion.
       create: true
     manager:
       options:
-        # -- Boolean, enforces the Tenant owner, during Namespace creation, to name it using the selected Tenant name as prefix, separated by a dash
         forceTenantPrefix: false
-        # -- Override the Capsule user groups
-        capsuleUserGroups: ["administrator"]
