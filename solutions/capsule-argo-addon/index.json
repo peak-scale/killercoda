@@ -1,0 +1,34 @@
+{
+    "title": "Capsule-Argo-Addon",
+    "description": "Explore the functionality of the capsule-argo-addon from peakscale",
+    "details": {
+      "intro": {
+        "text": "intro.md",
+        "foreground": "foreground.sh",
+        "background": "background.sh"
+      },
+      "steps": [
+        {
+          "title": "Concepts",
+          "text": "main.md" 
+        }
+      ],
+      "assets": {
+        "controlplane": [
+          {"file": "**", "target": "/root/.assets/", "chmod": "+x"}
+        ],
+        "host01": [
+          {"file": "**", "target": "/root/.assets/", "chmod": "+x"}
+        ]
+      },
+      "finish": {
+        "text": "finish.md"
+      }
+    },
+    "backend": {
+      "imageid": "kubernetes-kubeadm-1node-4GB"
+    },
+    "interface": {
+      "layout": "ide"
+    }
+  }

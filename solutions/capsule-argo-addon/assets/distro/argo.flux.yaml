@@ -1,0 +1,59 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name:  argo
+spec:
+  interval: 5m0s
+  url: https://projectcapsule.github.io/charts
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: argocd
+spec:
+  interval: 10m
+  targetNamespace: argocd
+  releaseName: "argocd"
+  chart:
+    spec:
+      chart: argo
+      version: "0.7.0-rc.1"
+      sourceRef:
+        kind: HelmRepository
+        name: argo
+      interval: 24h
+  install:
+    createNamespace: true
+  upgrade:
+    remediation:
+      remediateLastFailure: true
+  driftDetection:
+    mode: enabled
+  values:
+    server:
+      extraArgs:
+        - --insecure
+      service:
+        nodePortHttp: 30080
+        type: "NodePort"
+    configs:
+      rbac:
+        policy.csv: |
+          # Define Policies
+          p, role:anonymous, *, *, */*, deny
+        policy.default: "role:anonymous"
+      cm:
+        accounts.alice: apiKey, login
+        accounts.bob: apiKey, login
+        accounts.guy: apiKey, login
+        users.anonymous.enabled: "false"
+        resource.customizations.ignoreDifferences.Namespace: |
+          jqPathExpressions:
+          - '.metadata.labels'
+      secret:
+        extra:
+          admin.password: "$2a$10$3Fk9Mk6pDYxSts4xYGZvBuYovOGv03XY2d6DVAtyR7TlCwN4rO9dm"
+          accounts.alice.password: "$2a$10$3Fk9Mk6pDYxSts4xYGZvBuYovOGv03XY2d6DVAtyR7TlCwN4rO9dm"
+          accounts.bob.password: "$2a$10$3Fk9Mk6pDYxSts4xYGZvBuYovOGv03XY2d6DVAtyR7TlCwN4rO9dm"
+          accounts.guy.password: "$2a$10$3Fk9Mk6pDYxSts4xYGZvBuYovOGv03XY2d6DVAtyR7TlCwN4rO9dm"
