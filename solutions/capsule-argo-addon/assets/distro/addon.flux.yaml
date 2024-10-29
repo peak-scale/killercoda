@@ -30,6 +30,13 @@ spec:
   upgrade:
     remediation:
       remediateLastFailure: true
+  dependsOn:
+    - name: capsule
+    - name: argocd
   driftDetection:
     mode: enabled
   values:
+    proxy:
+      enabled: true
+      crds:
+        install: true
