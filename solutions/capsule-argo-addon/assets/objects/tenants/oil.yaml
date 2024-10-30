@@ -9,7 +9,7 @@ metadata:
     argo.addons.projectcapsule.dev/decouple: "true"
 spec:
   owners:
-  - name: solar-users
+  - name: bob
     kind: Group
   - name: alice
     kind: User

@@ -7,7 +7,10 @@ metadata:
     app.kubernetes.io/type: prod
 spec:
   owners:
-  - name: wind-users
-    kind: Group
   - name: bob
     kind: User
+  additionalRoleBindings:
+  - clusterRoleName: tenant-viewer
+    subjects:
+    - name: alice
+      kind: User
