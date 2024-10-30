@@ -20,7 +20,7 @@ spec:
   chart:
     spec:
       chart: capsule-argo-addon
-      version: "0.1.0-alpha.2"
+      version: "0.1.0-alpha.5"
       sourceRef:
         kind: HelmRepository
         name: peak-scale

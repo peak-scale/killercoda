@@ -21,6 +21,10 @@ You can access [ArgoCD Dashboard]({{TRAFFIC_HOST1_30080}}) to start playing arou
 
 Now we need to understand how these users are translated from tenants to Argo Appprojects. Note this also works with groups, but that's difficult to emulate with local argo users.
 
+To play around with the UI you can login with these users and deploy workloads in the appprojects, where they have the permissions to do so. Sample Projects:
+
+- [https://github.com/stefanprodan/podinfo](https://github.com/stefanprodan/podinfo)
+
 # Tenants
 
 Below we see the three tenants currently deployed. It's also shown which of the above users have which clusterRoles on the tenants
@@ -38,7 +42,7 @@ Below we see the three tenants currently deployed. It's also shown which of the 
     - admin
     - tenant-viewer
 
-- **oil**
+- **wind**
   - alice:
     - tenant-viewer
   - bob:
