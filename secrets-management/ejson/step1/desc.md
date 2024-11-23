@@ -6,7 +6,6 @@ For this scenarios we are using EJSON. With EJSON, Secrets are collected in a JS
 
 # Tasks
 
-
 ## Task 1: Generate a new keypair
 
 With the following command you can generate a new keypair:
