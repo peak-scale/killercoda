@@ -5,7 +5,16 @@
   "prHourlyLimit": 0,
   "prConcurrentLimit": 0,
   "branchConcurrentLimit": 0,
+  "mode": "full",
+  "commitMessageLowerCase": "auto",
+  "semanticCommits": "enabled",
+  "argocd": {
+    "fileMatch": ["^.*argo\\.yaml$"]
+  },
   "flux": {
-    "fileMatch": ["^.*\\flux.yaml$"]
+    "fileMatch": ["^.*flux\\.yaml$"]
+  },
+  "terraform": {
+    "enabled": false
   }
 }

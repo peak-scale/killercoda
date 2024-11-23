@@ -22,7 +22,6 @@ dive nginx:latest
 skopeo inspect docker://docker.io/library/nginx:latest
 ```{{exec}}
 
-
 ## Scanning
 
 > [Github](https://github.com/aquasecurity/trivy)
