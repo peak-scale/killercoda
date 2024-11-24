@@ -8,6 +8,7 @@
   "mode": "full",
   "commitMessageLowerCase": "auto",
   "semanticCommits": "enabled",
+  "ignoreUnstable": false,
   "argocd": {
     "fileMatch": ["^.*argo\\.yaml$"]
   },
