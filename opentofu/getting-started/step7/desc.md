@@ -23,7 +23,7 @@ tofu state ls
 Now, we are expecting to get a conflict when running:
 
 ```shell
-tofu plan & tofu apply
+tofu plan && tofu apply
 ```{{exec}}
 
 🤔 ... It just recreated the file?

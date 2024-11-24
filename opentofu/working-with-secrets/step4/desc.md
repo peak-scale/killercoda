@@ -13,7 +13,7 @@ We have created a new file called `production.tf` in your working directory. You
 Plan and Apply with the new given file `production.tf`.
 
 ```shell
-tofu plan & tofu apply
+tofu plan && tofu apply
 ```{{exec}}
 
 There's an error, what does it indicate?
