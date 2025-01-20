@@ -2,10 +2,9 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: peak-scale
+  name: headlamp
   namespace: flux-system
 spec:
-  type: "oci"
   interval: 1m0s
   timeout: 1m0s
-  url: oci://ghcr.io/peak-scale/charts/
+  url: https://headlamp-k8s.github.io/headlamp/

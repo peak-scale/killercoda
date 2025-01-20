@@ -5,5 +5,6 @@ metadata:
   name:  projectcapsule
   namespace: flux-system
 spec:
-  interval: 5m0s
+  interval: 1m0s
+  timeout: 1m0s
   url: https://projectcapsule.github.io/charts

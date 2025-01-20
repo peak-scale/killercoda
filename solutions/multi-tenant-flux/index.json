@@ -1,6 +1,6 @@
 {
-    "title": "Capsule-Argo-Addon",
-    "description": "Explore the functionality of the capsule-argo-addon from peakscale",
+    "title": "Multi Tenant Flux",
+    "description": "Explore our multitenant flux solution",
     "details": {
       "intro": {
         "text": "intro.md",

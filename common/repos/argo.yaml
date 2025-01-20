@@ -4,5 +4,6 @@ kind: HelmRepository
 metadata:
   name:  argo
 spec:
-  interval: 5m0s
+  interval: 1m0s
+  timeout: 1m0s
   url: https://argoproj.github.io/argo-helm
