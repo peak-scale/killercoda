@@ -1,0 +1,16 @@
+---
+apiVersion: capsule.clastix.io/v1beta2
+kind: Tenant
+metadata:
+  name: wind
+  labels:
+    app.kubernetes.io/type: prod
+spec:
+  owners:
+  - name: bob
+    kind: User
+  additionalRoleBindings:
+  - clusterRoleName: tenant-viewer
+    subjects:
+    - name: alice
+      kind: User
