@@ -2,7 +2,6 @@
     "title": "Solutions",
     "description": "Showcase of peak-scale open-source solutions",
     "items": [
-      { "path": "multi-tenant-argo" },
-      { "path": "multi-tenant-flux" }
+      { "path": "multi-tenant-argo" }
     ]
   }
