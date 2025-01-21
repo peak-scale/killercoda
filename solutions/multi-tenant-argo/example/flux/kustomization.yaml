@@ -6,3 +6,4 @@ resources:
   - namespace.yaml
   - podinfo.flux.yaml
   - repository.yaml
+  - rbac.yaml
