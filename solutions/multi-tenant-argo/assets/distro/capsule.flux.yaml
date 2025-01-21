@@ -15,6 +15,7 @@ metadata:
   name: capsule
   namespace: flux-system
 spec:
+  serviceAccountName: kustomize-controller
   interval: 30s
   targetNamespace: capsule-system
   releaseName: "capsule"

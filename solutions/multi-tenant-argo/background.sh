@@ -4,15 +4,8 @@ echo starting...
 mkdir -p /etc/peak-scale/
 touch -p /etc/peak-scale/setup-log
 
-
-# Install argo Client
-curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
-sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
-rm argocd-linux-amd64
-
-# Install Fluxcd
-curl -s https://fluxcd.io/install.sh | sudo bash
-flux install
+# Install Flux
+kubectl kustomize /root/.assets/flux/ | kubectl apply -f -
 
 # Install Distribution
 kubectl kustomize /root/.assets/distro/ | kubectl apply -f -
@@ -24,5 +17,13 @@ done
 # Apply Stuff
 kubectl kustomize /root/.assets/objects/ | kubectl apply -f -
 
+# Install argo Client
+curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
+rm argocd-linux-amd64
+
+# Install Fluxcd
+curl -s https://fluxcd.io/install.sh | sudo bash
+flux install
 
 touch /tmp/finished
