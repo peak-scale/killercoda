@@ -15,11 +15,11 @@ spec:
   interval: 30s
   chart:
     spec:
-      chart: capsule
-      version: "0.7.2"
+      chart: nginx
+      version: "*"
       sourceRef:
         kind: HelmRepository
-        name: projectcapsule
+        name: bitnami
       interval: 24h
   install:
     createNamespace: true

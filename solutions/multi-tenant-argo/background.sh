@@ -24,6 +24,5 @@ rm argocd-linux-amd64
 
 # Install Fluxcd
 curl -s https://fluxcd.io/install.sh | sudo bash
-flux install
 
 touch /tmp/finished
