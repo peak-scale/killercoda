@@ -14,7 +14,6 @@ spec:
   settings:
     structured:
       spec:
-        permitOnlyProjectScopedClusters: true
         namespaceResourceWhitelist:
           - group: "*"
             kind: "*"
@@ -24,8 +23,8 @@ spec:
     template: |
       spec:
         destinations:
-          - name: "my-cluster"
-            namespace: "my-namespace"
+          - name: "https://kubernetes.default.svc"
+            namespace: "*"
         sourceNamespaces:
         - {{ $.Config.Argo.Namespace | quote }}
         {{- range $_, $value := $.Tenant.Namespaces }}

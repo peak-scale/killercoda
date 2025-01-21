@@ -32,19 +32,14 @@ Below we see the three tenants currently deployed. It's also shown which of the 
 - **solar**
   - alice:
     - admin
-  - bob:
-    - tenant-viewer
 
 - **oil**
   - alice:
     - admin
   - bob:
-    - admin
     - tenant-viewer
 
 - **wind**
-  - alice:
-    - tenant-viewer
   - bob:
     - admin
 

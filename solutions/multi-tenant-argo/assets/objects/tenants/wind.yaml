@@ -9,8 +9,3 @@ spec:
   owners:
   - name: bob
     kind: User
-  additionalRoleBindings:
-  - clusterRoleName: tenant-viewer
-    subjects:
-    - name: alice
-      kind: User

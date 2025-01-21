@@ -9,12 +9,5 @@ metadata:
     argo.addons.projectcapsule.dev/decouple: "true"
 spec:
   owners:
-  - name: bob
-    kind: Group
   - name: alice
     kind: User
-  additionalRoleBindings:
-  - clusterRoleName: tenant-viewer
-    subjects:
-    - name: bob
-      kind: User
