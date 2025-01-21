@@ -4,5 +4,5 @@ kind: Kustomization
 namespace: flux-wind-sampler
 resources:
   - namespace.yaml
-  - nginx.flux.yaml
+  - podinfo.flux.yaml
   - repository.yaml
