@@ -23,7 +23,7 @@ spec:
     template: |
       spec:
         destinations:
-          - name: "https://kubernetes.default.svc"
+          - server: "https://kubernetes.default.svc"
             namespace: "*"
         sourceNamespaces:
         - {{ $.Config.Argo.Namespace | quote }}
