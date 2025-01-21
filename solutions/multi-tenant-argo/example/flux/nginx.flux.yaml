@@ -22,16 +22,3 @@ spec:
       remediateLastFailure: true
   driftDetection:
     mode: disabled
-  values:
-    crds:
-      install: true
-    tls:
-      # -- Start the true controller that injects the CA into mutating and validating webhooks, and CRD as well.
-      enableController: true
-      # -- When cert-manager is disabled, Capsule will generate the TLS certificate for webhook and CRDs conversion.
-      create: true
-    manager:
-      options:
-        capsuleUserGroups:
-        - "system:serviceaccounts:capsule-argo-addon"
-        forceTenantPrefix: false
