@@ -1,0 +1,10 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: headlamp
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  timeout: 1m0s
+  url: https://headlamp-k8s.github.io/headlamp/

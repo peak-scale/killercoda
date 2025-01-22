@@ -1,0 +1,79 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: headlamp
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  timeout: 1m0s
+  url: https://headlamp-k8s.github.io/headlamp/
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: headlamp
+  namespace: flux-system
+spec:
+  targetNamespace: headlamp
+  releaseName: "headlamp"
+  chart:
+    spec:
+      chart: headlamp
+      sourceRef:
+        kind: HelmRepository
+        name: headlamp
+      version: "0.27.0"
+  interval: 1m0s
+  install:
+    createNamespace: true
+    remediation:
+      retries: -1
+  upgrade:
+    remediation:
+      remediateLastFailure: true
+      retries: -1
+  postRenderers:
+    - kustomize:
+        patches:
+          - patch: |
+              - op: add
+                path: /spec/ports/0/nodePort
+                value: 30080
+            target:
+              kind: Service
+              name: headlamp
+  values:
+    service:
+      port: 80
+      type: NodePort
+    config:
+      pluginsDir: /build/plugins
+      #oidc:
+      #  clientID: "kubernetes"
+      #  clientSecret: "your-client-secret"
+      #  issuerURL: "=https://sso.buttah.cloud/realms/demo"
+      #  scopes: "openid profile email"
+    initContainers:
+      - command:
+          - /bin/sh
+          - -c
+          - mkdir -p /build/plugins && cp -r /plugins/* /build/plugins/
+        image: ghcr.io/headlamp-k8s/headlamp-plugin-flux:latest
+        imagePullPolicy: Always
+        name: headlamp-plugins
+        volumeMounts:
+          - mountPath: /build/plugins
+            name: headlamp-plugins
+    persistentVolumeClaim:
+      accessModes:
+        - ReadWriteOnce
+      enabled: true
+      size: 1Gi
+    volumeMounts:
+      - mountPath: /build/plugins
+        name: headlamp-plugins
+    volumes:
+      - name: headlamp-plugins
+        persistentVolumeClaim:
+          claimName: headlamp

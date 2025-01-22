@@ -2,6 +2,6 @@
     "title": "Solutions",
     "description": "Showcase of peak-scale open-source solutions",
     "items": [
-      { "path": "capsule-argo-addon" }
+      { "path": "multi-tenant-argo" }
     ]
   }

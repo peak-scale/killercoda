@@ -2,42 +2,38 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: peak-scale
+  name: cert-manager
   namespace: flux-system
 spec:
-  type: "oci"
   interval: 24h0m0s
-  url: oci://ghcr.io/peak-scale/charts/
+  url: https://charts.jetstack.io
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: capsule-argo-addon
+  name: cert-manager
+  namespace: flux-system
 spec:
+  serviceAccountName: kustomize-controller
   interval: 30s
-  releaseName: "capsule-argo-addon"
-  targetNamespace: "capsule-argo-addon"
+  releaseName: "cert-manager"
+  targetNamespace: "cert-manager"
   chart:
     spec:
-      chart: capsule-argo-addon
-      version: "0.1.0-alpha.5"
+      chart: cert-manager
+      version: "1.15.3"
       sourceRef:
         kind: HelmRepository
-        name: peak-scale
+        name: cert-manager
       interval: 24h
   install:
     createNamespace: true
   upgrade:
     remediation:
       remediateLastFailure: true
-      retries: -1      
-  dependsOn:
-    - name: capsule
-    - name: argocd
+      retries: -1
   driftDetection:
     mode: enabled
   values:
-    proxy:
+    crds:
       enabled: true
-      crds:
-        install: true

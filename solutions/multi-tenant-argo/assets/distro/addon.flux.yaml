@@ -1,0 +1,56 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: peak-scale
+  namespace: flux-system
+spec:
+  type: "oci"
+  interval: 1m0s
+  timeout: 1m0s
+  url: oci://ghcr.io/peak-scale/charts/
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: capsule-argo-addon
+spec:
+  serviceAccountName: kustomize-controller
+  interval: 30s
+  releaseName: "capsule-argo-addon"
+  targetNamespace: "capsule-argo-addon"
+  chart:
+    spec:
+      chart: capsule-argo-addon
+      version: "0.3.0"
+      sourceRef:
+        kind: HelmRepository
+        name: peak-scale
+      interval: 24h
+  install:
+    createNamespace: true
+  upgrade:
+    remediation:
+      remediateLastFailure: true
+      retries: -1      
+  dependsOn:
+    - name: capsule
+    - name: argocd
+  driftDetection:
+    mode: enabled
+  values:
+    webhooks:
+      enabled: true
+    config:
+      # -- Create Plugin Configuration
+      create: true
+      # -- Plugin Configuration Name
+      name: default
+      # -- Config Specification
+      spec:
+        argo:
+          destination: https://kubernetes.default.svc
+          destinationServiceAccounts: true
+          namespace: argocd
+          rbacConfigMap: argocd-rbac-cm
+
