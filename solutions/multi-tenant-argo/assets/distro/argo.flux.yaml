@@ -42,6 +42,10 @@ spec:
         nodePortHttp: 30080
         type: "NodePort"
     configs:
+      params:
+        "applicationsetcontroller.allowed.scm.providers": "https://github.com/,https://gitlab.com/"
+        "application.namespaces": "*"
+        "applicationsetcontroller.namespaces": "*"
       rbac:
         policy.csv: |
           # Define Policies
@@ -53,6 +57,7 @@ spec:
         accounts.guy: apiKey, login
         users.anonymous.enabled: "false"
         application.sync.impersonation.enabled: "true"
+        application.resourceTrackingMethod: "annotation+label"
         resource.customizations.ignoreDifferences.Namespace: |
           jqPathExpressions:
           - '.metadata.labels'
