@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: podinfo
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - list:
+      elements:
+      - stage: prod
+      - stage: dev
+  template:
+    metadata:
+      name: 'podinfo-{{.stage}}'
+    spec:
+      source:
+        repoURL: https://github.com/peak-scale/killercoda.git
+        targetRevision: dev
+        path: solutions/multi-tenant-argo/example/plain/frontend
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: wind-podinfo-{{stage}}
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true

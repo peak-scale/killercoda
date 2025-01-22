@@ -22,7 +22,7 @@ spec:
   chart:
     spec:
       chart: capsule-argo-addon
-      version: "0.2.2"
+      version: "0.3.0"
       sourceRef:
         kind: HelmRepository
         name: peak-scale
@@ -39,8 +39,8 @@ spec:
   driftDetection:
     mode: enabled
   values:
-    proxy:
-      enabled: false
+    webhooks:
+      enabled: true
     config:
       # -- Create Plugin Configuration
       create: true
