@@ -52,6 +52,7 @@ spec:
           p, role:anonymous, *, *, */*, deny
         policy.default: "role:anonymous"
       cm:
+        exec.enabled: "true"
         accounts.alice: apiKey, login
         accounts.bob: apiKey, login
         accounts.guy: apiKey, login

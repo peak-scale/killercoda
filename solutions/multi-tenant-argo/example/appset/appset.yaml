@@ -3,17 +3,19 @@ kind: ApplicationSet
 metadata:
   name: podinfo
 spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
   generators:
     - list:
         elements:
-          - stage: prod
-          - stage: dev
+          - env: prod
+          - env: dev
   template:
     metadata:
-      name: "podinfo-{{.stage}}"
+      name: 'podinfo-{{.env}}'
     spec:
       destination:
-        namespace: "wind-podinfo-{{.stage}}"
+        namespace: 'wind-podinfo-{{.env}}'
         server: https://kubernetes.default.svc
       project: wind
       source:
