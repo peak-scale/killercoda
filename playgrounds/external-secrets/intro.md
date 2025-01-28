@@ -1,14 +1,14 @@
-![Addon Icon](https://avatars.githubusercontent.com/u/129185620?s=280&v=4)
+![Addon Icon](https://external-secrets.io/latest/pictures/eso-round-logo.svg)
 
 The playground takes some time to be fully ready, please be patient.
 
-# Sealed Secrets
+# External Secrets
 
-SOPS is an editor of encrypted files that supports YAML, JSON, ENV, INI and BINARY formats and encrypts with AWS KMS, GCP KMS, Azure Key Vault, age, and PGP. ([demo](https://www.youtube.com/watch?v=YTEVyLXFiq0))
+External Secrets Operator is a Kubernetes operator that integrates external secret management systems like AWS Secrets Manager, HashiCorp Vault, Google Secrets Manager, Azure Key Vault, IBM Cloud Secrets Manager, CyberArk Conjur, Pulumi ESC and many more. The operator reads information from external APIs and automatically injects the values into a Kubernetes Secret. See [all providers](https://external-secrets.io/latest/provider/aws-secrets-manager/)
 
-![SOPS Demo](https://pkg.go.dev/badge/github.com/getsops/sops/v3.svg)
+![Overview](https://external-secrets.io/latest/pictures/diagrams-high-level-simple.png)
 
-[See the Source](https://github.com/getsops/sops)
+[See the Source](https://external-secrets.io/latest/)
 
 # Finishing
 

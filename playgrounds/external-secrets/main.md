@@ -1,67 +1,31 @@
-# Decrypt Secrets
+# External Secrets
 
 You will find different approaches how you can decrypt secrets with SOPS. It's best to visit their [documentation](https://getsops.io/) for more information.
 
+A very simplistic example is to use a [Gitlab project as provider](https://external-secrets.io/latest/provider/gitlab-variables/) for the secrets. The secrets are stored in the Gitlab project and the External Secrets Operator reads the secrets and creates Kubernetes Secrets.
 
-Let's see how you encrypt a first secret and deploy it to the cluster.
 
-## Seal a Secret
+# Vault (Openbao)
 
-Create a json/yaml-encoded Secret somehow:
+For any interactions with the client you need to set the following environment variables:
 
 ```shell
-echo -n bar | kubectl create secret generic mysecret --dry-run=client --from-file=foo=/dev/stdin -o json > mysecret.json
+export VAULT_ADDR=$(sed 's/PORT/30820/g' /etc/killercoda/host)
 ```{{exec}}
 
-You can inspect the secret, this is not secure to be published anywhere since it's only base64 encoded.
+The client is already installed in the environment, you can use it to interact with the Vault server.
 
 ```shell
-cat mysecret.json
+bao -h
 ```{{exec}}
 
-This is the important bit:
+Authenticate with root token:
 
 ```shell
-kubeseal --controller-name sealed-secrets --controller-namespace sealed-secrets -f mysecret.json -w mysealedsecret.json
+bao login
 ```{{exec}}
 
-You can inspect the sealed secret file `mysealedsecret.json`, this is safe to be published anywhere.
+Value for prompt is `root`{{exec}}
 
-```shell
-cat mysealedsecret.json
-```{{exec}}
+## Tutorial
 
-At this point `mysealedsecret.json` is safe to upload to Github, post on Twitter, etc. :D
-
-```shell
-kubectl create -f mysealedsecret.json
-```{{exec}}
-
-Profit! 
-
-```shell
-kubectl get secret mysecret
-```{{exec}}
-
-For every command you require `kubeseal`, you need to pass the following args:
-
-```shell
-kubeseal --controller-name sealed-secrets --controller-namespace sealed-secrets
-```{{copy}}
-
-You can also use the web [interface]({{TRAFFIC_HOST1_30080}})
-
-There are further Usage examples and more information on the [Sealed Secrets GitHub page](https://github.com/bitnami-labs/sealed-secrets?tab=readme-ov-file#usage)
-
-
-# Controller
-
-Note that this controller has a static sealing key-pair. So any secrets encrypted will use the same base key-pair, that's mainly for demonstration purposes. [Read More]()
-
-# Tools
-
-Additional tools, that can be used in combination with Sealed-Secrets.
-
-## Sealed-Secrets-Web
-
-[Sealed-Secrets-Web](https://github.com/bakito/sealed-secrets-web) is a web interface to manage your Sealed Secrets. You can access it [here]({{TRAFFIC_HOST1_30080}}).

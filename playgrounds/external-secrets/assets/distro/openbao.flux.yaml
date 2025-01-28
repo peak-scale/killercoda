@@ -7,7 +7,7 @@ metadata:
 spec:
   interval: 15s
   timeout: 1m0s
-  url: https://helm.releases.hashicorp.com
+  url: https://openbao.github.io/openbao-helm
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -37,11 +37,17 @@ spec:
   driftDetection:
     mode: enabled
   values:
+    server:
+      service:
+        type: NodePort
+        nodePort: 38200
+      dev:
+        enabled: true
+        devRootToken: "root"
     ui:
       enabled: true
-      publishNotReadyAddresses: true
       serviceType: "NodePort"
-      serviceNodePort: 30080
+      serviceNodePort: 30820
       externalPort: 8200
     csi:
       enabled: true
