@@ -1,4 +1,4 @@
-![Addon Icon](https://github.com/peak-scale/capsule-argo-addon/raw/main/docs/images/capsule-argo.png)
+![Addon Icon](https://avatars.githubusercontent.com/u/34656521?v=4)
 
 The playground takes some time to be fully ready, please be patient.
 

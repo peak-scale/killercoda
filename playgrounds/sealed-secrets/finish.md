@@ -1,9 +1,11 @@
 ## Wrapping Up
 
-Hope you enjoyed this showcase of one of our solutions!
+Thanks for using this playground!
 
 ## Support
 
-This addon is developed by the community. For enterprise support (production ready setup,tailor-made features) reach out to [Peak Scale](https://peakscale.ch/en/). We are always here to advise and support you according to your needs! 🦄
+We hope you liked this course and we were able to provide you with valuable information. Feel free to explore our other courses and scenarios. 🦄
+
+[https://killercoda.com/peakscale](https://killercoda.com/peakscale)
 
 ![Peak Scale Logo](../../assets/logos/peakscale/logo-vertical.png)
