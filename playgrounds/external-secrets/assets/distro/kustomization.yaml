@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: flux-system
 resources:
   - external-secrets.flux.yaml
-  - openbao.flux.yaml
+  - vault.flux.yaml

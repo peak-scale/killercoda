@@ -2,30 +2,30 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name:  sops-secrets-operator
+  name:  vault
   namespace: flux-system
 spec:
   interval: 15s
   timeout: 1m0s
-  url: https://isindir.github.io/sops-secrets-operator/
+  url: https://helm.releases.hashicorp.com
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: sops-secrets-operator
+  name: vault
   namespace: flux-system
 spec:
   serviceAccountName: kustomize-controller
   interval: 1m
-  targetNamespace: sops
-  releaseName: "sops-secrets-operator"
+  targetNamespace: vault
+  releaseName: "vault"
   chart:
     spec:
-      chart: sops-secrets-operator
-      version: "0.20.4"
+      chart: vault
+      version: "0.29.1"
       sourceRef:
         kind: HelmRepository
-        name: sops-secrets-operator
+        name: vault
       interval: 24h
   install:
     createNamespace: true
@@ -37,7 +37,18 @@ spec:
   driftDetection:
     mode: enabled
   values:
-    gpg:
+    server:
+      service:
+        type: NodePort
+        nodePort: 30820
+      dev:
+        enabled: true
+        devRootToken: "root"
+    ui:
       enabled: true
-      secret1: sops-gpg
-      secret2: sops-gpg
+      serviceType: "NodePort"
+      serviceNodePort: 30080
+      externalPort: 8200
+    csi:
+      enabled: true
+
