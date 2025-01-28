@@ -40,14 +40,14 @@ spec:
     server:
       service:
         type: NodePort
-        nodePort: 38200
+        nodePort: 30820
       dev:
         enabled: true
         devRootToken: "root"
     ui:
       enabled: true
       serviceType: "NodePort"
-      serviceNodePort: 30820
+      serviceNodePort: 30080
       externalPort: 8200
     csi:
       enabled: true
