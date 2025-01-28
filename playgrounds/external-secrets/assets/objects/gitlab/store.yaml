@@ -1,0 +1,27 @@
+---
+apiVersion: external-secrets.io/v1beta1
+kind: SecretStore
+metadata:
+  name: gitlab-secret-store
+spec:
+  refreshInterval: 15s
+  provider:
+    gitlab:
+      url: https://gitlab.com
+      auth:
+        SecretRef:
+          accessToken:
+            name: gitlab-secret
+            key: token
+      projectID: "66601210"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: gitlab-secret
+  labels: 
+    type: gitlab
+type: Opaque 
+stringData:
+  # It's a project access token, calm down
+  token: "glpat-TnGCdMboYNR-yksyiTff"
