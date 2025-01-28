@@ -30,4 +30,11 @@ kubectl kustomize /root/.assets/objects/ | kubectl apply -f -
 # Restart Controller to load new sealing key-pair
 kubectl -n sealed-secrets delete pod -l name=sealed-secrets-controller
 
+# Patch Web Context
+WEBUI=$(sed 's/PORT/30080/g' /etc/killercoda/host)
+kubectl patch deployment sealed-secrets-web -n sealed-secrets \
+  --type=json \
+  -p "[{\"op\":\"add\",\"path\":\"/spec/template/spec/containers/0/args/-\",\"value\":\"${WEBUI}/\"}]"
+
+
 touch /tmp/finished
