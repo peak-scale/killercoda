@@ -5,3 +5,4 @@ kind: Secret
 metadata:
   creationTimestamp: null
   name: sops-gpg
+  namespace: sops

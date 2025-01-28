@@ -2,7 +2,7 @@
 
 The playground takes some time to be fully ready, please be patient.
 
-# Sealed Secrets
+# SOPS
 
 SOPS is an editor of encrypted files that supports YAML, JSON, ENV, INI and BINARY formats and encrypts with AWS KMS, GCP KMS, Azure Key Vault, age, and PGP. ([demo](https://www.youtube.com/watch?v=YTEVyLXFiq0))
 

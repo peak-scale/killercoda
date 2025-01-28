@@ -1,6 +1,6 @@
 {
-    "title": "Sealed Secrets",
-    "description": "Explore the functionality of Sealed Secrets",
+    "title": "SOPS Secrets",
+    "description": "Explore the functionality of SOPS Secrets",
     "details": {
       "intro": {
         "text": "intro.md",
