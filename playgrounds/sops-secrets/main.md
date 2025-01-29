@@ -91,7 +91,7 @@ Can you decrypt the file again, to change it's content?
 
 ```shell
 sops -d -i secret.yaml
-```
+```{{exec}}
 
 That now also fails, because you are missing the private-key. The private-key is always required to decrypt information with SOPS. And that's also the trickiest aspect, distiputing private-keys to the correct people and in a safe fashion:
 
