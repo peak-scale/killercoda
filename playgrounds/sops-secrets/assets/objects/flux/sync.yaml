@@ -4,8 +4,10 @@ kind: Kustomization
 metadata:
   name: sops-encrypted
 spec:
+  prune: true
+  targetNamespace: flux-sops
   interval: 1m
-  path: "./playgrounds/sops-secrets/example"
+  path: "./playgrounds/sops-secrets/assets/example"
   sourceRef:
     kind: GitRepository
     name: sops-encrypted

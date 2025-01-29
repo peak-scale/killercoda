@@ -4,7 +4,66 @@ You will find different approaches how you can decrypt secrets with SOPS. It's b
 
 Let's see how you encrypt a first secret and deploy it to the cluster.
 
-## Decrypt a secret
+## SOSP Decryption (Flux Example)
+
+There's already a Flux Kustomization using SOPS to decrypt a secret, you can look ath the kustomization:
+
+```shell
+kubectl get kustomization -o yaml -n flux-sops
+```{{exec}}
+
+We need to make changes to the secrets, therefor we are changing directories (this directory is synced by flux):
+
+```shell
+cd .assets/example
+```
+
+You can see `basic-auth.yaml`, which is encrypted:
+
+```shell
+cat basic-auth.yaml
+```{{exec}}
+
+But not encrypted applied in the actual namespace:
+
+```shell
+kubectl get secret basic-auth -o yaml -n flux-sops
+```{{exec}}
+
+Now let's create a new Secret:
+
+```shell
+cat > secret.yaml <<EOF
+apiVersion: v1
+kind: Secret
+metadata:
+  name: secret-basic-auth
+type: kubernetes.io/basic-auth
+stringData:
+  username: admin
+  password: t0p-Secret
+EOF
+```{{copy}}
+
+Now we want to encrypt this file using sops:
+
+```shell
+sops -e -i secret.yaml
+```{{exec}}
+
+Looking at the file, it's now encrypted:
+
+
+
+
+
+Can you decrypt again?
+
+```shell
+sops -d -i secret.yaml
+```
+
+## Decrypt a secret (SOPS Operator/Argo)
 
 Lets create a secret file locally:
 
@@ -37,13 +96,13 @@ spec:
 EOF
 ```{{copy}}
 
+
+```shell
 sops --encrypt \
   --pgp 'A891D1199063B2B7CAA2DF40941386AD617DB8AC' \
   --encrypted-suffix='Templates' secrets.yaml \
   > secrets.enc.yaml
-
-A891D1199063B2B7CAA2DF40941386AD617DB8AC
-
+```{{exec}}
 
 Import the private key:
 

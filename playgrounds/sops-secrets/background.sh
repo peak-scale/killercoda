@@ -1,8 +1,7 @@
 #!/bin/bash
 set -x 
 echo starting...
-mkdir -p /etc/peak-scale/
-touch -p /etc/peak-scale/setup-log
+sudo apt install gnupg2
 
 # Install Flux
 kubectl kustomize /root/.assets/flux/ | kubectl apply -f -
