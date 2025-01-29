@@ -1,0 +1,17 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: sops-encrypted
+spec:
+  prune: true
+  targetNamespace: flux-sops
+  interval: 1m
+  path: "./playgrounds/sops-secrets/assets/example"
+  sourceRef:
+    kind: GitRepository
+    name: sops-encrypted
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg

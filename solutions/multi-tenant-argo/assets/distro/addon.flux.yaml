@@ -16,7 +16,7 @@ metadata:
   name: capsule-argo-addon
 spec:
   serviceAccountName: kustomize-controller
-  interval: 30s
+  interval: 15s
   releaseName: "capsule-argo-addon"
   targetNamespace: "capsule-argo-addon"
   chart:

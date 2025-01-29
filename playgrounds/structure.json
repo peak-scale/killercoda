@@ -5,6 +5,9 @@
       { "path": "containers" },
       { "path": "kubernetes" },
       { "path": "gitops" },
-      { "path": "opentofu" }
+      { "path": "opentofu" },
+      { "path": "sealed-secrets" },
+      { "path": "sops-secrets" },
+      { "path": "external-secrets" }
     ]
   }

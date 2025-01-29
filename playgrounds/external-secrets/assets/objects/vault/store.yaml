@@ -1,0 +1,27 @@
+apiVersion: external-secrets.io/v1beta1
+kind: SecretStore
+metadata:
+  name: dev-secrets
+  namespace: eso-vault
+spec:
+  refreshInterval: 15
+  provider:
+    vault:
+      server: "http://vault.vault.svc:8200"
+      version: "v2"
+      auth:
+        userPass:
+          # Path where the UserPass authentication backend is mounted
+          path: "userpass"
+          username: "eso-dev-syncer"
+          secretRef:
+            name: "vault-token"
+            key: "token"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: vault-token
+  namespace: eso-vault
+stringData:
+  token:  eso-dev-syncer
