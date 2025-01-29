@@ -14,7 +14,7 @@ metadata:
   name: argocd
 spec:
   serviceAccountName: kustomize-controller
-  interval: 15s
+  interval: 30s
   targetNamespace: argocd
   releaseName: "argocd"
   chart:
