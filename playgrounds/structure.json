@@ -2,11 +2,11 @@
     "title": "Playgrounds",
     "description": "Playgrounds for different technologies",
     "items": [
+      { "path": "capsule" },
       { "path": "containers" },
       { "path": "kubernetes" },
       { "path": "gitops" },
       { "path": "opentofu" },
-      { "path": "capsule" },
       { "path": "harbor" },
       { "path": "sealed-secrets" },
       { "path": "sops-secrets" },

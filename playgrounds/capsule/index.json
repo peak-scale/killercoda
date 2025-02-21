@@ -9,8 +9,12 @@
       },
       "steps": [
         {
-          "title": "Showcase",
+          "title": "Capsule",
           "text": "main.md" 
+        },
+        {
+          "title": "Capsule Proxy",
+          "text": "proxy.md" 
         }
       ],
       "assets": {
