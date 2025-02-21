@@ -27,10 +27,17 @@ EOF
 # Install Distribution
 kubectl kustomize /root/.assets/distro/ | kubectl apply -f -
 
+# Install OpenTofu
+snap install opentofu --classic
+
 # Verify Distribution
 while [ "$(kubectl get helmrelease -A -o jsonpath='{range .items[?(@.status.observedGeneration<0)]}{.metadata.namespace}{" "}{.metadata.name}{"\n"}{end}' | wc -l)" -ne 0 ]; do
   echo "Waiting for all HelmReleases to have observedGeneration >= 0..." >> /etc/peak-scale/setup-log
   sleep 5
 done
+
+cd ./assets/config
+export TF_VAR_harbor-url="${WEBUI}"
+tofu init && tofu apply -auto-approve
 
 touch /tmp/finished
