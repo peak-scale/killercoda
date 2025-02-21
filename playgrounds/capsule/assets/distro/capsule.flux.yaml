@@ -47,5 +47,42 @@ spec:
     manager:
       options:
         capsuleUserGroups:
-        - "system:serviceaccounts:capsule-argo-addon"
+        - "projectcapsule.dev"
         forceTenantPrefix: false
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: capsule-proxy
+  namespace: flux-system
+spec:
+  dependsOn:
+    - capsule
+  serviceAccountName: kustomize-controller
+  interval: 15s
+  targetNamespace: capsule-system
+  releaseName: "capsule-proxy"
+  chart:
+    spec:
+      chart: capsule-proxy
+      version: "0.9.0"
+      sourceRef:
+        kind: HelmRepository
+        name: projectcapsule
+      interval: 24h
+  install:
+    createNamespace: true
+    remediation:
+      retries: -1
+  upgrade:
+    remediation:
+      remediateLastFailure: true
+  driftDetection:
+    mode: disabled
+  values:
+    certManager:
+      generateCertificates: true
+    options:
+      extraArgs:
+        - "--feature-gates=ProxyClusterScoped=true"
+        - "--feature-gates=ProxyAllNamespaced=true"

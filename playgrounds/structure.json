@@ -6,6 +6,7 @@
       { "path": "kubernetes" },
       { "path": "gitops" },
       { "path": "opentofu" },
+      { "path": "capsule" },
       { "path": "sealed-secrets" },
       { "path": "sops-secrets" },
       { "path": "external-secrets" }
