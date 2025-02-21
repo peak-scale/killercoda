@@ -1,6 +1,6 @@
 provider "harbor" {
   url      = var.harbor_url
-  username = var.harbor_admin_username
-  password = var.harbor_admin_password
+  username = var.harbor_username
+  password = var.harbor_password
   insecure = var.harbor_insecure
 }
