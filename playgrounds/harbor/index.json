@@ -1,0 +1,31 @@
+{
+    "title": "Harbor",
+    "description": "Explore the functionality of Harbor (OCI Registry)",
+    "details": {
+      "intro": {
+        "text": "intro.md",
+        "foreground": "foreground.sh",
+        "background": "background.sh"
+      },
+      "steps": [
+        {
+          "title": "Showcase",
+          "text": "main.md" 
+        }
+      ],
+      "assets": {
+        "controlplane": [
+          {"file": "**", "target": "/root/.assets/", "chmod": "+x"}
+        ],
+        "host01": [
+          {"file": "**", "target": "/root/.assets/", "chmod": "+x"}
+        ]
+      },
+      "finish": {
+        "text": "finish.md"
+      }
+    },
+    "backend": {
+      "imageid": "kubernetes-kubeadm-1node-4GB"
+    }
+  }
