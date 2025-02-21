@@ -37,7 +37,7 @@ while [ "$(kubectl get helmrelease -A -o jsonpath='{range .items[?(@.status.obse
 done
 
 cd ./assets/config
-export TF_VAR_harbor-url="${WEBUI}"
+export TF_VAR_harbor_url="${WEBUI}"
 tofu init && tofu apply -auto-approve
 
 touch /tmp/finished

@@ -10,7 +10,7 @@ resource "harbor_project" "dockerhub" {
   enable_content_trust   = "true"
   vulnerability_scanning = "true"
   force_destroy          = true
-  registry_id            = try(harbor_registry.dockerhub[0].registry_id, null)
+  registry_id            = harbor_registry.dockerhub.registry_id
 }
 
 resource "harbor_registry" "gcr" {
@@ -25,7 +25,7 @@ resource "harbor_project" "gcr" {
   enable_content_trust   = "true"
   vulnerability_scanning = "true"
   force_destroy          = true
-  registry_id            = try(harbor_registry.gcr[0].registry_id, null)
+  registry_id            = harbor_registry.gcr.registry_id
 }
 
 resource "harbor_registry" "k8s" {
@@ -40,7 +40,7 @@ resource "harbor_project" "k8s" {
   enable_content_trust   = "true"
   vulnerability_scanning = "true"
   force_destroy          = true
-  registry_id            = try(harbor_registry.k8s[0].registry_id, null)
+  registry_id            = harbor_registry.k8s.registry_id
 }
 
 resource "harbor_registry" "chainguard" {
@@ -55,7 +55,7 @@ resource "harbor_project" "chainguard" {
   enable_content_trust   = "true"
   vulnerability_scanning = "true"
   force_destroy          = true
-  registry_id            = try(harbor_registry.chainguard[0].registry_id, null)
+  registry_id            = harbor_registry.chainguard.registry_id
 }
 
 
@@ -71,5 +71,5 @@ resource "harbor_project" "aws" {
   enable_content_trust   = "true"
   vulnerability_scanning = "true"
   force_destroy          = true
-  registry_id            = try(harbor_registry.aws[0].registry_id, null)
+  registry_id            = harbor_registry.aws.registry_id
 }
