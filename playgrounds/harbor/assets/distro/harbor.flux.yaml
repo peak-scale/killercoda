@@ -36,9 +36,18 @@ spec:
       remediateLastFailure: true
   driftDetection:
     mode: disabled
+  valuesFrom:
+    - kind: ConfigMap
+      name: harbor-values
+      valuesKey: values.yaml
   values:
     expose:
       type: nodePort
-      tls.enabled: false
-      nodePort.ports.http.nodePort: "30080"
-      nodePort.ports.https.nodePort: "30443"
+      tls:
+        enabled: false
+      nodePort:
+        ports:
+          http:
+            nodePort: "30080"
+          https:
+            nodePort: "30443"

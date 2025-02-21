@@ -5,6 +5,25 @@ echo starting...
 # Install Flux
 kubectl kustomize /root/.assets/flux/ | kubectl apply -f -
 
+# Create Required Configmap
+WEBUI=$(sed 's/PORT/30080/g' /etc/killercoda/host)
+COMMONNAME=$(echo "$WEBUI" | sed -E 's#https?://##')
+cat <<EOF | envsubst | kubectl apply -f -
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: harbor-values
+  namespace: flux-system
+data:
+  values.yaml: |
+    externalURL: "${WEBUI}"
+    expose:
+      tls:
+        auto:
+          commonName: "${COMMONNAME}"
+EOF
+
+
 # Install Distribution
 kubectl kustomize /root/.assets/distro/ | kubectl apply -f -
 
