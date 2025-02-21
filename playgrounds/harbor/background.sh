@@ -6,7 +6,7 @@ echo starting...
 kubectl kustomize /root/.assets/flux/ | kubectl apply -f -
 
 # Create Required Configmap
-WEBUI=$(sed 's/PORT/30080/g' /etc/killercoda/host)
+export WEBUI=$(sed 's/PORT/30080/g' /etc/killercoda/host)
 COMMONNAME=$(echo "$WEBUI" | sed -E 's#https?://##')
 cat <<EOF | envsubst | kubectl apply -f -
 apiVersion: v1

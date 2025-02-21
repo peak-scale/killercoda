@@ -1,6 +1,6 @@
 resource "harbor_user" "alice" {
   username = "alice"
-  password = "alicealice"
+  password = "Alice$01"
   full_name = "Alice Smith"
   email = "alice@example.com"
 }

@@ -36,6 +36,7 @@ spec:
     - --skip-provider-button=true
     - --pass-user-headers=true
     - --skip-auth-route="/api/health"
+    - --htpasswd-user-group="projectcapsule.dev"
     ingress:
       enabled: false
     livenessProbe:
