@@ -8,7 +8,7 @@ spec:
   serviceAccountName: kustomize-controller
   interval: 1m
   timeout: 10m
-  targetNamespace: capsule-systen
+  targetNamespace: capsule-system
   releaseName: "oauth2-proxy"
   chart:
     spec:
@@ -64,3 +64,78 @@ metadata:
 spec:
   interval: 24h0m0s
   url: https://oauth2-proxy.github.io/manifests
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: dashboard
+spec:
+  serviceAccountName: kustomize-controller
+  interval: 5m
+  releaseName: "kubernetes-dashboard"
+  targetNamespace: capsule-system
+  dependsOn:
+    - name: capsule
+  chart:
+    spec:
+      chart: kubernetes-dashboard
+      version: "6.0.8"
+      sourceRef:
+        kind: HelmRepository
+        name: kubernetes-dashboard
+      interval: 24h
+  install:
+    createNamespace: false
+  upgrade:
+    remediation:
+      remediateLastFailure: true
+  postRenderers:
+    - kustomize:
+        patches:
+        - target:
+            group: apps
+            version: v1
+            kind: Deployment
+            name: kubernetes-dashboard
+          patch: |-
+            # Add an init container that writes a kubeconfig into /kubeconfig
+            - op: add
+              path: /spec/template/spec/initContainers
+              value: [
+                {
+                  "name": "kubeconfig-init",
+                  "image": "busybox:latest",
+                  "imagePullPolicy": "IfNotPresent",
+                  "securityContext": {
+                    "runAsUser": 1000
+                  },
+                  "command": [
+                    "sh", "-c",
+                    "TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token); cat <<EOF > /kubeconfig/config\napiVersion: v1\nkind: Config\nclusters:\n- name: local\n  cluster:\n    server: https://capsule-proxy.capsule-system.svc:9001\n    insecure-skip-tls-verify: true\nusers:\n- name: default\n  user:\n    token: ${TOKEN}\ncontexts:\n- name: default\n  context:\n    cluster: local\n    user: default\ncurrent-context: default\nEOF"
+                  ],
+                  "volumeMounts": [
+                    {
+                      "name": "kubeconfig",
+                      "mountPath": "/kubeconfig"
+                    }
+                  ]
+                }
+              ]
+  values:
+    extraArgs:
+    - --kubeconfig=/etc/kubeconfig/config
+    extraVolumes:
+    - name: kubeconfig
+      emptyDir: {}
+    extraVolumeMounts:
+    - name: kubeconfig
+      mountPath: /etc/kubeconfig
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: kubernetes-dashboard
+spec:
+  interval: 24h0m0s
+  url: "https://kubernetes.github.io/dashboard/"
+
