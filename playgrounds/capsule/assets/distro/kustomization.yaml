@@ -3,5 +3,9 @@ kind: Kustomization
 namespace: flux-system
 resources:
   - capsule.flux.yaml
+<<<<<<< HEAD
   - cert-manager.flux.yaml
   - dashboard.flux.yaml
+=======
+  - cert-manager.flux.yaml
+>>>>>>> 617fc69ff3d33bc01fb139b28642a0c5e6fdfcb9

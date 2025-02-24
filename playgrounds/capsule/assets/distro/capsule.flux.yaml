@@ -22,7 +22,11 @@ spec:
   chart:
     spec:
       chart: capsule
+<<<<<<< HEAD
       version: "0.7.4"
+=======
+      version: "0.7.2"
+>>>>>>> 617fc69ff3d33bc01fb139b28642a0c5e6fdfcb9
       sourceRef:
         kind: HelmRepository
         name: projectcapsule
@@ -37,6 +41,7 @@ spec:
   driftDetection:
     mode: disabled
   values:
+<<<<<<< HEAD
     proxy:
       enabled: true
       certManager:
@@ -45,6 +50,8 @@ spec:
         extraArgs:
           - "--feature-gates=ProxyClusterScoped=true"
           - "--feature-gates=ProxyAllNamespaced=true"
+=======
+>>>>>>> 617fc69ff3d33bc01fb139b28642a0c5e6fdfcb9
     crds:
       install: true
     tls:
@@ -55,5 +62,10 @@ spec:
     manager:
       options:
         capsuleUserGroups:
+<<<<<<< HEAD
         - "projectcapsule.dev"
         forceTenantPrefix: false
+=======
+        - "system:serviceaccounts:capsule-argo-addon"
+        forceTenantPrefix: false
+>>>>>>> 617fc69ff3d33bc01fb139b28642a0c5e6fdfcb9

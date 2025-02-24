@@ -26,9 +26,12 @@ spec:
   driftDetection:
     mode: enabled
   values:
+    service:
+      type: NodePort
+      nodePort: 30080
     extraArgs:
-    - --upstream=http://grafana.observability-system.svc.cluster.local:80
-    - --cookie-name=grafana_oauth2_proxy
+    - --upstream=http://dashboard.capsule-system.svc.cluster.local:80
+    - --cookie-name=dashboard_oauth2_proxy
     - --proxy-prefix=/oauth
     - --ping-path=/oauth/healthy
     - --silence-ping-logging=true
