@@ -17,46 +17,51 @@ You can login as `bob`, where you have `guest` to a project called `solar` and `
 - Username: `bob`
 - Password: `Bobby$01`
 
+## User Interactions
 
-# User Interactions
+We first need to export the url for the harbor into an environment variable (this is just for this ephermal environment required):
+
+```shell
+export REGISTRY=$(sed -e 's/^https:\/\///' -e 's/PORT/30080/g' /etc/killercoda/host)
+```{{exec}}
+
 
 Here's how you can interact with the registries, if you would like to pull something from the proxied registiries, you just need to know from which registry, no authentication is necessary since they are public:
 
 ```shell
-docker pull {{TRAFFIC_HOST1_30080}}/dockerhub/busybox
+docker pull "${REGISTRY}/dockerhub/busybox"
 ```{{exec}}
 
-## As Bob
+### As Bob
 
 If you want to interact with the `wind` project, you must authroize yourself, since the project is private. The credentials are the same as in the logins above (if you are using external identities via OIDC or similar you create tokens).
 
 Login with the docker client:
 
 ```shell
-echo -n "Bobby\$01" | docker login {{TRAFFIC_HOST1_30080}}/wind -u bob --password-stdin
+echo -n "Bobby\$01" | docker login "${REGISTRY}/wind" -u bob --password-stdin
 ```{{exec}}
 
 Let's Tag the busybox image, so we can upload it to the wind project (execute the above pull command previously):
 
 ```shell
-docker tag  {{TRAFFIC_HOST1_30080}}/dockerhub/busybox {{TRAFFIC_HOST1_30080}}/wind/busybox
+docker tag  "${REGISTRY}/dockerhub/busybox" "${REGISTRY}/wind/busybox"
 ```{{exec}}
 
 Push to the wind project
 
 ```shell
-docker push {{TRAFFIC_HOST1_30080}}/wind/busybox
+docker push "${REGISTRY}/wind/busybox"
 ```{{exec}}
 
 You can now verify that the image was scanned and an SBOM was generated [via the Dashboard]({{TRAFFIC_HOST1_30080}}/wind/busybox)
 
-## As Alice
-
+### As Alice
 
 Login as `alice`:
 
 ```shell
-echo -n "Alice\$01" | docker login {{TRAFFIC_HOST1_30080}}/solar -u alice --password-stdin
-echo -n "Alice\$01" | docker login {{TRAFFIC_HOST1_30080}}/wind -u alice --password-stdin
+echo -n "Alice\$01" | docker login "${REGISTRY}/solar" -u alice --password-stdin
+echo -n "Alice\$01" | docker login "${REGISTRY}/wind" -u alice --password-stdin
 ```{{exec}}
 
