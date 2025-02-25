@@ -1,0 +1,97 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: keycloak
+spec:
+  serviceAccountName: kustomize-controller
+  interval: 5m
+  targetNamespace: keycloak-system
+  releaseName: "keycloak"
+  chart:
+    spec:
+      chart: keycloak
+      version: "24.4.10"
+      sourceRef:
+        kind: HelmRepository
+        name: keycloak
+      interval: 24h
+  install:
+    createNamespace: true
+    remediation:
+      retries: -1
+  upgrade:
+    remediation:
+      remediateLastFailure: true
+  driftDetection:
+    mode: "enabled"
+  values:
+    replicaCount: 1
+    image:
+      pullPolicy: IfNotPresent
+    production: true
+    # https://www.keycloak.org/server/reverseproxy
+    proxy: "edge"
+    auth:
+      adminUser: "keycloak"
+      adminPassword: "capsule"
+    extraEnvVars:
+    - name: KC_HEALTH_ENABLED
+      value: "true"
+    - name: "KC_LOG_LEVEL"
+      value: "debug"
+    #- name: "KC_DB_SCHEMA"
+    #  value: "keycloak"
+    podSecurityContext:
+      fsGroup: 1001
+      seccompProfile:
+        type: RuntimeDefault
+    containerSecurityContext:
+      runAsUser: 1001
+      runAsNonRoot: true
+      readOnlyRootFilesystem: false
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+    pdb:
+      create: false
+      minAvailable: 1
+    ingress:
+      enabled: false
+    metrics:
+      enabled: true
+    postgresql:
+      enabled: true
+    service:
+      nodePorts:
+        http:  30100
+        https: 30143
+    extraVolumes:
+    - name: themes
+      emptyDir: {}
+    extraVolumeMounts:
+    - name: themes
+      mountPath: /opt/bitnami/keycloak/themes/
+    initContainers:
+    - name: keycloak-theme
+      image: docker.io/oliverbaehler/dev:theme
+      imagePullPolicy: Always
+      command:
+      - sh
+      - -c
+      - |
+          cp -R /themes/keywind/theme/keywind/ /temp/keywind
+          chown -R 1001:root /temp
+          chmod +x /temp/*
+      volumeMounts:
+      - name: themes
+        mountPath: /temp/
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: keycloak
+spec:
+  interval: 24h0m0s
+  url: https://charts.bitnami.com/bitnami

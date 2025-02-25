@@ -5,3 +5,4 @@ resources:
   - capsule.flux.yaml
   - cert-manager.flux.yaml
   - dashboard.flux.yaml
+  - keycloak.flux.yaml

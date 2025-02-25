@@ -2,11 +2,32 @@
 set -x 
 echo starting...
 
+# OIDC Client
+OIDC_CLIENT="capsule"
+OIDC_SECRET="capsule"
+
+
+#oidc-setup/%: kubectl-oidc
+#	kubectl oidc-login setup \
+#		--username=$* \
+#		--password=$* \
+#		--oidc-issuer-url=https://sso-test.buttah.cloud/realms/demo \
+#		--oidc-client-id=kubernetes \
+#		--oidc-client-secret="NGNn51nggoVJFLZ6tas1GffrD1cnbRx0"
+
+
+
 # Install Flux
 kubectl kustomize /root/.assets/flux/ | kubectl apply -f -
 
 # Install Distribution
 kubectl kustomize /root/.assets/distro/ | kubectl apply -f -
+
+# Install Plugins
+kubectl krew install oidc-login
+
+# Install OpenTofu
+snap install opentofu --classic
 
 # Install Flux
 curl -s https://fluxcd.io/install.sh | sudo bash
