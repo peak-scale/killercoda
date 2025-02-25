@@ -1,12 +1,16 @@
-![Addon Icon](https://avatars.githubusercontent.com/u/147177907?s=200&v=4)
+![Addon Icon](https://www.talos.dev/images/logo.svg)
 
 The playground takes some time to be fully ready, please be patient.
 
-# Capsule
+# Talos
 
-Capsule implements a multi-tenant and policy-based environment in your Kubernetes cluster. It is designed as a micro-services-based ecosystem with the minimalist approach, leveraging only on upstream Kubernetes.
+Talos Linux is Linux designed for Kubernetes – secure, immutable, and minimal.
 
-[See the Source](https://github.com/projectcapsule/capsule)
+* Supports cloud platforms, bare metal, and virtualization platforms
+* All system management is done via an API. No SSH, shell or console
+* Production ready: supports some of the largest Kubernetes clusters in the world
+
+[See the Source](https://www.talos.dev/)
 
 # Finishing
 

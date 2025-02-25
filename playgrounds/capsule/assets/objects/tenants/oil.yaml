@@ -9,5 +9,5 @@ metadata:
     argo.addons.projectcapsule.dev/decouple: "true"
 spec:
   owners:
-  - name: alice
+  - name: bob
     kind: User

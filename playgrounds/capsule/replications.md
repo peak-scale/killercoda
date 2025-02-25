@@ -1,5 +1,5 @@
 
-# Capsule
+# Replications
 
 You as an `Cluster Administrator` have already created some tenants you want to share with your `Users`. To verify, list all the available Tenants:
 

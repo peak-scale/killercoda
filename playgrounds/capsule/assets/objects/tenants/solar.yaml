@@ -5,13 +5,14 @@ metadata:
   name: solar
   labels:
     app.kubernetes.io/type: prod
-  annotations:
-    argo.addons.projectcapsule.dev/read-only: "true"
-    argo.addons.projectcapsule.dev/decouple: "true"
 spec:
+  namespaceOptions:
+    quota: 2
   owners:
   - name: alice
     kind: User
+  - name: solar-users
+    kind: Group
   additionalRoleBindings:
   - clusterRoleName: tenant-viewer
     subjects:
