@@ -2,21 +2,6 @@
 set -x 
 echo starting...
 
-# OIDC Client
-OIDC_CLIENT="capsule"
-OIDC_SECRET="capsule"
-
-
-#oidc-setup/%: kubectl-oidc
-#	kubectl oidc-login setup \
-#		--username=$* \
-#		--password=$* \
-#		--oidc-issuer-url=https://sso-test.buttah.cloud/realms/demo \
-#		--oidc-client-id=kubernetes \
-#		--oidc-client-secret="NGNn51nggoVJFLZ6tas1GffrD1cnbRx0"
-
-
-
 # Install Flux
 kubectl kustomize /root/.assets/flux/ | kubectl apply -f -
 
@@ -43,19 +28,21 @@ kubectl kustomize /root/.assets/objects/ | kubectl apply -f -
 
 
 # Create Kubeconfigs
-mkdir /root/.kubconfigs && cd /root/.kubconfigs 
-curl -s https://raw.githubusercontent.com/projectcapsule/capsule/main/hack/create-user.sh | bash -s -- alice oil projectcapsule.dev,capsule.clastix.io
-mv alice-oil.kubeconfig alice.kubeconfig
-KUBECONFIG=alice.kubeconfig kubectl config set clusters.kind-capsule.certificate-authority-data $$(cat $(ROOTCA) | base64 |tr -d '\n')
-KUBECONFIG=alice.kubeconfig kubectl config set clusters.kind-capsule.server https://127.0.0.1:9001
+export PROXY_URL=$(sed 's/PORT/30443/g' /etc/killercoda/host)
 
-curl -s https://raw.githubusercontent.com/projectcapsule/capsule/main/hack/create-user.sh | bash -s -- bob gas projectcapsule.dev,capsule.clastix.io
-mv bob-gas.kubeconfig bob.kubeconfig
+mkdir /root/.kubconfigs && cd /root/.kubconfigs 
+curl -s https://raw.githubusercontent.com/projectcapsule/capsule/main/hack/create-user.sh | bash -s -- alice solar projectcapsule.dev,capsule.clastix.io
+mv alice-solar.kubeconfig alice.kubeconfig
+KUBECONFIG=alice.kubeconfig kubectl config set clusters.kind-capsule.server ${PROXY_URL}
+KUBECONFIG=alice.kubeconfig kubectl config set clusters.kind-capsule.certificate-authority-data $(cat $(ROOTCA) | base64 |tr -d '\n')
+
+curl -s https://raw.githubusercontent.com/projectcapsule/capsule/main/hack/create-user.sh | bash -s -- bob wind projectcapsule.dev,capsule.clastix.io
+mv bob-wind.kubeconfig bob.kubeconfig
 KUBECONFIG=bob.kubeconfig kubectl config set clusters.kind-capsule.certificate-authority-data $$(cat $(ROOTCA) | base64 |tr -d '\n')
 KUBECONFIG=bob.kubeconfig kubectl config set clusters.kind-capsule.server https://127.0.0.1:9001
 
-curl -s https://raw.githubusercontent.com/projectcapsule/capsule/main/hack/create-user.sh | bash -s -- joe gas projectcapsule.dev,capsule.clastix.io,foo.clastix.io
-mv joe-gas.kubeconfig foo.clastix.io.kubeconfig
+curl -s https://raw.githubusercontent.com/projectcapsule/capsule/main/hack/create-user.sh | bash -s -- joe green projectcapsule.dev,capsule.clastix.io,foo.clastix.io
+mv joe-green.kubeconfig foo.clastix.io.kubeconfig
 KUBECONFIG=foo.clastix.io.kubeconfig kubectl config set clusters.kind-capsule.certificate-authority-data $$(cat $(ROOTCA) | base64 |tr -d '\n')
 KUBECONFIG=foo.clastix.io.kubeconfig kubectl config set clusters.kind-capsule.server https://127.0.0.1:9001
 

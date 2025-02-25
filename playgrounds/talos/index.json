@@ -1,0 +1,31 @@
+{
+    "title": "Talos",
+    "description": "Explore the functionality of Talos",
+    "details": {
+      "intro": {
+        "text": "intro.md",
+        "foreground": "foreground.sh",
+        "background": "background.sh"
+      },
+      "steps": [
+        {
+          "title": "Talos",
+          "text": "main.md" 
+        }
+      ],
+      "assets": {
+        "controlplane": [
+          {"file": "**", "target": "/root/.assets/", "chmod": "+x"}
+        ],
+        "host01": [
+          {"file": "**", "target": "/root/.assets/", "chmod": "+x"}
+        ]
+      },
+      "finish": {
+        "text": "finish.md"
+      }
+    },
+    "backend": {
+      "imageid": "ubuntu"
+    }
+  }

@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   serviceAccountName: kustomize-controller
-  interval: 1m
+  interval: 15s
   timeout: 10m
   targetNamespace: capsule-system
   releaseName: "oauth2-proxy"
@@ -71,7 +71,7 @@ metadata:
   name: dashboard
 spec:
   serviceAccountName: kustomize-controller
-  interval: 5m
+  interval: 15s
   releaseName: "kubernetes-dashboard"
   targetNamespace: capsule-system
   dependsOn:
