@@ -6,13 +6,15 @@ variable "keycloak_url" {
 variable "keycloak_username" {
   type        = string
   description = "Keycloak Admin User"
-  sensitive   = true
+  sensitive   = false
+  default     = "keycloak"
 }
 
 variable "keycloak_password" {
   type        = string
   description = "Keycloak Admin Password"
-  sensitive   = true
+  sensitive   = false
+  default     = "keycloak"
 }
 
 variable "keycloak_insecure" {
@@ -34,6 +36,5 @@ variable "client_secret" {
 
 variable "client_uris" {
   type    = list(string)
-  default = ["us-west-1a"]
 }
 

@@ -40,10 +40,12 @@ And certain cluster-scoped APIs:
 kubectl --kubeconfig /root/.kubconfigs/alice.kubeconfig get ns
 ```{{exec}}
 
-As you can see, only the resources from `alice`s tenant are shown. This would also aggregate over multiple tenants.
-
+As you can see, only the resources from `alice`s tenant are shown. This would also aggregate over multiple tenants. `bob` can also see resources from the `solar` tenant because he's part of the tenant, meaning this applies not only to the owner spec, but all mentioned subjects.
 
 ## ProxySettings
+
+As `Cluster Administrator` you may have the requirement to improve the user experience and allow the to view certain resources. In this case you can create a 
+
 
 
 
