@@ -31,14 +31,17 @@ Now as alice you are able to LIST all of the `namespaced` APIs:
 
 ```shell
 kubectl --kubeconfig /root/.kubconfigs/alice.kubeconfig get pod -A
-kubectl --kubeconfig /root/.kubconfigs/alice.kubeconfig get svc -A
-```
+kubectl --kubeconfig /root/.kubconfigs/alice.kubeconfig get secret -A
+```{{exec}}
 
 And certain cluster-scoped APIs:
 
 ```shell
 kubectl --kubeconfig /root/.kubconfigs/alice.kubeconfig get ns
 ```{{exec}}
+
+As you can see, only the resources from `alice`s tenant are shown. This would also aggregate over multiple tenants.
+
 
 ## ProxySettings
 
