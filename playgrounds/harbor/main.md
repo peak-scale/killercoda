@@ -21,7 +21,7 @@ You can login as `bob`, where you have `guest` to a project called `solar` and `
 
 The Instance has the following URL:
 
-  * [{{TRAFFIC_HOST1_30080}}]({{TRAFFIC_HOST1_30080}})
+  * {{TRAFFIC_HOST1_30080}}{{copy}}
 
 ## User Interactions
 

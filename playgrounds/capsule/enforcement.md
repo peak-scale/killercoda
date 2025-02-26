@@ -1,5 +1,5 @@
 
-# Replications
+# Enforcement
 
 From the perspective of an `Cluster Administrator`, we want to ensure certain resources are distributed amongst the namespaces of tenants. This way we can control basic ctrical tenancy.
 

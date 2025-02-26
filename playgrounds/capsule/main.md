@@ -63,7 +63,7 @@ So let's impersonate `alice` and try to create a new namespace:
 
 ```shell
 kubectl create ns solar-test --as alice
-```
+```{{exec}}
 
 ... Now we are getting a 403. What's now the problem?
 

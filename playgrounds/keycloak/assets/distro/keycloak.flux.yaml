@@ -22,6 +22,7 @@ spec:
     mode: "enabled"
   values:
     replicaCount: 1
+    resourcesPreset: "none"
     image:
       pullPolicy: IfNotPresent
     production: true
@@ -29,7 +30,7 @@ spec:
     proxy: "edge"
     auth:
       adminUser: "keycloak"
-      adminPassword: "capsule"
+      adminPassword: "keycloak"
     extraEnvVars:
     - name: KC_HEALTH_ENABLED
       value: "true"
@@ -58,10 +59,13 @@ spec:
       enabled: true
     postgresql:
       enabled: true
+      primary:
+        resourcesPreset: "none"
     service:
+      type: "NodePort"
       nodePorts:
-        http:  30100
-        https: 30143
+        http:  30080
+        https: 30443
     extraVolumes:
     - name: themes
       emptyDir: {}

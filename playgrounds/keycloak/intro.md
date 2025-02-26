@@ -1,12 +1,14 @@
-![Addon Icon](https://avatars.githubusercontent.com/u/147177907?s=200&v=4)
+![Addon Icon](https://github.com/cncf/artwork/blob/main/projects/keycloak/icon/color/keycloak-icon-color.png?raw=true)
 
 The playground takes some time to be fully ready, please be patient.
 
-# Capsule
+# Keycloak
 
-Capsule implements a multi-tenant and policy-based environment in your Kubernetes cluster. It is designed as a micro-services-based ecosystem with the minimalist approach, leveraging only on upstream Kubernetes.
+Add authentication to applications and secure services with minimum effort. No need to deal with storing users or authenticating users.
 
-[See the Source](https://github.com/projectcapsule/capsule)
+Keycloak provides user federation, strong authentication, user management, fine-grained authorization, and more.
+
+[See the Source](https://github.com/keycloak/keycloak)
 
 # Finishing
 

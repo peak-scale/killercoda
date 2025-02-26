@@ -13,6 +13,14 @@
           "text": "main.md" 
         },
         {
+          "title": "Replications",
+          "text": "replications.md" 
+        },
+        {
+          "title": "Enforcement",
+          "text": "enforcement.md" 
+        },
+        {
           "title": "Capsule Proxy",
           "text": "proxy.md" 
         }

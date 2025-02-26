@@ -1,7 +1,7 @@
 apiVersion: capsule.clastix.io/v1beta2
 kind: GlobalTenantResource
 metadata:
-  name: renewable-pull-secrets
+  name: zero-trust-netpol
 spec:
   tenantSelector:
     matchLabels:
