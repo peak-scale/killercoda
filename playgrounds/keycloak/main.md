@@ -18,16 +18,19 @@ The Administration-User has the following credentials:
 The following users can be used:
 
 **Alice**
+
 username: `Alice`{{copy}}
 email: `alice@killercoda.com`{{copy}}
 password: `alice`{{copy}}
 
 **Bob**
+
 username: `Bob`{{copy}}
 email: `bob@killercoda.com`{{copy}}
 password: `bob`{{copy}}
 
 **John**
+
 username: `John`{{copy}}
 email: `john@killercoda.com`{{copy}}
 password: `john`{{copy}}

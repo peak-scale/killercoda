@@ -25,7 +25,7 @@ spec:
     resourcesPreset: "none"
     image:
       pullPolicy: IfNotPresent
-    production: true
+    production: false
     # https://www.keycloak.org/server/reverseproxy
     proxy: "edge"
     auth:
@@ -33,9 +33,9 @@ spec:
       adminPassword: "keycloak"
     extraEnvVars:
     - name: KC_HEALTH_ENABLED
-      value: "true"
+      value: "false"
     - name: "KC_LOG_LEVEL"
-      value: "debug"
+      value: "info"
     #- name: "KC_DB_SCHEMA"
     #  value: "keycloak"
     podSecurityContext:
