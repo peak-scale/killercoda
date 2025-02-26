@@ -17,6 +17,12 @@ You can login as `bob`, where you have `guest` to a project called `solar` and `
 - Username: `bob`
 - Password: `Bobby$01`
 
+## Instance
+
+The Instance has the following URL:
+
+  * [{{TRAFFIC_HOST1_30080}}]({{TRAFFIC_HOST1_30080}})
+
 ## User Interactions
 
 We first need to export the url for the harbor into an environment variable (this is just for this ephermal environment required):
