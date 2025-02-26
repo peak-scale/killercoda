@@ -1,0 +1,141 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: oauth2-proxy
+  namespace: flux-system
+spec:
+  serviceAccountName: kustomize-controller
+  interval: 15s
+  timeout: 10m
+  targetNamespace: capsule-system
+  releaseName: "oauth2-proxy"
+  chart:
+    spec:
+      chart: oauth2-proxy
+      version: "7.12.1"
+      sourceRef:
+        kind: HelmRepository
+        name: oauth2-proxy
+      interval: 24h
+  install:
+    remediation:
+      retries: -1
+  upgrade:
+    remediation:
+      retries: -1
+  driftDetection:
+    mode: enabled
+  values:
+    service:
+      type: NodePort
+      nodePort: 30080
+    extraArgs:
+    - --upstream=http://dashboard.capsule-system.svc.cluster.local:80
+    - --cookie-name=dashboard_oauth2_proxy
+    - --proxy-prefix=/oauth
+    - --ping-path=/oauth/healthy
+    - --silence-ping-logging=true
+    - --reverse-proxy=true
+    - --skip-provider-button=true
+    - --pass-user-headers=true
+    - --skip-auth-route="/api/health"
+    - --htpasswd-user-group="projectcapsule.dev"
+    ingress:
+      enabled: false
+    livenessProbe:
+      enabled: false
+    readinessProbe:
+      enabled: false
+    securityContext:
+      fsGroup: 2000
+    htpasswdFile:
+      enabled: true
+      entries:
+      - "alice:$2y$05$Xw/FyWKA/DSiTEsPC9GoA.wQ1anlI09CP.eTrU2lQozPjXqvJ.Tce"
+      - "bob:$2y$05$ix22yIz/VQMgpLWFxluxqOc8Qvq57HFSap8JPcQbMhkI4ogJMpKKG"
+      - "john:$2y$05$rgC8qSRCyZVaKBpuIuHKeOJDXHnVV.EWvRJENGO0bPjHfmnBh7/Sq"
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: oauth2-proxy
+  namespace: flux-system
+spec:
+  interval: 24h0m0s
+  url: https://oauth2-proxy.github.io/manifests
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: dashboard
+spec:
+  serviceAccountName: kustomize-controller
+  interval: 15s
+  releaseName: "kubernetes-dashboard"
+  targetNamespace: capsule-system
+  dependsOn:
+    - name: capsule
+  chart:
+    spec:
+      chart: kubernetes-dashboard
+      version: "7.10.5"
+      sourceRef:
+        kind: HelmRepository
+        name: kubernetes-dashboard
+      interval: 24h
+  install:
+    createNamespace: false
+  upgrade:
+    remediation:
+      remediateLastFailure: true
+  postRenderers:
+    - kustomize:
+        patches:
+        - target:
+            group: apps
+            version: v1
+            kind: Deployment
+            name: kubernetes-dashboard
+          patch: |-
+            # Add an init container that writes a kubeconfig into /kubeconfig
+            - op: add
+              path: /spec/template/spec/initContainers
+              value: [
+                {
+                  "name": "kubeconfig-init",
+                  "image": "busybox:latest",
+                  "imagePullPolicy": "IfNotPresent",
+                  "securityContext": {
+                    "runAsUser": 1000
+                  },
+                  "command": [
+                    "sh", "-c",
+                    "TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token); cat <<EOF > /kubeconfig/config\napiVersion: v1\nkind: Config\nclusters:\n- name: local\n  cluster:\n    server: https://capsule-proxy.capsule-system.svc:9001\n    insecure-skip-tls-verify: true\nusers:\n- name: default\n  user:\n    token: ${TOKEN}\ncontexts:\n- name: default\n  context:\n    cluster: local\n    user: default\ncurrent-context: default\nEOF"
+                  ],
+                  "volumeMounts": [
+                    {
+                      "name": "kubeconfig",
+                      "mountPath": "/kubeconfig"
+                    }
+                  ]
+                }
+              ]
+  values:
+    extraArgs:
+    - --kubeconfig=/etc/kubeconfig/config
+    extraVolumes:
+    - name: kubeconfig
+      emptyDir: {}
+    extraVolumeMounts:
+    - name: kubeconfig
+      mountPath: /etc/kubeconfig
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: kubernetes-dashboard
+spec:
+  interval: 24h0m0s
+  url: "https://kubernetes.github.io/dashboard/"
+

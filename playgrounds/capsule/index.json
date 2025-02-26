@@ -1,0 +1,43 @@
+{
+    "title": "Capsule",
+    "description": "Explore the functionality of Capsule (Kubernetes Multi-Tenancy)",
+    "details": {
+      "intro": {
+        "text": "intro.md",
+        "foreground": "foreground.sh",
+        "background": "background.sh"
+      },
+      "steps": [
+        {
+          "title": "Capsule",
+          "text": "main.md" 
+        },
+        {
+          "title": "Replications",
+          "text": "replications.md" 
+        },
+        {
+          "title": "Enforcement",
+          "text": "enforcement.md" 
+        },
+        {
+          "title": "Capsule Proxy",
+          "text": "proxy.md" 
+        }
+      ],
+      "assets": {
+        "controlplane": [
+          {"file": "**", "target": "/root/.assets/", "chmod": "+x"}
+        ],
+        "host01": [
+          {"file": "**", "target": "/root/.assets/", "chmod": "+x"}
+        ]
+      },
+      "finish": {
+        "text": "finish.md"
+      }
+    },
+    "backend": {
+      "imageid": "kubernetes-kubeadm-1node-4GB"
+    }
+  }

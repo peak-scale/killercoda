@@ -2,12 +2,17 @@
     "title": "Playgrounds",
     "description": "Playgrounds for different technologies",
     "items": [
+      { "path": "capsule" },
       { "path": "containers" },
+      { "path": "external-secrets" },
+      { "path": "keycloak" },
       { "path": "kubernetes" },
       { "path": "gitops" },
       { "path": "opentofu" },
+      { "path": "harbor" },
       { "path": "sealed-secrets" },
       { "path": "sops-secrets" },
-      { "path": "external-secrets" }
+      { "path": "talos" },
+      { "path": "vault" }
     ]
   }
