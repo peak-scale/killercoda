@@ -54,7 +54,7 @@ Push to the wind project
 docker push "${REGISTRY}/wind/busybox"
 ```{{exec}}
 
-You can now verify that the image was scanned and an SBOM was generated [via the Dashboard]({{TRAFFIC_HOST1_30080}}/wind/busybox)
+You can now verify that the image was scanned and an SBOM was generated via the Dashboard.
 
 ### As Alice
 

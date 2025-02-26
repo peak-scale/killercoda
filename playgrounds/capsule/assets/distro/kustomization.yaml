@@ -4,4 +4,3 @@ namespace: flux-system
 resources:
   - capsule.flux.yaml
   - cert-manager.flux.yaml
-  - keycloak.flux.yaml

@@ -12,7 +12,6 @@ resource "harbor_user" "bob" {
   email = "bob@example.com"
 }
 
-
 resource "harbor_project" "solar" {
   name                        = "solar"
   public                      = false
@@ -42,7 +41,7 @@ resource "harbor_project" "wind" {
 resource "harbor_project_member_user" "wind" {
   project_id    = harbor_project.wind.id
   user_name     = "bob"
-  role          = "master"
+  role          = "maintainer"
 }
 
 resource "harbor_project_member_user" "wind-guest" {
