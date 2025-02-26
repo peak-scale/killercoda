@@ -1,6 +1,8 @@
 
 # Replications
 
+[See Reference](https://projectcapsule.dev/docs/tenants/replications/)
+
 From the perspective of an `Cluster Administrator`, we want to ensure certain resources are distributed amongst the namespaces of tenants. This way we can control basic ctrical tenancy.
 
 If we look at [Networkpolicies](https://kubernetes.io/docs/concepts/services-networking/network-policies/), it's a core component of multi-tenancy. We should always isolate all the namespaces from tenants with a zero-trust networkpolicy. This way no communication amongst namespaces is possible.
@@ -53,7 +55,7 @@ data:
   .dockerconfigjson: ewogICAgImF1dGhzIjogewogICAgICAgICJodHRwczovL2luZGV4LmRvY2tlci5pby92MS8iOiB7CiAgICAgICAgICAgICJhdXRoIjogImMzUi4uLnpFMiIKICAgICAgICB9CiAgICB9Cn0K
 type: kubernetes.io/dockerconfigjson
 EOF
-```{{exec}
+```{{exec}}
 
 Now let's create a `TenantResource` which replicates the secret to the other solar namespaces:
 
@@ -75,7 +77,7 @@ spec:
             matchLabels:
               distribute: "yes"
 EOF
-```{{exec}
+```{{exec}}
 
 After creating the `TenantResource` we can take a look at it:
 

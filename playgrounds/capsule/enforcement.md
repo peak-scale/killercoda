@@ -1,90 +1,89 @@
 
 # Enforcement
 
-From the perspective of an `Cluster Administrator`, we want to ensure certain resources are distributed amongst the namespaces of tenants. This way we can control basic ctrical tenancy.
+[See Reference](https://projectcapsule.dev/docs/tenants/enforcement/)
 
-If we look at [Networkpolicies](https://kubernetes.io/docs/concepts/services-networking/network-policies/), it's a core component of multi-tenancy. We should always isolate all the namespaces from tenants with a zero-trust networkpolicy. This way no communication amongst namespaces is possible.
+From the perspective of an `Cluster Administrator`, we want to ensure Tenants can only allocate certain Resources from our cluster.
 
-Let's see if there are already any Networkpolicies:
-
-```shell
-kubectl get netpol -A 
-```{{exec}}
-
-Turns out there are already policies in the namespaces we just created:
+We can update the tenant solar, that it only allows to usage of the selected PriorityClasses. If no PriorityClass is set, we can overwrite that on tenant basis before considering the cluster-wide default. Let's inspect the PriorityClasses intended for Customers:
 
 ```shell
-solar-prod    zero-trust       <none>                        3m57s
-solar-test    zero-trust       <none>                        3m58s
+kubectl get priorityclass -l consumer=customer
 ```
 
-Looking at one, it does exactly what we are lookin to do:
+You can see best-effort is globaldefault, meaning it would be set by default.
+
+Now we adjust the tenant `solar`, that only PriorityClasses with the label `consumer=customer` are allowed:
 
 ```shell
-kubectl get netpol zero-trust -n solar-prod -o yaml
+kubectl apply -f - <<EOF
+---
+apiVersion: capsule.clastix.io/v1beta2
+kind: Tenant
+metadata:
+  name: solar
+  labels:
+    app.kubernetes.io/type: prod
+spec:
+  namespaceOptions:
+    quota: 2
+  owners:
+  - name: alice
+    kind: User
+  - name: solar-users
+    kind: Group
+  additionalRoleBindings:
+  - clusterRoleName: tenant-viewer
+    subjects:
+    - kind: User
+      name: bob
+
+  # This is new
+  priorityClasses:
+    default: "customer"
+    matchLabels:
+      consumer: "customer"
+EOF
 ```{{exec}}
 
-This is thanks to [Replications/Resources](https://projectcapsule.dev/docs/tenants/replications/#globaltenantresource)
+Great, now we try to schedule a new pod into `solar-prod`, using the priorityClass `system-node-critical` (which should not be used by tenants):
 
-We have already created a replication in advance, which deploys this networkpolicy to all namespaces of the solar tenant, review it:
-
-```shell
-kubectl get GlobalTenantResource zero-trust-netpol -o yaml
-```{{exec}}
-
-`GlobalTenantResource` are a greate way to ensure namespaced objects or replicate one object to these namespaces. The resources are meant for `Cluster Administrators` to control their fleet of tenants and create the boundaries to their cluster, that they require.
-
-## Tenant-Owner
-
-As an `Tenant Owner` you might have the desire to distribute resources amongst all the namespaces in your tenant. This can be achieved with `TenantResource`. They are scoped to the tenant where they are created in.
-
-Let's create a new docker pull secrets (pretend that's like a token from a harbor registry or something like that). You as `Tenant Owner` want to distribute that secret across your tenant. First create the secret.
 
 ```shell
 kubectl create --as alice --as-group projectcapsule.dev -f - <<EOF
 apiVersion: v1
-kind: Secret
+kind: Pod
 metadata:
-  name: my-pullsecret
+  name: pod-node-critical
   namespace: solar-prod
-  labels:
-    distribute: "yes"
-data:
-  .dockerconfigjson: ewogICAgImF1dGhzIjogewogICAgICAgICJodHRwczovL2luZGV4LmRvY2tlci5pby92MS8iOiB7CiAgICAgICAgICAgICJhdXRoIjogImMzUi4uLnpFMiIKICAgICAgICB9CiAgICB9Cn0K
-type: kubernetes.io/dockerconfigjson
+spec:
+  containers:
+  - name: busybox
+    image: busybox:latest
+  priorityClassName: system-node-critical
 EOF
-```{{exec}
+```{{exec}}
 
-Now let's create a `TenantResource` which replicates the secret to the other solar namespaces:
+That's being blocked! That's what we as Cluster Administrators expected. Let's try one, where we don't set the `priorityClassName`:
 
 ```shell
 kubectl create --as alice --as-group projectcapsule.dev -f - <<EOF
-apiVersion: capsule.clastix.io/v1beta2
-kind: TenantResource
+apiVersion: v1
+kind: Pod
 metadata:
-  name: solar-pullsecret
+  name: pod-default-priority
   namespace: solar-prod
 spec:
-  resyncPeriod: 60s
-  resources:
-    - namespacedItems:
-        - apiVersion: v1
-          kind: Secret
-          namespace: solar-prod
-          selector:
-            matchLabels:
-              distribute: "yes"
+  containers:
+  - name: busybox
+    image: busybox:latest
 EOF
-```{{exec}
-
-After creating the `TenantResource` we can take a look at it:
-
-```shell
-kubectl get tenantresource -n solar-prod -o yaml
 ```{{exec}}
 
-And we see the resource was successfully distributed to the other namespaces:
+If we verify the priorityClass for the pod, it's set to the tenant default:
 
 ```shell
- kubectl get secret -A
+kubectl get pod pod-default-priority -n solar-prod -o jsonpath='{.spec.priorityClassName}'
 ```{{exec}}
+
+With these same principles you can control all relevant scheduling of resources.

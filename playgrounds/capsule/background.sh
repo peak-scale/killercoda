@@ -29,19 +29,22 @@ kubectl kustomize /root/.assets/objects/ | kubectl apply -f -
 # Create Kubeconfigs
 touch /tmp/finished
 
-export PROXY_URL=$(sed 's/PORT/30443/g' /etc/killercoda/host)
+kubectl get secret capsule-proxy -n capsule-system -o jsonpath='{.data.ca\.crt}'
+
+export ROOT_CA=$(kubectl get secret capsule-proxy -n capsule-system -o jsonpath='{.data.ca\.crt}')
 mkdir /root/.kubconfigs && cd /root/.kubconfigs 
+
 curl -s https://raw.githubusercontent.com/projectcapsule/capsule/main/hack/create-user.sh | bash -s -- alice solar projectcapsule.dev,solar
 mv alice-solar.kubeconfig alice.kubeconfig
-KUBECONFIG=alice.kubeconfig kubectl config set clusters.kubernetes.server ${PROXY_URL}
+KUBECONFIG=alice.kubeconfig kubectl config set clusters.kubernetes.certificate-authority-data ${ROOT_CA}
 KUBECONFIG=alice.kubeconfig kubectl config set clusters.kubernetes.server https://127.0.0.1:9001
 
 curl -s https://raw.githubusercontent.com/projectcapsule/capsule/main/hack/create-user.sh | bash -s -- bob wind projectcapsule.dev,wind
 mv bob-wind.kubeconfig bob.kubeconfig
-KUBECONFIG=bob.kubeconfig kubectl config set clusters.kubernetes.certificate-authority-data $$(cat $(ROOTCA) | base64 |tr -d '\n')
-KUBECONFIG=bob.kubeconfig kubectl config set clusters.kind-capsule.server https://127.0.0.1:9001
+KUBECONFIG=bob.kubeconfig kubectl config set clusters.kubernetes.certificate-authority-data ${ROOT_CA}
+KUBECONFIG=bob.kubeconfig kubectl config set clusters.kubernetes.server https://127.0.0.1:9001
 
 curl -s https://raw.githubusercontent.com/projectcapsule/capsule/main/hack/create-user.sh | bash -s -- joe green projectcapsule.dev,green
-mv joe-green.kubeconfig foo.clastix.io.kubeconfig
-KUBECONFIG=foo.clastix.io.kubeconfig kubectl config set clusters.kind-capsule.certificate-authority-data $$(cat $(ROOTCA) | base64 |tr -d '\n')
-KUBECONFIG=foo.clastix.io.kubeconfig kubectl config set clusters.kind-capsule.server https://127.0.0.1:9001
+mv joe-green.kubeconfig joe.kubeconfig
+KUBECONFIG=joe.kubeconfig kubectl config set clusters.kubernetes.certificate-authority-data ${ROOT_CA}
+KUBECONFIG=joe.kubeconfig kubectl config set clusters.kubernetes.server https://127.0.0.1:9001
