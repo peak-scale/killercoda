@@ -42,7 +42,7 @@ But now there's a conflict when confirming the `apply`:
 We can verify that by looking at the actual infrastructure:
 
 ```shell
-kubectl get pod nginx -n default -o yaml
+kubectl get pod nginx -n default
 ```{{exec}}
 
 Indeed there's already a Pod with that name. Now come the hard questions:

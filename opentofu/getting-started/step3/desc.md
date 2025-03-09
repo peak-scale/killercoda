@@ -9,9 +9,11 @@ Complete these tasks for this step:
 
 * Before anything is done, you should review the changes that will be made to your infrastructure. This is done by 
 running the [plan command](https://opentofu.org/docs/cli/commands/plan):
+
 ```shell
 tofu plan
 ```{{exec}}
+
 As you can see, the plan indicates that a new file `hello.txt` should be created. We have certain attributes which are
 not yet known, because the object does not yet exist on the system.
 

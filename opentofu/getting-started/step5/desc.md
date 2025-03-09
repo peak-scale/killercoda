@@ -37,7 +37,7 @@ tofu apply -auto-approve
 Verify that the new file was created:
 
 ```shell
-cat ./goodbye.txt
+cat goodbye.txt
 ```{{exec}}
 
 ### Task 2: Change content
@@ -60,7 +60,7 @@ tofu plan
 ```{{exec}}
 
 You don't have to worry about the removal of the old file, OpenTofy will take care of it. This kind of "Garbage Collection"
-is possible because of the state file. Now you can apply the changes:
+is possible because the state file tracks the resources. Now you can apply the changes:
 
 ```shell
 tofu apply -auto-approve

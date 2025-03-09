@@ -18,7 +18,7 @@ Complete these tasks for this step:
 ### Task 1: First main.tf
 
 Create a new file called `main.tf`. The file name does not matter, but it is a common convention to name the main
-configuration file `main.tf`. As long as your file has a `.tf` extension in the current directory, Terraform will
+configuration file `main.tf`. As long as your file has a `.tf` extension in the current directory, OpenTofu will
 recognize it as a configuration file. This does not work for subdirectories.
 
 ```shell
@@ -59,8 +59,8 @@ mainly does three things:
 [backend configuration](https://opentofu.org/docs/language/settings/backends/configuration/) which specify where to put
 the state file.
 - read the `.tf` files in the root directory, looking for the
-[module](https://opentofu.org/docs/language/modules/develop/) blocks to download/copy (modules are simply containing
-additional configuration and are used for creating abstractions i.e. boundle and reuse code).
+[module](https://opentofu.org/docs/language/modules/develop/) blocks to download/copy (modules contain
+additional configuration and are used for creating abstractions i.e. boundle and reuse the code).
 - read the `.tf` files in the root directory, looking for the provider blocks to download and configure.
 
 
