@@ -59,13 +59,13 @@ result=$(hcl2json ~/scenario/pod.tf | jq '
     $item.provider == "${kubernetes.k8s}"
   )
 ')
-if [ "$result" = "false" ]; then
+if [[ -z "$result" || "$result" = "false" ]]; then
   exit 1
 fi
 
 result=$(hcl2json ~/scenario/provider.tf | jq '
   any(.provider.kubernetes[]; .alias == "k8s")
 ')
-if [ "$result" = "false" ]; then
+if [[ -z "$result" || "$result" = "false" ]]; then
   exit 1
 fi
