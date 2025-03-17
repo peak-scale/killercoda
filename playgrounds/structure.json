@@ -13,6 +13,7 @@
       { "path": "sealed-secrets" },
       { "path": "sops-secrets" },
       { "path": "talos" },
+      { "path": "trivy" },
       { "path": "vault" }
     ]
   }
