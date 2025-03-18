@@ -8,12 +8,12 @@
       { "path": "keycloak" },
       { "path": "kubernetes" },
       { "path": "gitops" },
+      { "path": "openbao" },
       { "path": "opentofu" },
       { "path": "harbor" },
       { "path": "sealed-secrets" },
       { "path": "sops-secrets" },
       { "path": "talos" },
-      { "path": "trivy" },
-      { "path": "vault" }
+      { "path": "trivy" }
     ]
   }
