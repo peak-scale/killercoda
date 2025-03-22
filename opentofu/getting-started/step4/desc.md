@@ -1,4 +1,5 @@
-The command `plan` lets you preview the changes OpenTofu will make before applying them. The command `apply` makes the changes defined by your plan to create, update, or destroy resources.
+The command `plan` lets you preview the changes OpenTofu will make before applying them. The command `apply` makes the
+changes defined by your plan to create, update, or destroy resources.
 
 ## Tasks
 
@@ -12,7 +13,8 @@ Now it's time to create the file `hello.txt`. This is done by running the `apply
 tofu apply "/root/hello-example.plan"
 ```{{exec}}
 
-The file `hello.txt` should now be created in the directory where the configuration is stored. You can check this by running the `ls` command:
+The file `hello.txt` should now be created in the directory where the configuration is stored. You can check this by
+running the `cat` command:
 
 ```shell
 cat hello.txt
@@ -36,7 +38,8 @@ Now, can you just apply the same plan again? What happens?
 tofu apply "/root/hello-example.plan"
 ```{{exec}}
 
-The plan is no longer valid, as the state was updated by our previous manual action. In order to apply the plan again, you need to create a new plan. 
+The plan is no longer valid, as the state file was updated by our `apply` command and the file was manually removed.
+In order to apply the configuration you need a new plan. 
 
 ### Task 2: Replan
 
@@ -46,14 +49,17 @@ Create a new plan by running the `plan` command:
 tofu plan
 ```{{exec}}
 
-This time we are not storing the plan to a dedicated file, because we can be sure, that no other changes can be made to our terraform configuration.
+This time we are not storing the plan to a dedicated file, but only showing the output.
 
 ### Task 3: Reapply
 
-Apply the new plan, you must confirm the action by typing `yes`:
+If you do `tofu apply` without passing a plan file, a new plan is automatically generated. To apply the new plan, you
+confirm the action by typing `yes`:
 
 ```shell
 tofu apply
 ```{{exec}}
 
-As you can see, there is an additional step when no plan file is provided. This is to ensure that you are aware of the changes that will be made to your infrastructure, which would have been done with a dedicated plan file (you must incorporate such a workflow yourself).
+As you can see, there is an additional plan when no plan file is provided. This is to ensure that you are aware of the
+changes that will be made to your infrastructure, which would have been done with a dedicated plan file (if the changes
+are simple you do a single `apply`, otherwise you export and read the plan before applying).

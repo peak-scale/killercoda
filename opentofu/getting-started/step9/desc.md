@@ -1,4 +1,4 @@
-Working with state is the key aspect when it comes to consistency. It's not ideal to have the state just locally. However, in our case, we have a file called `terraform.tfstate`.
+Working with the state is the key aspect when it comes to consistency. It's not ideal to have the state stored locally.
 
 ## Tasks
 
@@ -6,7 +6,8 @@ Complete these tasks for this step.
 
 ### Task 1: View the state file
 
-Since we use the default configuration, the state is written into a file called `terraform.tfstate` in the working directory. In a production environment, you would have the state somewhere else, like in a remote backend.
+Since we use the default configuration, the state is written into a file called `terraform.tfstate` in the working
+directory. In a production environment, you would store the state somewhere else, like in a remote backend.
 
 ```shell
 ls -l ~/scenario/terraform.tfstate
@@ -22,7 +23,9 @@ Remove the state file (don't do this elsewhere 😄):
 rm -f ~/scenario/terraform.tfstate
 ```{{exec}}
 
-Now that we have lost the state, it's unclear to OpenTofu what's already managed by it and what's not. Essentially, you start from scratch and can import or recreate all the resources. But that's not going to be an option for large infrastructures (data loss 🔥):
+Now that we have lost the state, it's unclear to OpenTofu what's already managed by it and what's not. Essentially, you
+start from scratch and need to import or recreate all the resources. Losing the state is not an advisable for large
+infrastructures (data loss 🔥):
 
 ```shell
 tofu state ls
