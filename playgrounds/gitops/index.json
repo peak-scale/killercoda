@@ -1,6 +1,6 @@
 {
     "title": "GitOps",
-    "description": "Work in a GitOps environment",
+    "description": "Explore the functionality of GitOps (FluxCD/ArgoCD)",
     "details": {
       "intro": {
         "text": "intro.md",
@@ -9,7 +9,7 @@
       },
       "steps": [
         {
-          "title": "Let's explore!",
+          "title": "GitOps",
           "text": "main.md"
         }
       ],

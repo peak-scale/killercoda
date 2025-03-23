@@ -1,4 +1,5 @@
 Working with [providers](https://developer.hashicorp.com/terraform/language/providers) is a fundamental skill required
+
 when working with OpenTofu. Each Provider is a plugin that OpenTofu uses to manage a specific infrastructure platform.
 Providers are responsible for understanding API interactions and exposing resources for managing infrastructure. For
 most infrastructure platforms, there is a corresponding provider that can be used to manage resources on that platform,
