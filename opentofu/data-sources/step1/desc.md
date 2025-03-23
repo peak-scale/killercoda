@@ -1,7 +1,6 @@
 > [Documentation](https://opentofu.org/docs/language/data-sources/#using-data-sources)
 
-A data source is accessed via a special kind of resource known as a data resource, declared using a `data` block:
-
+A data source allows OpenTofu to read information from outside the current state by using a `data` block:
 ```hcl
 data "kubernetes_pod_v1" "workload" {
   metadata {
@@ -10,10 +9,14 @@ data "kubernetes_pod_v1" "workload" {
 }
 ```
 
-For each data source you need to supply different arguments, in this case the `metadata` block with the `name` argument. [See the reference](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/data-sources/pod_v1#argument-reference). Always consult the documentation to find the required arguments for the data source you are using.
+For each data source you need to supply different arguments, in this case the `metadata` block with the `name` argument.
+[See the reference](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/data-sources/pod_v1#argument-reference).
+Always consult the documentation to find the required arguments for the data source you are using.
 
-A data block requests that OpenTofu read from a given data source ([kubernetes_pod_v1](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/data-sources/pod_v1)) and export the result under the given local name (`workload`). The name is used to refer to this resource from elsewhere in the same OpenTofu module, but has no significance outside of the scope of a module.
-
+A data block requests that OpenTofu read from a given data
+source ([kubernetes_pod_v1](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/data-sources/pod_v1))
+and export the result under the given local name (`workload`). The name is used to refer to this resource from elsewhere
+in the same OpenTofu module, but has no significance outside the scope of a module.
 Usually every resource has a data source equivalent.
 
 # Tasks
@@ -22,18 +25,22 @@ Complete these tasks for this scenario.
 
 ## Task 1: Create Data Sources
 
-There's a new file called `kubernetes.tf` in `~/scenario` directory. For each of the mentioned resources, create a data source in a file called `sources.tf`:
+There's a new file called `kubernetes.tf` in `~/scenario` directory. For each of the mentioned resources, create a data
+source in a file called `sources.tf`:
 
 * [`kubernetes_namespace_v1`](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/data-sources/namespace_v1): Use local name `namespace`
 * [`kubernetes_service_account_v1`](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/data-sources/service_account_v1): Use local name `serviceaccount`
 * [`kubernetes_secret_v1`](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/data-sources/secret_v1): Use local name `serviceaccount_token`
 * [`kubernetes_pod_v1`](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/data-sources/pod_v1): Use local name `workload`
 
-For the argument `metadata.name` use the argument of the counter-part resource. For example, for the `kubernetes_namespace_v1` use `kubernetes_namespace_v1.namespace.metadata.0.name` as the argument for the `name` parameter. For the `metadata.namespace` argument use for each resource `kubernetes_namespace_v1.namespace.metadata.0.name`.
+For the argument `metadata.name` use the argument of the counter-part resource. For example, for the
+`kubernetes_namespace_v1` use `kubernetes_namespace_v1.namespace.metadata.0.name` as the argument for the `name`
+parameter. For the `metadata.namespace` argument use for each resource `kubernetes_namespace_v1.namespace.metadata.0.name`.
 
 ## Task 2: Output Data
 
-To make it clear for us what data is returned by the data sources, we want to output the data to the console. Add an output block to the `outputs.tf` file:
+To make it clear for us what data is returned by the data sources, we want to output the data to the console. Add an
+output block to the `outputs.tf` file:
 
 ```hcl
 output "namespace" {
@@ -54,7 +61,8 @@ output "pod" {
 }
 ```{{copy}}
 
-This instructs OpenTofu to output the data from the data sources to the console. The `sensitive` argument is used to hide the output from the console.
+This instructs OpenTofu to output the data from the data sources to the console. The `sensitive` argument is used to
+hide the output from the console.
 
 ## Task 3: Plan
 
@@ -67,7 +75,8 @@ Changes to Outputs:
       + metadata = [
 ```
 
-Most of the attributes have the value `(known after apply)`, which makes sense since we are fetching data from the infrastructure with the data source statement.
+Most of the attributes have the value `(known after apply)`, which makes sense since we are fetching data from the
+infrastructure with the data source statement.
 
 ## Task 4: Apply
 
@@ -114,11 +123,13 @@ pod = {
       "labels" = tomap({})
       "name" = "nginx"
 ...
-```
 
-We can now see, that the resources have much more data than we initially defined. All this data was enriched by the Infrastructure Platform. Now we can reuse this data for further processing
+
+We can now see, that the resources have much more data than we initially defined. All this data was enriched by the
+Infrastructure Platform. Now we can reuse this data for further processing.
 
 # Verify
 
-> If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step1/`. You can always copy the solution files to the current working directory by running `cp ~/.solutions/step1/* ~/scenario/`{{copy}}.
-
+> If the verification was not successful (the check button) and you are unsure what the problem is, review the solution
+> generated in `~/.solutions/step1/`. You can always copy the solution files to the current working directory by
+> running `cp ~/.solutions/step1/* ~/scenario/`{{copy}}.

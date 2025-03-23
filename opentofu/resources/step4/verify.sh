@@ -42,10 +42,10 @@ result=$(hcl2json ~/scenario/pods-count.tf | jq '
     $pod.count == "${local.replicas}"
   )
 ')
-if [ "$result" = "false" ]; then
+if [[ -z "$result" || "$result" = "false" ]]; then
   exit 1
 fi
 
-if ! [ $(kubectl get pod -n dev-environment | grep nginx-count- | wc -l) -ge 5 ]; then
+if ! [[ "$(kubectl get pod -n dev-environment | grep nginx-count- | wc -l)" -ge 5 ]]; then
   exit 1
 fi

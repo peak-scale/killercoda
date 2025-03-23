@@ -31,13 +31,14 @@ labels = {
 To the existing `variables.tf` add a new variable:
 
   * `labels`:
-    * `description`: `"Additional labels for the resources"`{{copy}}
-    * `type`: `map(string)`{{copy}}
-    * `default`: `{}`{{copy}}
+    * `description = "Additional labels for the resources"`{{copy}}
+    * `type = map(string)`{{copy}}
+    * `default = {}`{{copy}}
 
 ## Task 3: Use Variable
 
-These labels should be used in the `kubernetes_namespace_v1` resources in the `kubernetes.tf`. Assign it to the `metadata` block in the for the `labels` attribute:
+These labels should be used in the `kubernetes_namespace_v1` resources in the `kubernetes.tf`. Assign it to the
+`metadata` block in the for the `labels` attribute:
 
 ```shell
 resource "kubernetes_namespace_v1" "namespace" {
@@ -57,4 +58,6 @@ Use the variable file `prod.tfvars` to **apply** the changes.
 
 # Verify
 
-> If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step3/`. You can always copy the solution files to the current working directory by running `cp ~/.solutions/step3/* ~/scenario/`{{copy}}.
+> If the verification was not successful (the check button) and you are unsure what the problem is, review the solution
+> generated in `~/.solutions/step3/`. You can always copy the solution files to the current working directory by running
+> `cp ~/.solutions/step3/* ~/scenario/`{{copy}}.
