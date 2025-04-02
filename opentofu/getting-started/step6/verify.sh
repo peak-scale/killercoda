@@ -1,5 +1,5 @@
 #!/bin/bash
-cd ~/scenario
+cd ~/scenario || exit 1
 
 if [ -f "hello.txt" ]; then
     exit 1

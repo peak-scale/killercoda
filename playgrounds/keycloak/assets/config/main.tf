@@ -128,7 +128,7 @@ resource "keycloak_openid_client" "demo_identity_openid_client_kubernetes" {
   access_type                  = "CONFIDENTIAL"
   standard_flow_enabled        = true
   implicit_flow_enabled        = true
-  valid_redirect_uris = length(local.stage.clients["demo"].valid_redirect_uris) > 0 ? local.stage.clients["demo"].valid_redirect_uris : []
+  valid_redirect_uris          =  var.client_uris
   web_origins                  = [
     "+"
   ]
