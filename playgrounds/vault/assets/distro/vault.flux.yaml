@@ -1,0 +1,54 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name:  vault
+  namespace: flux-system
+spec:
+  interval: 15s
+  timeout: 1m0s
+  url: https://helm.releases.hashicorp.com
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: vault
+  namespace: flux-system
+spec:
+  serviceAccountName: kustomize-controller
+  interval: 1m
+  targetNamespace: vault
+  releaseName: "vault"
+  chart:
+    spec:
+      chart: vault
+      version: "0.29.1"
+      sourceRef:
+        kind: HelmRepository
+        name: vault
+      interval: 24h
+  install:
+    createNamespace: true
+    remediation:
+      retries: -1
+  upgrade:
+    remediation:
+      remediateLastFailure: true
+  driftDetection:
+    mode: enabled
+  values:
+    server:
+      service:
+        type: NodePort
+        nodePort: 30820
+      dev:
+        enabled: true
+        devRootToken: "root"
+    ui:
+      enabled: true
+      serviceType: "NodePort"
+      serviceNodePort: 30080
+      externalPort: 8200
+    csi:
+      enabled: true
+
