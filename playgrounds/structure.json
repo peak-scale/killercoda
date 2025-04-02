@@ -4,7 +4,6 @@
     "items": [
       { "path": "capsule" },
       { "path": "containers" },
-      { "path": "dependency-track" },
       { "path": "external-secrets" },
       { "path": "keycloak" },
       { "path": "kubernetes" },
