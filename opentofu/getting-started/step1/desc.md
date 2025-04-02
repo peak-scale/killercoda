@@ -1,10 +1,14 @@
-Before starting this step, you must install OpenTofu in the given environment. For reference, see the [official website](https://opentofu.org/docs/intro/install/). You can use the same process to install OpenTofu on your local machine.
+Before starting this step, you must install OpenTofu in the given environment. For reference, see the
+[official website](https://opentofu.org/docs/intro/install/). You can use the same process to install OpenTofu on your
+local machine.
 
-The [OpenTofu CLI](https://opentofu.org/docs/intro/install/) interacts with the state and executes everything in our scenarios.
+The [OpenTofu CLI](https://opentofu.org/docs/intro/install/) interacts with the state and executes everything in our
+scenarios.
 
 ## Tasks
 
-In this environment, we are running [Ubuntu](https://opentofu.org/docs/intro/install/deb/), so we can use the following commands to install OpenTofu:
+In this environment, we are running [Ubuntu](https://opentofu.org/docs/intro/install/deb/), so we can use the following
+commands to install OpenTofu with its repository:
 
 ### Task 1: Add OpenTofu keyring
 
