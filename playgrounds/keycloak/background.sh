@@ -16,7 +16,10 @@ kubectl kustomize /root/.assets/distro/ | kubectl apply -f -
 kubectl krew install oidc-login
 
 # Install OpenTofu
-snap install opentofu --classic
+curl --proto '=https' --tlsv1.2 -fsSL https://get.opentofu.org/install-opentofu.sh -o install-opentofu.sh
+chmod +x install-opentofu.sh
+./install-opentofu.sh --install-method deb
+rm -f install-opentofu.sh
 
 # Install Flux
 curl -s https://fluxcd.io/install.sh | sudo bash

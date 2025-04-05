@@ -1,6 +1,6 @@
 {
-    "title": "Dependency-Track",
-    "description": "Explore the functionality of Dependency-Track",
+    "title": "Vault/Openbao",
+    "description": "Explore the functionality of Vault/Openbao",
     "details": {
       "intro": {
         "text": "intro.md",
@@ -9,7 +9,7 @@
       },
       "steps": [
         {
-          "title": "Dependency-Track",
+          "title": "Showcase",
           "text": "main.md" 
         }
       ],

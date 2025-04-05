@@ -2,30 +2,30 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name:  vault
+  name:  openbao
   namespace: flux-system
 spec:
   interval: 15s
   timeout: 1m0s
-  url: https://helm.releases.hashicorp.com
+  url: https://openbao.github.io/openbao-helm
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: vault
+  name: openbao
   namespace: flux-system
 spec:
   serviceAccountName: kustomize-controller
   interval: 1m
-  targetNamespace: vault
-  releaseName: "vault"
+  targetNamespace: openbao
+  releaseName: "openbao"
   chart:
     spec:
-      chart: vault
-      version: "0.30.0"
+      chart: openbao
+      version: "0.8.1"
       sourceRef:
         kind: HelmRepository
-        name: vault
+        name: openbao
       interval: 24h
   install:
     createNamespace: true
