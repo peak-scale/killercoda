@@ -49,12 +49,13 @@ result=$(hcl2json ~/scenario/namespace.tf | jq '
     $item.metadata[0].name == "dev-environment"
   )
 ')
-if [ "$result" = "false" ]; then
+if [[ -z "$result" || "$result" = "false" ]]; then
   exit 1
 fi
 
+unset result
 result=$(hcl2json ~/scenario/serviceaccount.tf | jq '
-  .resource.kubernetes_serviceaccount_v1 | 
+  .resource.kubernetes_service_account_v1 |
   to_entries | 
   .[0].value[0] as $item | 
   (
@@ -63,10 +64,11 @@ result=$(hcl2json ~/scenario/serviceaccount.tf | jq '
     $item.metadata[0].namespace == "dev-environment"
   )
 ')
-if [ "$result" = "false" ]; then
+if [[ -z "$result" || "$result" = "false" ]]; then
   exit 1
 fi
 
+unset result
 result=$(hcl2json ~/scenario/pod.tf | jq '
   .resource.kubernetes_pod_v1 | 
   to_entries | 
@@ -83,6 +85,6 @@ result=$(hcl2json ~/scenario/pod.tf | jq '
     $item.spec[0].container[0].name == "nginx"
   )
 ')
-if [ "$result" = "false" ]; then
+if [[ -z "$result" || "$result" = "false" ]]; then
   exit 1
 fi

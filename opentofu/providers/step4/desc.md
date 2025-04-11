@@ -1,6 +1,6 @@
-You will often encounter this scenario with cloud vendors: you need the same provider multiple times but e.g. in a
-different region. In this case you can use the `provider` meta-argument to specify the provider configuration for a
-resource.
+You will often encounter this scenario with cloud vendors: you need the same provider multiple times with different
+configuration e.g. in a different region. In this case you can use the `provider` meta-argument to specify the provider
+configuration for a resource.
 
 # Tasks
 

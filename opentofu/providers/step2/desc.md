@@ -37,6 +37,6 @@ Providers required by configuration:
 
 # Verify
 
-> If the verification was unsuccessful and you are unsure what the problem is, review the files
-> in `~/.solutions/step2/`. You can always copy the solution files to the current working directory by
+> If the verification was not successful (the check button) and you are unsure what the problem is, review the solution
+> generated in `~/.solutions/step2/`. You can always copy the solution files to the current working directory by
 > running `cp ~/.solutions/step2/* ~/scenario/`{{copy}}.
