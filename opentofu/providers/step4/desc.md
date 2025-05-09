@@ -29,6 +29,6 @@ When a provider has an `alias`, it's not the default provider and must be specif
 
 # Verify
 
-> If the verification was not successful and you are unsure what the problem is, review the files
+> If the verification was not successful (the check button) and you are unsure what the problem is, review the solution generated
 > in `~/.solutions/step4/`. You can always copy the solution files to the current working directory by
 > running `cp ~/.solutions/step4/* ~/scenario/`{{copy}}.

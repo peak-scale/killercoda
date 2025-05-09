@@ -1,6 +1,7 @@
 > [Documentation](https://opentofu.org/docs/language/values/outputs/)
 
-Output variables are used to expose values from a module for use in other modules or as a return value to the user who invoked the module. They are useful for extracting information about the infrastructure provisioned by a module.
+Output variables are used to expose values from a module for use in other modules or as a return value to the user who
+invoked the module. They are useful for extracting information about the infrastructure provisioned by a module.
 
 ### Tasks
 
@@ -19,11 +20,13 @@ output "pod_name" {
 }
 ```{{copy}}
 
-Here we use the attribute `metadata[0].name` to extract the name of the pod. This is an attribute we declared and is therefor known before any apply has been made. 
+Here we use the attribute `metadata[0].name` to extract the name of the pod. This is an attribute we declared and is
+therefor known before any apply has been made. 
 
 #### Task 2: Use output variables
 
-These output variables should be used to expose the information from the Kubernetes resource on the infrastructure. Add the following output to the `outputs.tf` file:
+These output variables should be used to expose the information from the Kubernetes resource on the infrastructure. Add
+the following output to the `outputs.tf` file:
 
 ```shell
 output "pod_uid" {
@@ -42,7 +45,8 @@ We can view the current outputs with:
 tofu output
 ```{{execute}}
 
-However we get the feedback, that no outputs have yet been defined. This is because the resources have not been applied yet. Let's run a plan:
+However we get the feedback, that no outputs have yet been defined. This is because the resources have not been applied
+yet. Let's run a plan:
 
 ```shell
 tofu apply -auto-approve
@@ -75,4 +79,6 @@ tofu output -json
 
 # Verify
 
-> If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step5/`. You can always copy the solution files to the current working directory by running `cp ~/.solutions/step5/* ~/scenario/`{{copy}}.
+> If the verification was not successful (the check button) and you are unsure what the problem is, review the solution
+> generated in `~/.solutions/step5/`. You can always copy the solution files to the current working directory by running
+> `cp ~/.solutions/step5/* ~/scenario/`{{copy}}.

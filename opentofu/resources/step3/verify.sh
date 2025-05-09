@@ -74,7 +74,7 @@ EOF
 result=$(hcl2json ~/scenario/kubernetes.tf | jq '(
   any(.resource.kubernetes_pod_v1.workload[0].depends_on[]; . == "${kubernetes_service_account_v1.serviceaccount}")
 )')
-if [ "$result" = "false" ]; then
+if [[ -z "$result" || "$result" = "false" ]]; then
   exit 1
 fi
 
@@ -83,6 +83,7 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
+unset result
 result=$(hcl2json ~/scenario/kubernetes.tf | jq '(
   any(.resource.kubernetes_pod_v1.workload[0].lifecycle[0].ignore_changes[]; . == "${metadata[0].annotations[\"cni.projectcalico.org/podIPs\"]}")
 ) and (
@@ -90,6 +91,6 @@ result=$(hcl2json ~/scenario/kubernetes.tf | jq '(
 ) and (
   any(.resource.kubernetes_pod_v1.workload[0].lifecycle[0].ignore_changes[]; . == "${metadata[0].annotations[\"cni.projectcalico.org/podIP\"]}")
 )')
-if [ "$result" = "false" ]; then
+if [[ -z "$result" || "$result" = "false" ]]; then
   exit 1
 fi

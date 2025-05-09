@@ -4,4 +4,3 @@ locals {
   replicas = 3
 }
 EOF
-

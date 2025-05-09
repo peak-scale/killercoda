@@ -45,6 +45,9 @@ resource "kubernetes_service_account_v1" "serviceaccount" {
     name = "dev-sa"
     namespace = "dev-environment"
   }
+  depends_on = [
+    kubernetes_namespace_v1.namespace
+  ]
 }
 
 resource "kubernetes_secret_v1" "serviceaccount_token" {
@@ -55,13 +58,12 @@ resource "kubernetes_secret_v1" "serviceaccount_token" {
     namespace = "dev-environment"
     generate_name = "terraform-example-"
   }
-
-  depends_on = [
-    kubernetes_namespace_v1.namespace
-  ]
-
   type                           = "kubernetes.io/service-account-token"
   wait_for_service_account_token = true
+
+  depends_on = [
+    kubernetes_service_account_v1.serviceaccount
+  ]
 }
 
 resource "kubernetes_pod_v1" "workload" {

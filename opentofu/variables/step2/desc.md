@@ -31,9 +31,11 @@ var.environment
 
 > [Documentation](https://opentofu.org/docs/language/values/variables/#using-input-variable-values)
 
-Now that you have the input variable defined, you can use it in the configuration. Replace the hardcoded values with the input variable in the `kubernetes.tf` file. Every occurence of `prod` should be replaced with the input variable. To access the input variable, you can use the following syntax:
+Now that you have the input variable defined, you can use it in the configuration. Replace the hardcoded values with the
+input variable in the `kubernetes.tf` file. Every occurrence of `prod` should be replaced with the input variable. To
+access the input variable, you can use the following syntax:
 
-* `${var.environment}`{{copy}}
+* `var.environment`{{copy}} or `${var.environment}`{{copy}} for string interpolation.
 
 If changed, you can verify the plan again.
 
@@ -41,7 +43,8 @@ If changed, you can verify the plan again.
 
 > [Documentation](https://opentofu.org/docs/language/values/variables/#custom-validation-rules)
 
-We want to validate the input for our variable `environment`. The environment should only be `prod`, `test` or `dev`. If the input is different, the validation should fail. Add the following condition:
+We want to validate the input for our variable `environment`. The environment should only be `prod`, `test` or `dev`. If
+the input is different, the validation should fail. Add the following condition:
 
 ```hcl
 validation {
@@ -58,13 +61,17 @@ tofu plan
 
 ## Task 4: Declare a default value
 
-In the `variables.tf` file, edit the input variable environment to have a default value of `prod`. Add it as last argument for the variable configuration. If you run `tofu plan`{{exec}} you can see `prod` is used and we are not asked to delvier a value.
+In the `variables.tf` file, edit the input variable environment to have a default value of `prod`. Add it as last
+argument for the variable configuration. If you run `tofu plan`{{exec}} you can see `prod` is used and we are not asked
+to deliver a value.
 
 ## Task 5: Set Input Variables
 
 > [Documentation](https://opentofu.org/docs/language/values/variables/#assigning-values-to-root-module-variables)
 
-While it might be a useful workflow to define input variables via an interactive prompt, that option might become unfeasible when the number of variables increases or in automated environments. Let's explore the different ways to declare input variables.
+While it might be a useful workflow to define input variables via an interactive prompt, that option might become
+unfeasible when the number of variables increases or in automated environments. Let's explore the different ways to
+declare input variables.
 
 Create a file `terraform.tfvars`, the content of the file should be:
 
@@ -72,7 +79,8 @@ Create a file `terraform.tfvars`, the content of the file should be:
 environment = "test"
 ```{{copy}}
 
-if you run a plan now, you should see that the variable is set to `test` and all the resources are created in the `test` environment and all the prod resources are replaced. What happens if you apply the plan?
+if you run a plan now, you should see that the variable is set to `test` and all the resources are created in the
+`test` environment and all the prod resources are replaced. What happens if you apply the plan?
 
 ```shell
 tofu apply -auto-approve
@@ -82,13 +90,15 @@ tofu apply -auto-approve
 
 > [Documentation](https://opentofu.org/docs/language/values/variables/#variable-definition-precedence)
 
-We would like to overwrite the defined variable `environment` with an environment variable. For this we export the environment variable `TF_VAR_environment` with the value `dev`.
+We would like to overwrite the defined variable `environment` with an environment variable. For this we export the
+environment variable `TF_VAR_environment` with the value `dev`.
 
 ```shell
 export TF_VAR_environment=dev
 ```{{exec}}
 
-Nothing happens, because the environment variable has the lowest precedence. The value from the `terraform.tfvars` file has a higher precedence. Directly using the `-var` flag is the highest precedence:
+Nothing happens, because the environment variable has the lowest precedence. The value from the `terraform.tfvars` file
+has a higher precedence. Directly using the `-var` flag is the highest precedence:
 
 ```shell
 tofu plan -var="environment=dev"
@@ -96,4 +106,6 @@ tofu plan -var="environment=dev"
 
 # Verify
 
-> If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step2/`. You can always copy the solution files to the current working directory by running `cp ~/.solutions/step2/* ~/scenario/`{{copy}}.
+> If the verification was not successful (the check button) and you are unsure what the problem is, review the solution
+> generated in `~/.solutions/step2/`. You can always copy the solution files to the current working directory by running
+> `cp ~/.solutions/step2/* ~/scenario/`{{copy}}.

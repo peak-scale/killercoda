@@ -1,34 +1,37 @@
 {
-    "title": "6. Write a Module",
-    "description": "Create your first module: simplify tenant management on Kubernetes.",
-    "details": {
-      "intro": {
-        "text": "intro.md",
-        "background": "background.sh"
+  "title": "6. Write a Module",
+  "description": "Create your first module: simplify tenant management on Kubernetes.",
+  "details": {
+    "intro": {
+      "text": "intro.md",
+      "background": "background.sh"
+    },
+    "finish": {
+      "text": "finish.md"
+    },
+    "steps": [
+      {
+        "title": "Introduction",
+        "text": "step1/desc.md"
       },
-      "finish": {
-        "text": "finish.md"
-      },
-      "steps": [
-        {
-          "title": "Introduction", 
-          "text": "step1/desc.md"
-        },
-        {
-          "title": "Example Solution", 
-          "text": "step2/desc.md"
-        }
-      ],
-      "assets": {
-        "host01": [
-          {"file": "example/**", "target": "/root/"}
-        ]
+      {
+        "title": "Example Solution",
+        "text": "step2/desc.md"
       }
-    },
-    "backend": {
-      "imageid": "kubernetes-kubeadm-1node"
-    },
-    "interface": {
-      "layout": "ide"
+    ],
+    "assets": {
+      "host01": [
+        {
+          "file": "example/**",
+          "target": "/root/"
+        }
+      ]
     }
+  },
+  "backend": {
+    "imageid": "kubernetes-kubeadm-1node"
+  },
+  "interface": {
+    "layout": "ide"
   }
+}
