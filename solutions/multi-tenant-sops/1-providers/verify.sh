@@ -10,6 +10,8 @@ spec:
   - namespaceSelector:
       matchExpressions:
        - { key: capsule.clastix.io/tenant, operator: NotExists }
+  - matchLabels:
+      bao-token: "true"
   sops:
   - namespaceSelector:
       matchExpressions:
@@ -26,6 +28,8 @@ spec:
   - namespaceSelector:
       matchLabels:
         capsule.clastix.io/tenant: solar
+  - matchLabels:
+      bao-token: "true"
   sops:
   - namespaceSelector:
       matchLabels:

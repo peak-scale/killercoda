@@ -4,5 +4,6 @@ stringData:
   sops.vault-token: "root"
 metadata:
   labels:
+    bao-token: "true"
     sops.addons.projectcapsule.dev: "true"
   name: vault-token
