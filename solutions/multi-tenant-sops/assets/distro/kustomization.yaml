@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - openbao.flux.yaml
   - sops-operator.flux.yaml
+  - capsule.flux.yaml
