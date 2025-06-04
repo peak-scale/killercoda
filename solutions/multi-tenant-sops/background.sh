@@ -19,6 +19,16 @@ curl -LO "https://github.com/${SOPS_LOOKUP}/releases/download/v${SOPS_VERSION}/s
 mv "sops-v${SOPS_VERSION}.linux.amd64" "${SOPS}"
 chmod +x "${SOPS}"
 
+mkdir ./bao
+BAO='/usr/bin/bao'
+BAO_VERSION='2.1.1'
+BAO_LOOKUP='openbao/openbao'
+curl -LO "https://github.com/${BAO_LOOKUP}/releases/download/v${BAO_VERSION}/bao_${BAO_VERSION}_linux_amd64.pkg.tar.zst"
+tar --zstd -xvf "bao_${BAO_VERSION}_linux_amd64.pkg.tar.zst" -C ./bao
+mv ./bao/usr/bin/bao "${BAO}"
+chmod +x "${BAO}"
+rm -rf ./bao
+
 # Verify Distribution
 while [ "$(kubectl get helmrelease -A -o jsonpath='{range .items[?(@.status.observedGeneration<0)]}{.metadata.namespace}{" "}{.metadata.name}{"\n"}{end}' | wc -l)" -ne 0 ]; do
   echo "Waiting for all HelmReleases to have observedGeneration >= 0..." >> /etc/peak-scale/setup-log
