@@ -50,10 +50,26 @@ cat .sops.yaml
 
 As you can see, we are referencing the Openbao adress in the `.sops.yaml` and also we are providing which keys we are looking to use. This works with single keys or via `key-groups`:
 
-
 ```yaml
 
 ```
+
+We see, that we again have the same files available, now we can again encrypt them as required:
+
+* `sops -e secret-key-1.yaml > secret-key-1.enc.yaml`{{exec}}
+* `sops -e secret-key-2.yaml > secret-key-2.enc.yaml`{{exec}}
+* `sops -e secret-multi.yaml > secret-multi.enc.yaml`{{exec}}
+* `sops -e secret-quorum.yaml > secret-quorum.enc.yaml`{{exec}}
+
+Verify that the files were all succesfully decrypted.
+
+Now since both providers have the same token, it does not matter into which namespace you deploy these secrets, they should alaways be decrypted:
+
+```shell
+kubectl apply -f secret-key-1.enc.yaml -n kube-systen
+kubectl get sopssecret vault-secret-key-1 -n kube-system -o yaml
+```{{exec}}
+
 
 
 
