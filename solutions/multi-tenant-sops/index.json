@@ -8,10 +8,23 @@
         "background": "background.sh"
       },
       "steps": [
-        {
-          "title": "Showcase",
-          "text": "main.md" 
-        }
+      {
+        "title": "Configure SOPS Providers",
+        "text": "1-providers/README.md"
+      },
+      {
+        "title": "GPG Secrets",
+        "text": "2-gpg/README.md"
+      },
+      {
+        "title": "AGE Secrets",
+        "text": "3-age/README.md"
+      },
+      {
+        "title":  "Openbao Secrets",
+        "text": "4-openbao/README.md",
+        "foreground": "4-openbao/foreground.sh"
+      }
       ],
       "assets": {
         "controlplane": [
