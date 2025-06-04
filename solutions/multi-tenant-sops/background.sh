@@ -28,4 +28,8 @@ done
 # Apply Objects
 kubectl kustomize /root/.assets/objects/ | kubectl apply -f -
 
+kubectl create ns solar-prod --as alice --as-group projectcapsule.dev
+kubectl create ns solar-test --as alice --as-group projectcapsule.dev
+kubectl create ns solar-dev --as alice --as-group projectcapsule.dev
+
 touch /tmp/finished
