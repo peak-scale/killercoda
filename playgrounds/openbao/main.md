@@ -1,43 +1,4 @@
-# Vault
-
-You will find different approaches how you can decrypt secrets with SOPS. It's best to visit their [documentation](https://getsops.io/) for more information.
-
-A very simplistic example is to use a [Gitlab project as provider](https://external-secrets.io/latest/provider/gitlab-variables/) for the secrets. The secrets are stored in the Gitlab project and the External Secrets Operator reads the secrets and creates Kubernetes Secrets.
-
-## Gitlab
-
-There's aleady a Gitlab Secret being synced by external secrets operator.
-
-View the SecretStore:
-
-```shell
-kubectl get SecretStore -n eso-gitlab -o yaml
-```{{exec}}
-
-The `ExternalSecret` is already created and synced with the Vault Secret:
-
-```shell
-kubectl get ExternalSecret -n eso-gitlab -o yaml
-```{{exec}}
-
-
-## Vault
-
-There's aleady a Vault Secret being synced by external secrets operator.
-
-View the SecretStore:
-
-```shell
-kubectl get SecretStore -n eso-vault -o yaml
-```{{exec}}
-
-The `ExternalSecret` is already created and synced with the Vault Secret:
-
-```shell
-kubectl get ExternalSecret -n eso-vault -o yaml
-```{{exec}}
-
-# Vault (Openbao)
+# Openbao
 
 [Access the Vault Dashboard here]({{TRAFFIC_HOST1_30080}}).
 

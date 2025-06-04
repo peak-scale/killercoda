@@ -1,5 +1,4 @@
 #!/bin/bash
-
 cd /root/gpg
 
 echo "Import GPG Private-Key 1 (${PWD}keys/keys-1/private.key) 🦄"
