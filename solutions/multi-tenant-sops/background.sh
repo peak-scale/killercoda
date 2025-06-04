@@ -3,6 +3,9 @@ set -x
 echo starting...
 sudo apt install gnupg2 age
 
+# Move Directories
+mv /root/.assets/example/gpg/ /root/gpg
+
 # Install Flux
 kubectl kustomize /root/.assets/flux/ | kubectl apply -f -
 

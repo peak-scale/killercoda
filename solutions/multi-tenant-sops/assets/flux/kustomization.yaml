@@ -16,7 +16,7 @@ patches:
         value: --no-remote-bases=true      
     target:
       kind: Deployment
-      name: "kustomize-controller"
+      name: "kustomize-controll§er"
   - patch: |
       - op: add
         path: /spec/template/spec/containers/0/args/-

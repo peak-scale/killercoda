@@ -10,7 +10,8 @@
       "steps": [
       {
         "title": "Configure SOPS Providers",
-        "text": "1-providers/README.md"
+        "text": "1-providers/README.md",
+        "verify": "1-providers/verify.sh"
       },
       {
         "title": "GPG Secrets",
