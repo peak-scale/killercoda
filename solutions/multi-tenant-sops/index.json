@@ -19,8 +19,8 @@
       },
       {
         "title":  "Openbao Secrets",
-        "text": "2-openbao/README.md",
-        "foreground": "2-openbao/foreground.sh"
+        "text": "3-openbao/README.md",
+        "foreground": "3-openbao/foreground.sh"
       }
       ],
       "assets": {
