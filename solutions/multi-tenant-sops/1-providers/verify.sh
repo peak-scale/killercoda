@@ -9,13 +9,13 @@ spec:
   keys:
   - namespaceSelector:
       matchExpressions:
-       - { key: capsule.clastix.io/tenant, operator: NotExists }
+       - { key: capsule.clastix.io/tenant, operator: DoesNotExist }
   - matchLabels:
       bao-token: "true"
   sops:
   - namespaceSelector:
       matchExpressions:
-       - { key: capsule.clastix.io/tenant, operator: NotExists }
+       - { key: capsule.clastix.io/tenant, operator: DoesNotExist }
 EOF
 
 kubectl create -f - <<EOF

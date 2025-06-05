@@ -7,7 +7,7 @@ Token is `root`
 For any interactions with the client you need to set the following environment variables:
 
 ```shell
-export VAULT_TOKEN="root"
+export BAO_TOKEN="root"
 export VAULT_ADDR=$(sed 's/PORT/30820/g' /etc/killercoda/host)
 ```{{exec}}
 
@@ -66,7 +66,7 @@ Verify that the files were all succesfully decrypted.
 Now since both providers have the same token, it does not matter into which namespace you deploy these secrets, they should alaways be decrypted:
 
 ```shell
-kubectl apply -f secret-key-1.enc.yaml -n kube-systen
+kubectl apply -f secret-key-1.enc.yaml -n kube-system
 kubectl get sopssecret vault-secret-key-1 -n kube-system -o yaml
 ```{{exec}}
 
