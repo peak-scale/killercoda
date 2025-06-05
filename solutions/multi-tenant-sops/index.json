@@ -14,17 +14,13 @@
         "verify": "1-providers/verify.sh"
       },
       {
-        "title": "GPG Secrets",
-        "text": "2-gpg/README.md"
-      },
-      {
         "title": "AGE Secrets",
-        "text": "3-age/README.md"
+        "text": "2-age/README.md"
       },
       {
         "title":  "Openbao Secrets",
-        "text": "4-openbao/README.md",
-        "foreground": "4-openbao/foreground.sh"
+        "text": "2-openbao/README.md",
+        "foreground": "2-openbao/foreground.sh"
       }
       ],
       "assets": {

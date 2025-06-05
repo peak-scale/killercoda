@@ -6,6 +6,7 @@ sudo apt install gnupg2 age
 # Move Directories
 mv /root/.assets/example/gpg/ /root/gpg
 mv /root/.assets/example/openbao/ /root/openbao
+mv /root/.assets/example/age/ /root/age
 
 # Install Flux
 kubectl kustomize /root/.assets/flux/ | kubectl apply -f -
