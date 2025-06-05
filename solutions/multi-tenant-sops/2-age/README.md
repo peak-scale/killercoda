@@ -142,5 +142,12 @@ The reason for that is, that the age-key 1 is not exposed to these namespaces, t
 
 ```shell
 kubectl apply -f secret-key-1.enc.yaml -n kube-system
-```
+```{{exec}}
 
+We can see, that the `SopsSecret` was successfully decrypted:
+
+```shell
+kubectl get sopssecret secret-key-1  -n kube-system
+NAME           SECRETS   STATUS   MESSAGE             AGE
+secret-key-1   1         Ready    Secrets Decrypted   8s
+```
