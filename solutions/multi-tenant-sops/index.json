@@ -15,7 +15,8 @@
       },
       {
         "title": "AGE Secrets",
-        "text": "2-age/README.md"
+        "text": "2-age/README.md",
+        "foreground": "2-age/foreground.sh"
       },
       {
         "title":  "Openbao Secrets",
