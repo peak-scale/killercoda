@@ -1,6 +1,6 @@
 #!/bin/bash
 
-kubectl create -f - <<EOF
+kubectl apply -f - <<EOF
 apiVersion: addons.projectcapsule.dev/v1alpha1
 kind: SopsProvider
 metadata:
@@ -18,7 +18,7 @@ spec:
        - { key: capsule.clastix.io/tenant, operator: DoesNotExist }
 EOF
 
-kubectl create -f - <<EOF
+kubectl apply -f - <<EOF
 apiVersion: addons.projectcapsule.dev/v1alpha1
 kind: SopsProvider
 metadata:

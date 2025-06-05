@@ -19,13 +19,13 @@ In order for the sops-operator to be able to access and decrypt secrets, which w
 
 ```shell
 cat token.yaml
-```
+```{{exec}}
 
 Note that the key for the token must be `sops.vault-token`. Let's apply this secret (it can be applied to any namespace, as both `SopsProviders` should be able to select it):
 
 ```shell
 kubectl apply -f token.yaml -n kube-system
-```
+```{{exec}}
 
 Verify it was considered by both `SopsProviders`:
 
