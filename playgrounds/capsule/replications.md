@@ -1,7 +1,7 @@
 
 # Replications
 
-[See Reference](https://projectcapsule.dev/docs/tenants/replications/)
+[Documentation](https://projectcapsule.dev/docs/replications/)
 
 From the perspective of an `Cluster Administrator`, we want to ensure certain resources are distributed amongst the namespaces of tenants. This way we can control basic ctrical tenancy.
 
@@ -26,7 +26,7 @@ Looking at one, it does exactly what we are lookin to do:
 kubectl get netpol zero-trust -n solar-prod -o yaml
 ```{{exec}}
 
-This is thanks to [Replications/Resources](https://projectcapsule.dev/docs/tenants/replications/#globaltenantresource)
+This is thanks to [Replications/Resources](https://projectcapsule.dev/docs/replications/#globaltenantresource)
 
 We have already created a replication in advance, which deploys this networkpolicy to all namespaces of the solar tenant, review it:
 

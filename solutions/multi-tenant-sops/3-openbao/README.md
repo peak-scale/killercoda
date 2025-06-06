@@ -1,6 +1,6 @@
 # Openbao Secrets
 
-[Access the Vault Dashboard here]({{TRAFFIC_HOST1_30080}}). It's not required
+[Access the Vault Dashboard here]({{TRAFFIC_HOST1_30080}}). It's not required in this exmaple, just if you want to play around a bit more.
 
 Token is `root`
 
@@ -90,23 +90,34 @@ Verify the `SopsSecrets` were successfully decrypted:
 
 ```shell
 kubectl get sopssecret --all-namespaces -l type=openbao
-```
+```{{exec}}
 
 Should all be succesful:
 
 ```shell
-
-
+NAMESPACE     NAME                  SECRETS   STATUS   MESSAGE             AGE
+kube-system   vault-secret-key-1    1         Ready    Secrets Decrypted   41s
+solar-dev     vault-quorum-secret   1         Ready    Secrets Decrypted   41s
+solar-prod    vault-secret-key-2    2         Ready    Secrets Decrypted   41s
+solar-test    vault-multi-secret    1         Ready    Secrets Decrypted   41s
 ```
 
 Now if the token is removed:
 
 ```shell
 kubectl delete -f token.yaml -n kube-system
-```
+```{{exec}}
 
 The `SopsSecrets` can also no longer be decrypted and the related secrets disappear as well:
 
 ```shell
 kubectl get sopssecret --all-namespaces -l type=openbao
+```{{exec}}
+
+```shell
+NAMESPACE     NAME                  SECRETS   STATUS     MESSAGE                        AGE
+kube-system   vault-secret-key-1    1         NotReady   Secret reconciliation failed   2m57s
+solar-dev     vault-quorum-secret   1         NotReady   Secret reconciliation failed   2m57s
+solar-prod    vault-secret-key-2    2         NotReady   Secret reconciliation failed   2m57s
+solar-test    vault-multi-secret    1         NotReady   Secret reconciliation failed   2m57s
 ```

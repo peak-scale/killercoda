@@ -13,6 +13,10 @@
           "text": "main.md" 
         },
         {
+          "title": "ResourcePools",
+          "text": "resourcepools.md" 
+        },
+        {
           "title": "Replications",
           "text": "replications.md" 
         },

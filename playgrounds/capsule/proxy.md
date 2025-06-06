@@ -1,6 +1,8 @@
 
 # Capsule Proxy
 
+> [Documentation](https://projectcapsule.dev/docs/proxy/)
+
 The [Capsule-Proxy](https://github.com/projectcapsule/capsule-proxy) intercepts `LIST` operations to the cluster and adds matching labels, so that the user making the request only sees the resources from their tenants. This way the users only see the resources they really are allowed to see with `LIST` operations. Most tools require LIST operations to properly display content or in general your users want to know, what their current deployed inventory looks like.
 
 This setup works best, if you are using [OIDC or similar to authenticate your users](https://projectcapsule.dev/docs/operating/authentication/). In this ephermal environment we will be using [Certificate-Based authentication](https://kubernetes.io/docs/reference/access-authn-authz/certificate-signing-requests/)
@@ -44,11 +46,35 @@ As you can see, only the resources from `alice`s tenant are shown. This would al
 
 ## ProxySettings
 
-As `Cluster Administrator` you may have the requirement to improve the user experience and allow the to view certain resources. In this case you can create a 
+> [Documentation](https://projectcapsule.dev/docs/proxy/proxysettings/#proxysettings)
 
+## GlobalProxySettings
 
+> [Documentation](https://projectcapsule.dev/docs/proxy/proxysettings/#globalproxysettings)
 
+As an administrator, you might have the requirement to allow users to query cluster-scoped resources which are not directly linked to a tenant or anything like that. In that case you grant cluster-scoped LIST privileges to any subject, no matter what their tenant association is. For example:
 
+```yaml
+apiVersion: capsule.clastix.io/v1beta1
+kind: GlobalProxySettings
+metadata:
+  name: global-kyverno-list
+spec:
+  rules:
+  - subjects:
+    - kind: User
+      name: alice
+    clusterResources:
+    - apiGroups:
+      - "kyverno.io/v1"
+      resources:
+      - "*"
+      operations:
+      - List
+      selector:
+        matchLabels:
+          app.kubernetes.io/type: customer-1
+```
 
 ## Integrations (UX)
 

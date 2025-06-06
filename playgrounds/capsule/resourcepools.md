@@ -1,9 +1,36 @@
 
-# Capsule
+# ResourcePools
 
-> [Documentation](https://projectcapsule.dev/docs/tenants/permissions/)
+[See Reference](https://projectcapsule.dev/docs/resourcepools/)
 
-You as an `Cluster Administrator` have already created some tenants you want to share with your `Users`. To verify, list all the available Tenants:
+`ResourcePools` allow you to define a set of resources, similar to how `ResourceQuotas` work. `ResourcePools` are defined at the cluster scope and should be managed by cluster administrators. However, they provide an interface where cluster administrators can specify from which namespaces resources in a ResourcePool can be claimed. Claiming is done via a namespaced CRD called `ResourcePoolClaim`.
+
+For our tenant `solar` let's create a `ResourcePool` which provides essential compute resources:
+
+```yaml
+apiVersion: capsule.clastix.io/v1beta2
+kind: ResourcePool
+metadata:
+  name: solar
+spec:
+  quota:
+    hard:
+      limits.cpu: "2"
+      limits.memory: 2Gi
+      requests.cpu: "2"
+      requests.memory: 2Gi
+      requests.storage: "5Gi"
+  selectors:
+  - matchLabels:
+      capsule.clastix.io/tenant: solar
+```
+
+**Note**: You can select any namespaces, they don't have to be part of a capsule tenant at all. All the items under `.spec.selectors` are dedicated `OR` queries.
+
+
+
+
+
 
 ```shell
 kubectl get tnt
