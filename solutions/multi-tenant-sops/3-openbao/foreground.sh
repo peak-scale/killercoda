@@ -1,9 +1,7 @@
-#!/bin/bash
 cd /root/openbao
 
 export VAULT_ADDR=$(sed 's/PORT/30820/g' /etc/killercoda/host)
 export BAO_TOKEN="root"
-
 
 cat <<EOF > "/root/openbao/.sops.yaml"
 creation_rules:

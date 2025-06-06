@@ -29,11 +29,17 @@ kubectl apply -f token.yaml -n kube-system
 
 Verify it was considered by both `SopsProviders`:
 
+```shell
+kubectl get sopsprovider
+```{{exec}}
 
+We can now see, that both `SopsProviders` have loaded two keys respectively (each an age key and both the vault token):
 
-
-
-
+```shell
+NAME              STATUS   MESSAGE                    PROVIDERS   AGE
+solar-provider    Ready    Reconciliation Succeeded   2           3m47s
+system-provider   Ready    Reconciliation Succeeded   2           3m47s
+```
 
 ## Encryption/Decryption
 
@@ -48,18 +54,26 @@ Let's inspect the `.sops.yaml` file:
 cat .sops.yaml
 ```{{exec}}
 
-As you can see, we are referencing the Openbao adress in the `.sops.yaml` and also we are providing which keys we are looking to use. This works with single keys or via `key-groups`:
-
-```yaml
-
+As you can see, we are referencing the Openbao adress in the `.sops.yaml` and also we are providing which keys we are looking to use. This works with single keys or via `key-groups`
 ```
 
 We see, that we again have the same files available, now we can again encrypt them as required:
 
-* `sops -e secret-key-1.yaml > secret-key-1.enc.yaml`{{exec}}
-* `sops -e secret-key-2.yaml > secret-key-2.enc.yaml`{{exec}}
-* `sops -e secret-multi.yaml > secret-multi.enc.yaml`{{exec}}
-* `sops -e secret-quorum.yaml > secret-quorum.enc.yaml`{{exec}}
+```shell
+sops -e secret-key-1.yaml > secret-key-1.enc.yaml
+```{{exec}}
+
+```shell
+sops -e secret-key-2.yaml > secret-key-2.enc.yaml
+```{{exec}}
+
+```shell
+sops -e secret-multi.yaml > secret-multi.enc.yaml
+```{{exec}}
+
+```shell
+sops -e secret-quorum.yaml > secret-quorum.enc.yaml
+```{{exec}}
 
 Verify that the files were all succesfully decrypted.
 
@@ -67,8 +81,16 @@ Now since both providers have the same token, it does not matter into which name
 
 ```shell
 kubectl apply -f secret-key-1.enc.yaml -n kube-system
-kubectl get sopssecret vault-secret-key-1 -n kube-system -o yaml
+kubectl apply -f secret-key-2.enc.yaml -n solar-prod
+kubectl apply -f secret-multi.enc.yaml -n solar-test
+kubectl apply -f secret-quorum.enc.yaml -n solar-dev
 ```{{exec}}
+
+Verify the `SopsSecrets` were successfully decrypted:
+
+```shell
+
+```
 
 
 

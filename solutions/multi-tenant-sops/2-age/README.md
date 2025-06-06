@@ -75,7 +75,7 @@ To encrypt secrets using sops we need need the public key, which is easiest stor
 
 ```shell
 cat .sops.yaml
-```
+```{{exec}}
 
 You can now simply encrypt using sops, the commands for all the available files:
 
@@ -111,7 +111,7 @@ We can verify, which secrets are replicated:
 
 ```shell
 kubectl get sopssecret secret-key-2  -n solar-test -o jsonpath='{.status.secrets}' | jq
-```
+```{{exec}}
 
 Or just verify that native Kubernetes secrets are available:
 
