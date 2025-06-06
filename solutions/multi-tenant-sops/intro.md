@@ -8,8 +8,9 @@ SOPS is an editor of encrypted files that supports YAML, JSON, ENV, INI and BINA
 
 ![SOPS Demo](https://camo.githubusercontent.com/1ea5f0bb71c611d225ac52c8a003530292add9989abaf48894abbade6348c139/68747470733a2f2f692e696d6775722e636f6d2f5830544d354e492e676966)
 
-[See the Source (SOPS)](https://github.com/getsops/sops)
-[See the Source (SOPS Operator)](https://github.com/peak-scale/sops-operator)
+* [See the Source (SOPS)](https://github.com/getsops/sops)
+
+* [See the Source (SOPS Operator)](https://github.com/peak-scale/sops-operator)
 
 # Finishing
 

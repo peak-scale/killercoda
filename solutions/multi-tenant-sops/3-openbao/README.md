@@ -55,7 +55,7 @@ cat .sops.yaml
 ```{{exec}}
 
 As you can see, we are referencing the Openbao adress in the `.sops.yaml` and also we are providing which keys we are looking to use. This works with single keys or via `key-groups`
-```
+
 
 We see, that we again have the same files available, now we can again encrypt them as required:
 
@@ -89,15 +89,24 @@ kubectl apply -f secret-quorum.enc.yaml -n solar-dev
 Verify the `SopsSecrets` were successfully decrypted:
 
 ```shell
+kubectl get sopssecret --all-namespaces -l type=openbao
+```
+
+Should all be succesful:
+
+```shell
+
 
 ```
 
+Now if the token is removed:
 
+```shell
+kubectl delete -f token.yaml -n kube-system
+```
 
+The `SopsSecrets` can also no longer be decrypted and the related secrets disappear as well:
 
-
-
-
-
-
-
+```shell
+kubectl get sopssecret --all-namespaces -l type=openbao
+```
