@@ -1,4 +1,3 @@
-
 #!/bin/bash
 kubectl create namespace dev-environment || true
 kubectl apply -f - <<EOF

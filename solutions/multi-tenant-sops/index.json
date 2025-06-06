@@ -1,0 +1,42 @@
+{
+    "title": "Multi Tenant SOPS Secrets",
+    "description": "Explore the functionality of the sops-operator from peakscale",
+    "details": {
+      "intro": {
+        "text": "intro.md",
+        "foreground": "foreground.sh",
+        "background": "background.sh"
+      },
+      "steps": [
+      {
+        "title": "Configure SOPS Providers",
+        "text": "1-providers/README.md",
+        "verify": "1-providers/verify.sh"
+      },
+      {
+        "title": "AGE Secrets",
+        "text": "2-age/README.md",
+        "foreground": "2-age/foreground.sh"
+      },
+      {
+        "title":  "Openbao Secrets",
+        "text": "3-openbao/README.md",
+        "foreground": "3-openbao/foreground.sh"
+      }
+      ],
+      "assets": {
+        "controlplane": [
+          {"file": "**", "target": "/root/.assets/", "chmod": "+x"}
+        ],
+        "host01": [
+          {"file": "**", "target": "/root/.assets/", "chmod": "+x"}
+        ]
+      },
+      "finish": {
+        "text": "finish.md"
+      }
+    },
+    "backend": {
+      "imageid": "kubernetes-kubeadm-1node-4GB"
+    }
+  }

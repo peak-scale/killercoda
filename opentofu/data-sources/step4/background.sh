@@ -34,4 +34,3 @@ resource "kubernetes_pod_v1" "count-workload" {
   }
 }
 EOF
-

@@ -1,47 +1,47 @@
 {
-    "title": "3. Resources",
-    "description": "Understand resources and handle their lifecycle.",
-    "icon":"fa-terraform",
-    "difficulty": "Beginner",
-    "time": "15 minutes",
-    "details": {
-      "intro": {
-        "text": "intro.md",
-        "foreground": "foreground.sh",
-        "background": "background.sh"
+  "title": "3. Resources",
+  "description": "Understand resources and handle their lifecycle.",
+  "icon": "fa-terraform",
+  "difficulty": "Beginner",
+  "time": "15 minutes",
+  "details": {
+    "intro": {
+      "text": "intro.md",
+      "foreground": "foreground.sh",
+      "background": "background.sh"
+    },
+    "steps": [
+      {
+        "title": "Argument References",
+        "text": "step2/desc.md",
+        "verify": "step2/verify.sh"
       },
-      "steps": [
-        {
-          "title": "Argument References", 
-          "text": "step2/desc.md",
-          "verify": "step2/verify.sh"
-        },
-        {
-          "title": "Lifecycle Argument", 
-          "text": "step3/desc.md",
-          "verify": "step3/verify.sh"
-        },
-        {
-          "title": "Count Argument",
-          "text": "step4/desc.md",
-          "verify": "step4/verify.sh",
-          "background": "step4/background.sh"
-        },
-        {
-          "title": "Foreach Argument",
-          "text": "step5/desc.md",
-          "verify": "step5/verify.sh",
-          "background": "step5/background.sh"
-        }
-      ],
-      "finish": {
-        "text": "finish.md"
+      {
+        "title": "Lifecycle Argument",
+        "text": "step3/desc.md",
+        "verify": "step3/verify.sh"
+      },
+      {
+        "title": "Count Argument",
+        "text": "step4/desc.md",
+        "verify": "step4/verify.sh",
+        "background": "step4/background.sh"
+      },
+      {
+        "title": "Foreach Argument",
+        "text": "step5/desc.md",
+        "verify": "step5/verify.sh",
+        "background": "step5/background.sh"
       }
-    },
-    "backend": {
-      "imageid": "kubernetes-kubeadm-1node"
-    },
-    "interface": {
-      "layout": "ide"
+    ],
+    "finish": {
+      "text": "finish.md"
     }
+  },
+  "backend": {
+    "imageid": "kubernetes-kubeadm-1node"
+  },
+  "interface": {
+    "layout": "ide"
   }
+}

@@ -72,4 +72,3 @@ EOF
 # Verify
 diff <(hcl2json ~/scenario/locals.tf) <(hcl2json ${SOLUTION_DIR}/locals.tf)
 diff <(hcl2json ~/scenario/kubernetes.tf | jq '.resource.kubernetes_pod_v1.workload[0].metadata') <(hcl2json ${SOLUTION_DIR}/kubernetes.tf | jq '.resource.kubernetes_pod_v1.workload[0].metadata')
-

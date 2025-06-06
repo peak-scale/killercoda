@@ -28,4 +28,6 @@ kubectl get secret postgres-postgresql -o jsonpath='{.data.postgres-password}'| 
 
 # Verify
 
-> If the verification was not successful and you are unsure what the problem is, review the files in `~/.solutions/step1/`. You can always copy the solution files to the current working directory by running `cp ~/.solutions/step1/* ~/scenario/`{{copy}}.
+> If the verification was not successful (the check button) and you are unsure what the problem is, review the solution
+> generated in `~/.solutions/step1/`. You can always copy the solution files to the current working directory by running
+> `cp ~/.solutions/step1/* ~/scenario/`{{copy}}.

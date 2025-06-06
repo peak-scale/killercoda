@@ -1,7 +1,7 @@
 
 # Capsule
 
-[See Reference](https://projectcapsule.dev/docs/tenants/permissions/)
+> [Documentation](https://projectcapsule.dev/docs/tenants/permissions/)
 
 You as an `Cluster Administrator` have already created some tenants you want to share with your `Users`. To verify, list all the available Tenants:
 
@@ -41,8 +41,6 @@ spec:
     kind: Group
     name: solar-users
   preventDeletion: false
-  resourceQuotas:
-    scope: Tenant
 ```
 
 What's important are the entries under `.spec.owners`. There we can see we have granted the `User` `alice` and the `Group` `solar-users` [Ownership](https://projectcapsule.dev/docs/tenants/permissions/#ownership) of this tenant. From our point of view all these users are responsible to manage the tenant. The main difference is, that `Owners` can manage `Namespaces` within their tenant and grant more permissions to other users.

@@ -66,6 +66,6 @@ result=$(hcl2json ~/scenario/kubernetes.tf | jq '(
 ) and (
   .resource.kubernetes_service_account_v1.serviceaccount[0].metadata[0].namespace == "${kubernetes_namespace_v1.namespace.metadata.0.name}"
 )')
-if [ "$result" = "false" ]; then
+if [[ -z "$result" || "$result" = "false" ]]; then
   exit 1
 fi

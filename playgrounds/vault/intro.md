@@ -1,14 +1,12 @@
-![Addon Icon](https://external-secrets.io/latest/pictures/eso-round-logo.svg)
+![Addon Icon](https://cdn.worldvectorlogo.com/logos/vault-enterprise.svg)
 
 The playground takes some time to be fully ready, please be patient.
 
-# External Secrets
+# Vault
 
-External Secrets Operator is a Kubernetes operator that integrates external secret management systems like AWS Secrets Manager, HashiCorp Vault, Google Secrets Manager, Azure Key Vault, IBM Cloud Secrets Manager, CyberArk Conjur, Pulumi ESC and many more. The operator reads information from external APIs and automatically injects the values into a Kubernetes Secret. See [all providers](https://external-secrets.io/latest/provider/aws-secrets-manager/)
+Vault provides organizations with identity-based security to automatically authenticate and authorize access to secrets and other sensitive data.
 
-![Overview](https://external-secrets.io/latest/pictures/diagrams-high-level-simple.png)
-
-[See the Source](https://external-secrets.io/latest/)
+[See the Source](https://www.hashicorp.com/en/products/vault)
 
 # Finishing
 
