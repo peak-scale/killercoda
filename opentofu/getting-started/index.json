@@ -48,6 +48,7 @@
       {
         "title": "Import Resources",
         "text": "step8/desc.md",
+        "foreground": "step8/foreground.sh",
         "background": "step8/background.sh",
         "verify": "step8/verify.sh"
       },
