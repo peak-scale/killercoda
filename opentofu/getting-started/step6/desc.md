@@ -16,8 +16,7 @@ For further steps, we need all the files to be absent. We can remove it by runni
 tofu apply -destroy
 ```{{exec}}
 
-**Note**: do confirm by typing `yes`. This command destroys all resources that are managed by OpenTofu, so be careful
-when using it.
+**Note**: if you type `yes`, you'll have to run `tofu apply -auto-approve` for executing the next task.
 
 ## Destroying one resource
 
@@ -29,7 +28,7 @@ Another approach is to destroy a specific resource however this is only used in 
 * For this, we need to create a plan file that is limited to the resource we want to destroy. 
 
 ```shell
- tofu plan -target="local_file.example" -out /root/destroy-plan
+ tofu plan -destroy -target="local_file.example" -out /root/destroy-plan
 ```{{exec}}
 
 If you are unsure about the target name, you can look at your current state:
@@ -41,5 +40,5 @@ tofu state ls
 Now you can destroy the resource by running the `apply` command with the plan file:
 
 ```shell
-tofu apply -destroy "/root/destroy-plan"
+tofu apply "/root/destroy-plan"
 ```{{exec}}

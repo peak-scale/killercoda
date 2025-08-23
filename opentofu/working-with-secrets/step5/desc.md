@@ -20,7 +20,7 @@ The name of the resource must be different (`goodbye`) to avoid conflicts.
 2. Plan and Apply the changes, you may review what's being created:
 
 ```shell
-tofu plan && tofu apply -auto-approve
+tofu apply -auto-approve
 ```{{exec}}
 
 3. Verify the new file was created:
