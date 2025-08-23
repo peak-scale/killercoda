@@ -51,3 +51,4 @@ spec:
 EOF
 
 cd ~/scenario && tofu init
+touch /tmp/finished
