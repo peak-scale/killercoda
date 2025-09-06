@@ -63,7 +63,7 @@ spec:
   chart:
     spec:
       chart: capsule
-      version: "0.10.7"
+      version: "0.10.9"
       sourceRef:
         kind: HelmRepository
         name: projectcapsule
