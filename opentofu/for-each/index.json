@@ -1,0 +1,41 @@
+{
+  "title": "7. for_each",
+  "description": "Learn about for_each and for loop.",
+  "icon": "fa-terraform",
+  "difficulty": "Intermediate",
+  "details": {
+    "intro": {
+      "text": "intro.md",
+      "background": "background.sh",
+      "foreground": "foreground.sh"
+    },
+    "steps": [
+      {
+        "title": "count and for_each",
+        "text": "step1/desc.md"
+      },
+      {
+        "title": "count vs for_each",
+        "text": "step2/desc.md"
+      },
+      {
+        "title": "The for_each index",
+        "text": "step3/desc.md"
+      },
+      {
+        "title": "The for_each index p2",
+        "text": "step4/desc.md"
+      },
+      {
+        "title": "The missing `group_by`",
+        "text": "step5/desc.md"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "backend": {
+    "imageid": "kubernetes-kubeadm-1node"
+  }
+}
