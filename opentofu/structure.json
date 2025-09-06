@@ -10,7 +10,7 @@
       { "path": "resources" },
       { "path": "data-sources" },
       { "path": "variables" },
-      { "path": "write-a-module-01" },
-      { "path": "for-each" }
+      { "path": "for-each" },
+      { "path": "write-a-module-01" }
     ]
 }
