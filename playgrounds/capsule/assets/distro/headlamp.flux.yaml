@@ -1,0 +1,152 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: headlamp
+  namespace: flux-system
+spec:
+  interval: 10m
+  releaseName: "headlamp"
+  targetNamespace: capsule-system
+  chart:
+    spec:
+      chart: headlamp
+      version: "0.27.0"
+      sourceRef:
+        kind: HelmRepository
+        name: headlamp-charts
+      interval: 24h
+  install:
+    createNamespace: true
+  upgrade:
+    remediation:
+      remediateLastFailure: true
+  driftDetection:
+    mode: enabled
+  values:
+    replicaCount: 1
+    automountServiceAccountToken: true
+    service:
+      type: NodePort
+      port: 80
+      targetPort: 4466
+      nodePort: 30444
+    resources:
+      limits:
+        cpu: 500m
+        memory: 512Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: token-ca
+    - name: ca-store
+      mountPath: /etc/ssl/
+    - name: headlamp-plugins
+      mountPath: /build/plugins
+    env:
+      - name: KUBERNETES_SERVICE_HOST
+        value: capsule-proxy.capsule-system.svc
+      - name: KUBERNETES_SERVICE_PORT
+        value: "9001"
+    volumes:
+      - name: headlamp-plugins
+        emptyDir: {}
+      - name: ca-store
+        emptyDir: {}
+      - name: capsule-proxy
+        secret:
+          secretName: capsule-proxy
+      - name: token-ca
+        projected:
+          sources:
+              - serviceAccountToken:
+                  path: token
+              - secret:
+                  name: capsule-proxy
+                  items:
+                      - key: ca.crt
+                        path: ca.crt
+              - downwardAPI: null
+                items:
+                  - fieldRef:
+                      apiVersion: v1
+                      fieldPath: metadata.namespace
+                    path: namespace
+    initContainers:
+      - name: capsule-plugin
+        command:
+          - /bin/sh
+          - -c
+          - cp -r /plugins/* /build/plugins/
+        image: ghcr.io/buttahtoast/headlamp-plugins/capsule:0.1.0-beta1
+        volumeMounts:
+          - mountPath: /build/plugins
+            name: headlamp-plugins
+        securityContext:
+          capabilities:
+              drop:
+                  - ALL
+          readOnlyRootFilesystem: true
+          allowPrivilegeEscalation: false
+          privileged: false
+          runAsUser: 65534
+          runAsGroup: 65534
+      - name: add-ca
+        image: docker.io/alpine:3
+        command:
+          - /bin/sh
+          - -c
+        args:
+          - |
+            set -e
+            cp -R /etc/ssl/* /work/
+            cat /ca/ca.crt >> /work/certs/ca-certificates.crt
+        volumeMounts:
+          - name: ca-store
+            mountPath: /work
+          - name: capsule-proxy
+            mountPath: /ca
+        securityContext:
+          capabilities:
+              drop:
+                  - ALL
+          readOnlyRootFilesystem: true
+          allowPrivilegeEscalation: false
+          privileged: false
+          runAsUser: 65534
+          runAsGroup: 65534
+    podSecurityContext:
+        runAsNonRoot: true
+        seccompProfile:
+            type: RuntimeDefault
+    securityContext:
+        capabilities:
+            drop:
+                - ALL
+        readOnlyRootFilesystem: false
+        allowPrivilegeEscalation: false
+        privileged: false
+        runAsUser: 100
+        runAsGroup: 101
+    config:
+        pluginsDir: /build/plugins
+        inCluster: true
+        oidc:
+          clientID: kubernetes 
+          clientSecret: kubernetes-secret 
+          issuerURL: "${DEX_URL}"
+          scopes: "email,profile,groups"
+        extraArgs:
+            - -insecure-ssl
+
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: headlamp-charts
+  namespace: flux-system
+spec:
+  interval: 24h0m0s
+  url: https://headlamp-k8s.github.io/headlamp/

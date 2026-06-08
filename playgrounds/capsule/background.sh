@@ -2,17 +2,21 @@
 set -x 
 echo starting...
 
+export GANGPLANK_URL="$(sed 's/PORT/30442/g' /etc/killercoda/host)"
+export PROXY_URL="$(sed 's/PORT/30444/g' /etc/killercoda/host)"
+export HEADLAMP_URL="$(sed 's/PORT/30443/g' /etc/killercoda/host)"
+export DEX_URL="$(sed 's/PORT/32556/g' /etc/killercoda/host)"
+
 # Install Flux
 kubectl kustomize /root/.assets/flux/ | kubectl apply -f -
 
 # Install Distribution
-kubectl kustomize /root/.assets/distro/ | kubectl apply -f -
+kubectl kustomize /root/.assets/distro/ \
+  | envsubst \
+  | kubectl apply -f -
 
 # Install Plugins
 kubectl krew install oidc-login
-
-# Install OpenTofu
-snap install opentofu --classic
 
 # Install Flux
 curl -s https://fluxcd.io/install.sh | sudo bash

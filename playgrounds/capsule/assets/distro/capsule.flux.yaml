@@ -1,8 +1,9 @@
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
   name: capsule
+  namespace: flux-system
 spec:
   interval: 10m
   layerSelector:
@@ -10,7 +11,7 @@ spec:
     operation: copy
   url: oci://ghcr.io/projectcapsule/charts/capsule
   ref:
-    tag: 0.10.7
+    tag: 0.13.4
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -51,7 +52,6 @@ spec:
         generateCertificates: false
         extraArgs:
           - "--feature-gates=ProxyClusterScoped=true"
-          - "--feature-gates=ProxyAllNamespaced=true"
     crds:
       install: true
     tls:
