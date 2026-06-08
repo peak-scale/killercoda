@@ -19,6 +19,8 @@ spec:
   interval: 15s
   targetNamespace: capsule-system
   releaseName: capsule
+  dependsOn:
+    - name: cert-manager
   chart:
     spec:
       chart: capsule

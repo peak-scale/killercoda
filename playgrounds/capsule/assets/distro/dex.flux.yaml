@@ -25,6 +25,10 @@ spec:
         kind: HelmRepository
         name: dex
       interval: 1h
+  install:
+    createNamespace: true
+    remediation:
+      retries: -1
   values:
     replicaCount: 1
     service:
