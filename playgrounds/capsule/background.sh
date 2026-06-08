@@ -12,7 +12,7 @@ kubectl kustomize /root/.assets/flux/ | kubectl apply -f -
 
 # Install Distribution
 kubectl kustomize /root/.assets/distro/ \
-  | envsubst \
+  | envsubst '${PROXY_URL} ${HEADLAMP_URL} ${GANGPLANK_URL} ${DEX_URL}' \
   | kubectl apply -f -
 
 # Install Plugins
