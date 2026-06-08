@@ -70,31 +70,31 @@ spec:
           secret: gangplank-secret
           redirectURIs:
             - "${GANGPLANK_URL}/callback"
-    staticPasswords:
-      - email: bob@projectcapsule.dev
-        username: bob
-        userID: 11111111-1111-1111-1111-111111111111
-        hash: '$2y$10$i34m83YDT//1FM/Kgh5ij.4oldpb6BTR9yrMKccEbb8ROZ/B9/ws.'
-        groups:
-          - capsule-users
-
-      - email: alice@projectcapsule.dev
-        username: alice
-        userID: 22222222-2222-2222-2222-222222222222
-        hash: '$2y$10$RDFCIouEd/mKeIPnPMxBOOiee7o1lk.dwI9znS81M2Csc.rF4axq6'
-        groups:
-          - capsule-users
-
-      - email: gatsby@projectcapsule.dev
-        username: gatsby
-        userID: 33333333-3333-3333-3333-333333333333
-        hash: '$2y$10$ry8ZzAFd.vzKP4OKpcmPzONzLrixMDZfo0HZwqKRUouB8HcOdH0RW'
-        groups:
-          - capsule-users
-
-      - email: admin@example.com
-        username: admin
-        userID: 44444444-4444-4444-4444-444444444444
-        hash: '$2y$10$0LNxDaCWcsxf6kG66x04WOSQbOW17Pqpm29NIJY9YrcQpvimwgsQm'
-        groups:
-          - capsule-admins
+      staticPasswords:
+        - email: bob@projectcapsule.dev
+          username: bob
+          userID: 11111111-1111-1111-1111-111111111111
+          hash: '$2y$10$i34m83YDT//1FM/Kgh5ij.4oldpb6BTR9yrMKccEbb8ROZ/B9/ws.'
+          groups:
+            - capsule-users
+  
+        - email: alice@projectcapsule.dev
+          username: alice
+          userID: 22222222-2222-2222-2222-222222222222
+          hash: '$2y$10$RDFCIouEd/mKeIPnPMxBOOiee7o1lk.dwI9znS81M2Csc.rF4axq6'
+          groups:
+            - capsule-users
+  
+        - email: gatsby@projectcapsule.dev
+          username: gatsby
+          userID: 33333333-3333-3333-3333-333333333333
+          hash: '$2y$10$ry8ZzAFd.vzKP4OKpcmPzONzLrixMDZfo0HZwqKRUouB8HcOdH0RW'
+          groups:
+            - capsule-users
+  
+        - email: admin@example.com
+          username: admin
+          userID: 44444444-4444-4444-4444-444444444444
+          hash: '$2y$10$0LNxDaCWcsxf6kG66x04WOSQbOW17Pqpm29NIJY9YrcQpvimwgsQm'
+          groups:
+            - capsule-admins
