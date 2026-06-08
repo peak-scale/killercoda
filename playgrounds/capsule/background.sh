@@ -3,8 +3,8 @@ set -x
 echo starting...
 
 export GANGPLANK_URL="$(sed 's/PORT/30442/g' /etc/killercoda/host)"
-export PROXY_URL="$(sed 's/PORT/30444/g' /etc/killercoda/host)"
-export HEADLAMP_URL="$(sed 's/PORT/30443/g' /etc/killercoda/host)"
+export PROXY_URL="$(sed 's/PORT/30443/g' /etc/killercoda/host)"
+export HEADLAMP_URL="$(sed 's/PORT/30444/g' /etc/killercoda/host)"
 export DEX_URL="$(sed 's/PORT/32556/g' /etc/killercoda/host)"
 
 # Install Flux

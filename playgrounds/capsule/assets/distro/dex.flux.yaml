@@ -64,7 +64,7 @@ spec:
           secret: kubernetes-secret
           redirectURIs:
             - "$PROXY_URL/*"
-            - "$HEADLAMP_URL/*"
+            - "$HEADLAMP_URL/oidc-callback"
         - id: gangplank
           name: Gangplank
           secret: gangplank-secret
