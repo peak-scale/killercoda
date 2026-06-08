@@ -58,8 +58,8 @@ spec:
     crds:
       install: true
     tls:
-      enableController: true
-      create: true
+      enableController: false
+      create: false
     manager:
       options:
         capsuleUserGroups:
