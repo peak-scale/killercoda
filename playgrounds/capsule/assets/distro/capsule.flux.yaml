@@ -79,6 +79,11 @@ spec:
       create: false
     manager:
       options:
-        capsuleUserGroups:
-          - "projectcapsule.dev"
+        allowServiceAccountPromotion: true
+        administrators:
+          - kind: "Group"
+            name: "capsule-admins"
+        users:
+          - kind: "Group"
+            name: "capsule-users"
         forceTenantPrefix: false
