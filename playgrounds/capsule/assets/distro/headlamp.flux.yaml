@@ -8,6 +8,7 @@ spec:
   interval: 10m
   releaseName: "headlamp"
   targetNamespace: capsule-system
+  serviceAccountName: kustomize-controller
   chart:
     spec:
       chart: headlamp
@@ -140,7 +141,6 @@ spec:
           scopes: "email,profile,groups"
         extraArgs:
             - -insecure-ssl
-
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
