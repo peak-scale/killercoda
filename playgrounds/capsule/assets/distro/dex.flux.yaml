@@ -63,10 +63,13 @@ spec:
           name: Kubernetes
           secret: kubernetes-secret
           redirectURIs:
-            - "$GANGPLANK_URL/*"
             - "$PROXY_URL/*"
             - "$HEADLAMP_URL/*"
-      staticPasswords:
+        - id: gangplank
+          name: Gangplank
+          secret: gangplank-secret
+          redirectURIs:
+            - "${GANGPLANK_URL}/callback"
     staticPasswords:
       - email: bob@example.com
         username: bob

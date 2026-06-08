@@ -9,6 +9,8 @@ spec:
   releaseName: "headlamp"
   targetNamespace: capsule-system
   serviceAccountName: kustomize-controller
+  dependsOn:
+    - name: capsule
   chart:
     spec:
       chart: headlamp
@@ -141,8 +143,6 @@ spec:
           clientSecret: kubernetes-secret 
           issuerURL: "${DEX_URL}"
           scopes: "email,profile,groups"
-        extraArgs:
-            - -insecure-ssl
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository

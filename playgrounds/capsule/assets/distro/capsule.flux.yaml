@@ -41,6 +41,23 @@ spec:
   values:
     proxy:
       enabled: true
+      gangplank:
+        enabled: true
+        config:
+          clusterName: "tenant-cluster"
+          apiServerURL: "${PROXY_URL}"
+          scopes:
+            - "openid"
+            - "profile"
+            - "email"
+            - "groups"
+            - "offline_access"
+          redirectURL: "${GANGPLANK_URL}/callback"
+          usernameClaim: "email"
+          clientID: "gangplank"
+          clientSecret: "gangplank-secret"
+          authorizeURL: "${DEX_URL}/auth"
+          tokenURL: "${DEX_URL}/token"
       certManager:
         generateCertificates: true
         certificate:
